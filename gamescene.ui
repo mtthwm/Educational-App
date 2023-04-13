@@ -6,35 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>173</width>
-    <height>108</height>
+    <width>392</width>
+    <height>225</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="test">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>111</width>
-     <height>41</height>
+     <x>100</x>
+     <y>10</y>
+     <width>37</width>
+     <height>12</height>
     </rect>
    </property>
    <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho1.jpg</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
+    <string>COHO</string>
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

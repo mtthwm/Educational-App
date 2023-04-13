@@ -27,6 +27,7 @@ private:
     b2World world;
     b2Body* fishBody;
     QTimer timer;
+    QImage fishImage;
 };
 
 #endif // GAMESCENE_H
