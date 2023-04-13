@@ -17,5 +17,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void switchToGame();
 };
 #endif // MAINWINDOW_H
