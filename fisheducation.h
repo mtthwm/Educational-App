@@ -15,6 +15,7 @@ public:
     explicit FishEducation(QWidget *parent = nullptr);
     ~FishEducation();
 
+
 private:
     Ui::FishEducation *ui;
 };

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>654</width>
-    <height>502</height>
+    <width>1000</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,18 +19,18 @@
      <rect>
       <x>220</x>
       <y>220</y>
-      <width>120</width>
-      <height>80</height>
+      <width>721</width>
+      <height>341</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>360</x>
       <y>10</y>
-      <width>291</width>
-      <height>91</height>
+      <width>280</width>
+      <height>90</height>
      </rect>
     </property>
     <property name="font">
@@ -42,13 +42,13 @@
      <string>Test Your Knowledge</string>
     </property>
    </widget>
-   <widget class="QWidget" name="fishEduction" native="true">
+   <widget class="FishEducation" name="fishEduction" native="true">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>120</y>
-      <width>421</width>
-      <height>271</height>
+      <x>10</x>
+      <y>110</y>
+      <width>981</width>
+      <height>511</height>
      </rect>
     </property>
    </widget>
@@ -58,8 +58,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>654</width>
-     <height>25</height>
+     <width>1000</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -70,6 +70,12 @@
    <class>GameScene</class>
    <extends>QWidget</extends>
    <header>gamescene.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FishEducation</class>
+   <extends>QWidget</extends>
+   <header>fisheducation.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
