@@ -12,7 +12,7 @@ GameScene::GameScene(QWidget *parent) :
     world.SetGravity(b2Vec2(9.8f, 0.0f));
 
     b2BodyDef fishBodyDef;
-    fishBodyDef.position.Set(0.4f, 05.5f);
+    fishBodyDef.position.Set(0.4f, 5.5f);
 
     fishBody = world.CreateBody(&fishBodyDef);
 }
