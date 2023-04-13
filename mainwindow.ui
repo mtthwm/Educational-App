@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>654</width>
-    <height>502</height>
+    <width>658</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="GameScene" name="gameScene" native="true">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>220</y>
-      <width>120</width>
-      <height>80</height>
+      <x>0</x>
+      <y>-1</y>
+      <width>651</width>
+      <height>481</height>
      </rect>
     </property>
    </widget>
@@ -58,8 +58,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>654</width>
-     <height>25</height>
+     <width>658</width>
+     <height>17</height>
     </rect>
    </property>
   </widget>

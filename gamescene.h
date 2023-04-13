@@ -3,7 +3,11 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <vector>
+
 #include "Box2D/Box2D.h"
+
+using std::vector;
 
 namespace Ui {
 class GameScene;
@@ -23,9 +27,10 @@ private:
     Ui::GameScene *ui;
 
     void updateWorld ();
+    void spawnFish ();
 
     b2World world;
-    b2Body* fishBody;
+    vector<b2Body*> fishBodies;
     QTimer timer;
     QImage fishImage;
 };

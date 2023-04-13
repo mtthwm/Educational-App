@@ -1,7 +1,9 @@
 #include "gamescene.h"
 #include "ui_gamescene.h"
+#include "Box2D/Box2D.h"
 
 #include <QPainter>
+#include <QDebug>
 
 #include<iostream>
 
@@ -17,15 +19,54 @@ GameScene::GameScene(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    for (int i = 0; i < 10; i++) {
+        spawnFish();
+    }
+
+    connect(&timer, &QTimer::timeout, this, &GameScene::updateWorld);
+    timer.start(10);
+}
+
+GameScene::~GameScene()
+{
+    delete ui;
+}
+
+void GameScene::paintEvent(QPaintEvent *) {
+    // Create a painter
+    QPainter painter(this);
+
+    for (b2Body* fishBody : fishBodies) {
+        b2Vec2 position = fishBody->GetPosition();
+        painter.drawImage((int)(position.x), (int)(position.y), fishImage);
+    }
+
+    painter.end();
+}
+
+void GameScene::updateWorld() {
+    // It is generally best to keep the time step and iterations fixed.
+    world.Step(1.0/60.0, 6, 2);
+    update();
+}
+
+void GameScene::spawnFish() {
+    int uiWidth = this->width();
+    int uiHeight = this->height();
+
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
-    fishBodyDef.position.Set(0.4f, 5.5f);
+    fishBodyDef.position.Set(rand() % uiWidth, rand() % uiHeight);
 
-    fishBody = world.CreateBody(&fishBodyDef);
+    // TODO: Maybe we could vary gravity scale slightly to add variety
+    // to the speeds at which fish come down the conveyor?
+    fishBodyDef.gravityScale = (rand() % 20) / 10.0f;
+
+    b2Body* fishBody = world.CreateBody(&fishBodyDef);
 
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(1.0f, 1.0f);
+    dynamicBox.SetAsBox(fishImage.width(), fishImage.height());
 
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -41,29 +82,5 @@ GameScene::GameScene(QWidget *parent) :
     // Add the shape to the body.
     fishBody->CreateFixture(&fixtureDef);
 
-    connect(&timer, &QTimer::timeout, this, &GameScene::updateWorld);
-    timer.start(10);
-}
-
-GameScene::~GameScene()
-{
-    delete ui;
-}
-
-void GameScene::paintEvent(QPaintEvent *) {
-    // Create a painter
-    QPainter painter(this);
-    b2Vec2 position = fishBody->GetPosition();
-
-    printf("%4.2f %4.2f", position.x, position.y);
-
-    painter.drawImage((int)(position.x), (int)(position.y), fishImage);
-
-    painter.end();
-}
-
-void GameScene::updateWorld() {
-    // It is generally best to keep the time step and iterations fixed.
-    world.Step(1.0/60.0, 6, 2);
-    update();
+    fishBodies.push_back(fishBody);
 }
