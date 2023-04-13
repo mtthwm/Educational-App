@@ -14,7 +14,8 @@ class FishEducation : public QWidget
 public:
     explicit FishEducation(QWidget *parent = nullptr);
     ~FishEducation();
-
+protected:
+    void hoverEnter(QHoverEvent *event);
 
 private:
     Ui::FishEducation *ui;

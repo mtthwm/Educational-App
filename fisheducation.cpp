@@ -2,6 +2,10 @@
 #include "ui_fisheducation.h"
 #include <QHoverEvent>
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 FishEducation::FishEducation(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::FishEducation)
@@ -13,6 +17,12 @@ FishEducation::FishEducation(QWidget *parent) :
 FishEducation::~FishEducation()
 {
     delete ui;
+}
+
+void FishEducation::hoverEnter(QHoverEvent *event)
+{
+    QPoint point = event->position().toPoint();
+    cout<<point.x()<< " and Y: " << point.y() << endl;
 }
 
 //void FishEducation::enterEvent(QHoverEvent*)
