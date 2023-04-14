@@ -25,7 +25,9 @@ protected:
 
 private:
     Ui::FishEducation *ui;
-    bool hoverOverFish(int x, int y);
+    bool hoverOverCoho(int x, int y);
+    void displayHoverCoho();
+    void displayNotHoverCoho();
 };
 
 #endif // FISHEDUCATION_H

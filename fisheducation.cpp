@@ -49,30 +49,20 @@ void FishEducation::hoverEnter(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverFish(point.x(), point.y()))
-    {
-            ui->cohoAfterHover->setVisible(true);
-            ui->cohoBeforeHover->setVisible(false);
-            ui->dialogueLabel->setVisible(true);
-    }
+    if (hoverOverCoho(point.x(), point.y()))
+        displayHoverCoho();
+    else
+        displayNotHoverCoho();
 }
 
 void FishEducation::hoverMove(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverFish(point.x(), point.y()))
-    {
-        ui->cohoAfterHover->setVisible(true);
-        ui->cohoBeforeHover->setVisible(false);
-        ui->dialogueLabel->setVisible(true);
-    }
+    if (hoverOverCoho(point.x(), point.y()))
+        displayHoverCoho();
     else
-    {
-        ui->cohoAfterHover->setVisible(false);
-        ui->cohoBeforeHover->setVisible(true);
-        ui->dialogueLabel->setVisible(false);
-    }
+        displayNotHoverCoho();
 
 }
 
@@ -80,21 +70,13 @@ void FishEducation::hoverLeave(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverFish(point.x(), point.y()))
-    {
-        ui->cohoAfterHover->setVisible(true);
-        ui->cohoBeforeHover->setVisible(false);
-        ui->dialogueLabel->setVisible(true);
-    }
+    if (hoverOverCoho(point.x(), point.y()))
+        displayHoverCoho();
     else
-    {
-        ui->cohoAfterHover->setVisible(false);
-        ui->cohoBeforeHover->setVisible(true);
-        ui->dialogueLabel->setVisible(false);
-    }
+        displayNotHoverCoho();
 }
 
-bool FishEducation::hoverOverFish(int x, int y)
+bool FishEducation::hoverOverCoho(int x, int y)
 {
     int minX      = ui->cohoBeforeHover->x();
     int minY      = ui->cohoBeforeHover->y();
@@ -106,4 +88,18 @@ bool FishEducation::hoverOverFish(int x, int y)
             && y < maxY)
         return true;
     return false;
+}
+
+void FishEducation::displayHoverCoho()
+{
+    ui->cohoAfterHover->setVisible(true);
+    ui->cohoBeforeHover->setVisible(false);
+    ui->dialogueLabel->setVisible(true);
+}
+
+void FishEducation::displayNotHoverCoho()
+{
+    ui->cohoAfterHover->setVisible(false);
+    ui->cohoBeforeHover->setVisible(true);
+    ui->dialogueLabel->setVisible(false);
 }
