@@ -44,12 +44,23 @@ void GameScene::paintEvent(QPaintEvent *) {
     painter.end();
 }
 
+// This function is being moved to GameModel, but is being kept here to keep the app going.
 void GameScene::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     world.Step(1.0/60.0, 6, 2);
     update();
 }
 
+void GameScene::worldUpdated(std::vector<Fish> fishies) {
+    for (Fish& fish : fishies) {
+        // extract positions, or perhaps copy this vector
+        // to use in paintEvent().
+    }
+
+    update();
+}
+
+// This function is being moved to GameModel, but is being kept here to keep the app going.
 void GameScene::spawnFish() {
     int uiWidth = this->width();
     int uiHeight = this->height();

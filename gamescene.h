@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Box2D/Box2D.h"
+#include "fish.h"
 
 using std::vector;
 
@@ -22,6 +23,9 @@ public:
     ~GameScene();
 
     void paintEvent(QPaintEvent *);
+
+public slots:
+    void worldUpdated(vector<Fish>);
 
 private:
     Ui::GameScene *ui;
