@@ -64,6 +64,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
             heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
             //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             isholdingfish = true;
+            lastmousecoords = b2Vec2(event->position().x(), event->position().y());
             //cout << "fish held" << endl;
             break;
         }
