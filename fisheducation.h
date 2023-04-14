@@ -15,10 +15,17 @@ public:
     explicit FishEducation(QWidget *parent = nullptr);
     ~FishEducation();
 protected:
-    void hoverEnter(QHoverEvent *event);
+
+    bool event(QEvent* event);
+
+    void hoverEnter(QHoverEvent* event);
+    void hoverLeave(QHoverEvent* event);
+    void hoverMove(QHoverEvent *event);
+
 
 private:
     Ui::FishEducation *ui;
+    bool hoverOverFish(int x, int y);
 };
 
 #endif // FISHEDUCATION_H
