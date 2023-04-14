@@ -50,34 +50,43 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
     for (b2Body* fishbody : fishBodies) {
         b2Vec2 position1 = fishbody->GetPosition();
         b2Vec2 position2(position1.x + fishImage.width(), position1.y + fishImage.height());
+
         //is within the box of the fish
         if (event->position().x() > position1.x &&
             event->position().x() < position2.x &&
             event->position().y() > position1.y &&
             event->position().y() < position2.y) {
+            //cout << "position1(" << position1.x << ", " << position1.y << ")" << endl;
+            //cout << "position2(" << position2.x << ", " << position2.y << ")" << endl;
+            //cout << "mousepos(" << event->position().x() << ", " << event->position().y() << ")" << endl;
+
             heldFish = fishbody;
-            heldfishcoords = b2Vec2(position1.x-event->position().x(), position1.y-event->position().y());
+            heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
+            //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             isholdingfish = true;
-            cout << "fish held" << endl;
+            //cout << "fish held" << endl;
             break;
         }
     }
 }
 
 void GameScene::mouseMoveEvent(QMouseEvent *event) {
-    if (isholdingfish) {
-        b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
-        heldFish->ApplyForce(b2Vec2(event->position().x()-transformedheldfishcoords.x, event->position().y()-transformedheldfishcoords.y),heldFish->GetWorldCenter(), true);
-    }
+    lastmousecoords = b2Vec2(event->position().x(), event->position().y());
 }
 
-void GameScene::mouseReleaseEvent(QMouseEvent *event) {
-    cout << "fish released" << endl;
+void GameScene::mouseReleaseEvent(QMouseEvent *) {
+    //cout << "fish released" << endl;
     isholdingfish = false;
 }
 
 void GameScene::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
+    if (isholdingfish) {
+        b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
+        heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
+        //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
+        heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
+    }
     world.Step(1.0/60.0, 6, 2);
     update();
 }

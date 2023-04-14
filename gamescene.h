@@ -26,7 +26,7 @@ public:
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *);
 
 private:
     Ui::GameScene *ui;
@@ -38,6 +38,7 @@ private:
     vector<b2Body*> fishBodies;
     b2Body* heldFish;
     b2Vec2 heldfishcoords;
+    b2Vec2 lastmousecoords;
     bool isholdingfish;
     QTimer timer;
     QImage fishImage;
