@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <vector>
+#include "fish.h"
 
 #include "Box2D/Box2D.h"
 #include "fish.h"
@@ -27,6 +28,10 @@ public:
 public slots:
     void worldUpdated(vector<Fish>);
 
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *);
+
 private:
     Ui::GameScene *ui;
 
@@ -35,6 +40,10 @@ private:
 
     b2World world;
     vector<b2Body*> fishBodies;
+    b2Body* heldFish;
+    b2Vec2 heldfishcoords;
+    b2Vec2 lastmousecoords;
+    bool isholdingfish;
     QTimer timer;
     QImage fishImage;
 };
