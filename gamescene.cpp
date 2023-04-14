@@ -4,6 +4,7 @@
 
 #include <QPainter>
 #include <QDebug>
+#include <QMouseEvent>
 
 #include<iostream>
 
@@ -25,6 +26,7 @@ GameScene::GameScene(QWidget *parent) :
 
     connect(&timer, &QTimer::timeout, this, &GameScene::updateWorld);
     timer.start(10);
+    isholdingfish = false;
 }
 
 GameScene::~GameScene()
@@ -42,6 +44,36 @@ void GameScene::paintEvent(QPaintEvent *) {
     }
 
     painter.end();
+}
+
+void GameScene::mousePressEvent(QMouseEvent *event) {
+    for (b2Body* fishbody : fishBodies) {
+        b2Vec2 position1 = fishbody->GetPosition();
+        b2Vec2 position2(position1.x + fishImage.width(), position1.y + fishImage.height());
+        //is within the box of the fish
+        if (event->position().x() > position1.x &&
+            event->position().x() < position2.x &&
+            event->position().y() > position1.y &&
+            event->position().y() < position2.y) {
+            heldFish = fishbody;
+            heldfishcoords = b2Vec2(position1.x-event->position().x(), position1.y-event->position().y());
+            isholdingfish = true;
+            cout << "fish held" << endl;
+            break;
+        }
+    }
+}
+
+void GameScene::mouseMoveEvent(QMouseEvent *event) {
+    if (isholdingfish) {
+        b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
+        heldFish->ApplyForce(b2Vec2(event->position().x()-transformedheldfishcoords.x, event->position().y()-transformedheldfishcoords.y),heldFish->GetWorldCenter(), true);
+    }
+}
+
+void GameScene::mouseReleaseEvent(QMouseEvent *event) {
+    cout << "fish released" << endl;
+    isholdingfish = false;
 }
 
 void GameScene::updateWorld() {
