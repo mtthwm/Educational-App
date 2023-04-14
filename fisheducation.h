@@ -2,6 +2,9 @@
 #define FISHEDUCATION_H
 
 #include <QWidget>
+#include <QLabel>
+#include <vector>
+using std::vector;
 
 namespace Ui {
 class FishEducation;
@@ -28,6 +31,8 @@ private:
     bool hoverOverCoho(int x, int y);
     void displayHoverCoho();
     void displayNotHoverCoho();
+    std::map<std::string, QLabel*> fishBeforeHover;
+    std::map<std::string, QLabel*> fishAfterHover;
 };
 
 #endif // FISHEDUCATION_H

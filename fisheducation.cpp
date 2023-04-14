@@ -12,9 +12,23 @@ FishEducation::FishEducation(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->cohoAfterHover->setVisible(false);
-    ui->cohoBeforeHover->setVisible(true);
-    ui->dialogueLabel->setVisible(false);
+//    ui->cohoAfterHover->setVisible(false);
+//    ui->cohoBeforeHover->setVisible(true);
+//    ui->dialogueLabel->setVisible(false);
+
+    fishBeforeHover.insert({"coho", ui->cohoBeforeHover});
+    fishBeforeHover.insert({"king", ui->kingBeforeHover});
+    fishBeforeHover.insert({"sockeye", ui->sockeyeBeforeHover});
+    fishBeforeHover.insert({"pink", ui->pinkBeforeHover});
+    fishBeforeHover.insert({"chum", ui->chumBeforeHover});
+
+    fishAfterHover.insert({"coho", ui->cohoAfterHover});
+    fishAfterHover.insert({"king", ui->kingAfterHover});
+    fishAfterHover.insert({"sockeye", ui->sockeyeAfterHover});
+    fishAfterHover.insert({"pink", ui->pinkAfterHover});
+    fishAfterHover.insert({"chum", ui->chumAfterHover});
+
+
 
 
     this->setAttribute(Qt::WA_Hover, true);
@@ -94,12 +108,12 @@ void FishEducation::displayHoverCoho()
 {
     ui->cohoAfterHover->setVisible(true);
     ui->cohoBeforeHover->setVisible(false);
-    ui->dialogueLabel->setVisible(true);
+    ui->cohoDialogueLabel->setVisible(true);
 }
 
 void FishEducation::displayNotHoverCoho()
 {
     ui->cohoAfterHover->setVisible(false);
     ui->cohoBeforeHover->setVisible(true);
-    ui->dialogueLabel->setVisible(false);
+    ui->cohoDialogueLabel->setVisible(false);
 }
