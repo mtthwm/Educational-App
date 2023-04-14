@@ -7,6 +7,7 @@
 #include "fish.h"
 
 #include "Box2D/Box2D.h"
+#include "fish.h"
 
 using std::vector;
 
@@ -23,6 +24,9 @@ public:
     ~GameScene();
 
     void paintEvent(QPaintEvent *);
+
+public slots:
+    void worldUpdated(vector<Fish>);
 
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
