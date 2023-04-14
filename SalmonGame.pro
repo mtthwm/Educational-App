@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
     fisheducation.cpp \
+    gamemodel.cpp \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp
@@ -110,6 +111,7 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     fisheducation.h \
+    gamemodel.h \
     gamescene.h \
     Species.h \
     fish.h \

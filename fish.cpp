@@ -5,3 +5,9 @@ Fish::Fish(QObject *parent, QImage *image, Species species, b2Body* body)
 {
 
 }
+
+Fish::Fish(const Fish& other) {
+    *this->body = *(other.body);
+    this->fishImage = other.fishImage;
+    this->species = other.species;
+}

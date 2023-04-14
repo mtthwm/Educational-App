@@ -12,6 +12,7 @@ class Fish : public QObject
 
 public:
     explicit Fish(QObject *parent = nullptr, QImage* image = nullptr, Species species = Species::None, b2Body *body = nullptr);
+    Fish(const Fish& other);
     Species species;
     QImage *fishImage;
     b2Body *body;

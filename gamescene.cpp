@@ -64,6 +64,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
             heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
             //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             isholdingfish = true;
+            lastmousecoords = b2Vec2(event->position().x(), event->position().y());
             //cout << "fish held" << endl;
             break;
         }
@@ -79,6 +80,7 @@ void GameScene::mouseReleaseEvent(QMouseEvent *) {
     isholdingfish = false;
 }
 
+// This function is being moved to GameModel, but is being kept here to keep the app going.
 void GameScene::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     if (isholdingfish) {
@@ -91,6 +93,16 @@ void GameScene::updateWorld() {
     update();
 }
 
+void GameScene::worldUpdated(std::vector<Fish> fishies) {
+    for (Fish& fish : fishies) {
+        // extract positions, or perhaps copy this vector
+        // to use in paintEvent().
+    }
+
+    update();
+}
+
+// This function is being moved to GameModel, but is being kept here to keep the app going.
 void GameScene::spawnFish() {
     int uiWidth = this->width();
     int uiHeight = this->height();
