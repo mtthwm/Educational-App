@@ -11,6 +11,12 @@ FishEducation::FishEducation(QWidget *parent) :
     ui(new Ui::FishEducation)
 {
     ui->setupUi(this);
+
+    ui->cohoAfterHover->setVisible(false);
+    ui->cohoBeforeHover->setVisible(true);
+    ui->dialogueLabel->setVisible(false);
+
+
     this->setAttribute(Qt::WA_Hover, true);
 }
 
@@ -44,7 +50,11 @@ void FishEducation::hoverEnter(QHoverEvent *event)
     QPoint point = event->position().toPoint();
 
     if (hoverOverFish(point.x(), point.y()))
-            ui->transparencyBuffer->setStyleSheet("background-color: rgba(0, 0, 0, 100)");
+    {
+            ui->cohoAfterHover->setVisible(true);
+            ui->cohoBeforeHover->setVisible(false);
+            ui->dialogueLabel->setVisible(true);
+    }
 }
 
 void FishEducation::hoverMove(QHoverEvent *event)
@@ -52,9 +62,17 @@ void FishEducation::hoverMove(QHoverEvent *event)
     QPoint point = event->position().toPoint();
 
     if (hoverOverFish(point.x(), point.y()))
-            ui->transparencyBuffer->setStyleSheet("background-color: rgba(0, 0, 0, 100)");
+    {
+        ui->cohoAfterHover->setVisible(true);
+        ui->cohoBeforeHover->setVisible(false);
+        ui->dialogueLabel->setVisible(true);
+    }
     else
-        ui->transparencyBuffer->setStyleSheet("background-color: rgba(255, 255, 255, 10)");
+    {
+        ui->cohoAfterHover->setVisible(false);
+        ui->cohoBeforeHover->setVisible(true);
+        ui->dialogueLabel->setVisible(false);
+    }
 
 }
 
@@ -62,16 +80,26 @@ void FishEducation::hoverLeave(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (!hoverOverFish(point.x(), point.y()))
-        ui->transparencyBuffer->setStyleSheet("background-color: rgba(255, 255, 255, 10)");
+    if (hoverOverFish(point.x(), point.y()))
+    {
+        ui->cohoAfterHover->setVisible(true);
+        ui->cohoBeforeHover->setVisible(false);
+        ui->dialogueLabel->setVisible(true);
+    }
+    else
+    {
+        ui->cohoAfterHover->setVisible(false);
+        ui->cohoBeforeHover->setVisible(true);
+        ui->dialogueLabel->setVisible(false);
+    }
 }
 
 bool FishEducation::hoverOverFish(int x, int y)
 {
-    int minX      = ui->cohoImageLabel->x();
-    int minY      = ui->cohoImageLabel->y();
-    int maxX      = minX + ui->cohoImageLabel->width();
-    int maxY      = minY + ui->cohoImageLabel->height();
+    int minX      = ui->cohoBeforeHover->x();
+    int minY      = ui->cohoBeforeHover->y();
+    int maxX      = minX + ui->cohoBeforeHover->width();
+    int maxY      = minY + ui->cohoBeforeHover->height();
 
     if (x > minX && y > minY
             && x < maxX

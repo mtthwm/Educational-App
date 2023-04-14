@@ -15,7 +15,7 @@ GameScene::GameScene(QWidget *parent) :
     ui(new Ui::GameScene),
     world(b2Vec2(10.0f, 0.0f)),
     timer(this),
-    fishImage(":/images/fish/coho1.jpg")
+    fishImage(":/images/fish/coho.png")
 {
     ui->setupUi(this);
 

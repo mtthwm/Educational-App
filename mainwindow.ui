@@ -17,10 +17,10 @@
    <widget class="GameScene" name="gameScene" native="true">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>220</y>
-      <width>721</width>
-      <height>341</height>
+      <x>10</x>
+      <y>100</y>
+      <width>981</width>
+      <height>521</height>
      </rect>
     </property>
    </widget>
@@ -46,7 +46,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>100</y>
       <width>981</width>
       <height>511</height>
      </rect>

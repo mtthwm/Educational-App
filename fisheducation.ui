@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="cohoImageLabel">
+  <widget class="QLabel" name="cohoAfterHover">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -32,7 +32,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho1.jpg</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -56,7 +56,7 @@
     <string>Coho/Silver</string>
    </property>
   </widget>
-  <widget class="QLabel" name="transparencyBuffer">
+  <widget class="QLabel" name="cohoBeforeHover">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -65,11 +65,33 @@
      <height>101</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="dialogueLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>391</width>
+     <height>231</height>
+    </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
