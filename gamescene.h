@@ -31,8 +31,8 @@ signals:
     void beginWorldStep();
 
 public slots:
-    void worldUpdated(vector<Fish>);
-    void worldInit(vector<Bucket>);
+    void worldUpdated(QHash<b2Body*, Fish>);
+    void worldInit(QHash<b2Body*, Bucket>);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);

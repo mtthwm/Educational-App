@@ -37,9 +37,11 @@ private:
     Species generateRandomSpecies();
     b2World world;
     QHash<b2Body*, Fish> fish;
+    QHash<b2Body*, Bucket> buckets;
     QTimer timer;
     int width;
     int height;
+    bool paused;
 };
 
 #endif // GAMEMODEL_H

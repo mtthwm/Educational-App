@@ -37,8 +37,9 @@ GameScene::~GameScene()
     delete ui;
 }
 
-void GameScene::worldInit(vector<Bucket> buckets) {
-
+void GameScene::worldInit(QHash<b2Body*, Bucket> buckets) {
+    // use buckets.values() to get the body associated with each bucket,
+    // and draw it on the screen.
 }
 
 void GameScene::paintEvent(QPaintEvent *) {
@@ -100,7 +101,7 @@ void GameScene::updateWorld() {
     update();
 }
 
-void GameScene::worldUpdated(std::vector<Fish> fishies) {
+void GameScene::worldUpdated(QHash<b2Body*, Fish> fishies) {
     for (Fish& fish : fishies) {
         // extract positions, or perhaps copy this vector
         // to use in paintEvent().

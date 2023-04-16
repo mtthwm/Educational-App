@@ -9,7 +9,7 @@ GameModel::GameModel(QObject *parent)
 {
 
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
-    timer.start(10);
+    timer.setInterval(10);
 }
 
 void GameModel::setHeight(int height) {
@@ -21,7 +21,7 @@ void GameModel::setWidth(int width) {
 }
 
 void GameModel::beginWorldStep() {
-
+    timer.start();
 }
 
 void GameModel::reset() {
@@ -29,7 +29,11 @@ void GameModel::reset() {
 }
 
 void GameModel::togglePause(bool paused) {
-
+    this->paused = paused;
+    if (paused)
+        timer.stop();
+    else
+        timer.start();
 }
 
 void GameModel::spawnBucket() {
