@@ -37,6 +37,10 @@ GameScene::~GameScene()
     delete ui;
 }
 
+void GameScene::worldInit(vector<Bucket> buckets) {
+
+}
+
 void GameScene::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);

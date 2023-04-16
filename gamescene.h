@@ -5,7 +5,8 @@
 #include <QTimer>
 #include <vector>
 #include "fish.h"
-
+#include "bucket.h"
+#include "gamemodel.h"
 #include "Box2D/Box2D.h"
 #include "fish.h"
 
@@ -27,10 +28,11 @@ public:
 
 signals:
     void gameOver();
+    void beginWorldStep();
 
 public slots:
     void worldUpdated(vector<Fish>);
-
+    void worldInit(vector<Bucket>);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);
@@ -40,7 +42,7 @@ private:
 
     void updateWorld ();
     void spawnFish ();
-
+    GameModel model;
     b2World world;
     vector<b2Body*> fishBodies;
     b2Body* heldFish;
