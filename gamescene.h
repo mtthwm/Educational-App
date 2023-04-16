@@ -25,6 +25,9 @@ public:
 
     void paintEvent(QPaintEvent *);
 
+signals:
+    void gameOver();
+
 public slots:
     void worldUpdated(vector<Fish>);
 

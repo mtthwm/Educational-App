@@ -27,6 +27,9 @@ GameScene::GameScene(QWidget *parent) :
     connect(&timer, &QTimer::timeout, this, &GameScene::updateWorld);
     timer.start(10);
     isholdingfish = false;
+
+    //QTimer::singleShot(12000, this, &GameScene::gameOver);
+    //this was just to test the gameOver screen
 }
 
 GameScene::~GameScene()

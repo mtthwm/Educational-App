@@ -58,6 +58,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     fisheducation.cpp \
     gamemodel.cpp \
+    gameoverscreen.cpp \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp
@@ -112,6 +113,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     fisheducation.h \
     gamemodel.h \
+    gameoverscreen.h \
     gamescene.h \
     Species.h \
     fish.h \
@@ -119,6 +121,7 @@ HEADERS += \
 
 FORMS += \
     fisheducation.ui \
+    gameoverscreen.ui \
     gamescene.ui \
     mainwindow.ui
 

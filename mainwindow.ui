@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>981</width>
-      <height>521</height>
+      <width>980</width>
+      <height>510</height>
      </rect>
     </property>
    </widget>
@@ -47,8 +47,18 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>981</width>
-      <height>511</height>
+      <width>980</width>
+      <height>510</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="GameOverScreen" name="gameOverScreen" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>980</width>
+      <height>510</height>
      </rect>
     </property>
    </widget>
@@ -59,7 +69,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -76,6 +86,12 @@
    <class>FishEducation</class>
    <extends>QWidget</extends>
    <header>fisheducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GameOverScreen</class>
+   <extends>QWidget</extends>
+   <header>gameoverscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
