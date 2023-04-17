@@ -26,7 +26,25 @@
     <string>COHO</string>
    </property>
   </widget>
+  <widget class="ScoreBoard" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>120</width>
+     <height>80</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ScoreBoard</class>
+   <extends>QWidget</extends>
+   <header location="global">scoreboard.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

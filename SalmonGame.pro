@@ -60,7 +60,8 @@ SOURCES += \
     gamemodel.cpp \
     gamescene.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    scoreboard.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -115,12 +116,14 @@ HEADERS += \
     gamescene.h \
     Species.h \
     fish.h \
-    mainwindow.h
+    mainwindow.h \
+    scoreboard.h
 
 FORMS += \
     fisheducation.ui \
     gamescene.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    scoreboard.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
