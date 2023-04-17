@@ -25,6 +25,12 @@ void ScoreBoard::addScore(int amount) {
     updateUI();
 }
 
+void ScoreBoard::reset () {
+    score = 0;
+    updateUI();
+}
+
 void ScoreBoard::updateUI() {
     ui->scoreLabel->setText(QString::number(score));
+    emit scoreUpdated(score);
 }
