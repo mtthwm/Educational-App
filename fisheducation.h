@@ -28,10 +28,11 @@ protected:
 
 private:
     Ui::FishEducation *ui;
-    void hoverOverFish(int x, int y, std::tuple< QLabel* , QLabel*, QLabel*>);
+    void hoverOverFish(int x, int y);
     void displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
     void displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
     vector<std::tuple< QLabel* , QLabel*, QLabel*>> fishes;
+
 };
 
 #endif // FISHEDUCATION_H

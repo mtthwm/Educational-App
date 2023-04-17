@@ -60,49 +60,42 @@ void FishEducation::hoverEnter(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    for (auto fish : fishes)
-    {
-        hoverOverFish(point.x(), point.y(), fish);
-    }
+    hoverOverFish(point.x(), point.y());
 }
 
 void FishEducation::hoverMove(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    for (auto fish : fishes)
-    {
-        hoverOverFish(point.x(), point.y(), fish);
-    }
-
+    hoverOverFish(point.x(), point.y());
 }
 
 void FishEducation::hoverLeave(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    for (auto fish : fishes)
-    {
-        hoverOverFish(point.x(), point.y(), fish);
-    }
+    hoverOverFish(point.x(), point.y());
 }
 
-void FishEducation::hoverOverFish(int x, int y, std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
+void FishEducation::hoverOverFish(int x, int y)
 {
-    QLabel* fishLabel = std::get<0>(fishInfo);
+    for (auto fish : fishes)
+    {
+        QLabel* fishLabel = std::get<0>(fish);
 
-    int minX      = fishLabel->x();
-    int minY      = fishLabel->y();
-    int maxX      = minX + fishLabel->width();
-    int maxY      = minY + fishLabel->height();
+        int minX      = fishLabel->x();
+        int minY      = fishLabel->y();
+        int maxX      = minX + fishLabel->width();
+        int maxY      = minY + fishLabel->height();
 
-    bool xInBounds = x > minX && x < maxX;
-    bool yInBounds = y > minY && y < maxY;
+        bool xInBounds = x > minX && x < maxX;
+        bool yInBounds = y > minY && y < maxY;
 
-    if (xInBounds && yInBounds)
-        displayHoverFish(fishInfo);
-    else
-        displayNotHoverFish(fishInfo);
+        if (xInBounds && yInBounds)
+            displayHoverFish(fish);
+        else
+            displayNotHoverFish(fish);
+    }
 }
 
 void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
