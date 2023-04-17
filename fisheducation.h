@@ -28,11 +28,10 @@ protected:
 
 private:
     Ui::FishEducation *ui;
-    bool hoverOverCoho(int x, int y);
-    void displayHoverCoho();
-    void displayNotHoverCoho();
-    std::map<std::string, QLabel*> fishBeforeHover;
-    std::map<std::string, QLabel*> fishAfterHover;
+    void hoverOverFish(int x, int y, std::tuple< QLabel* , QLabel*, QLabel*>);
+    void displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
+    void displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
+    vector<std::tuple< QLabel* , QLabel*, QLabel*>> fishes;
 };
 
 #endif // FISHEDUCATION_H

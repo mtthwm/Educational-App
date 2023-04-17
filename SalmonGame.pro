@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bucket.cpp \
     fish.cpp \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
     Box2D/Collision/Shapes/b2CircleShape.cpp \
@@ -58,6 +59,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     fisheducation.cpp \
     gamemodel.cpp \
+    gameoverscreen.cpp \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -111,8 +113,10 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+    bucket.h \
     fisheducation.h \
     gamemodel.h \
+    gameoverscreen.h \
     gamescene.h \
     Species.h \
     fish.h \
@@ -121,6 +125,7 @@ HEADERS += \
 
 FORMS += \
     fisheducation.ui \
+    gameoverscreen.ui \
     gamescene.ui \
     mainwindow.ui \
     scoreboard.ui

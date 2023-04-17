@@ -11,13 +11,16 @@ class Fish : public QObject
     Q_OBJECT
 
 public:
-    explicit Fish(QObject *parent = nullptr, QImage* image = nullptr, Species species = Species::None, b2Body *body = nullptr);
+    explicit Fish(QObject *parent = nullptr, int variant = 0, Species species = Species::None, b2Body *body = nullptr);
+    explicit Fish(QObject* parent = nullptr, Species species = Species::None);
     Fish(const Fish& other);
     Species species;
-    QImage *fishImage;
+    int variant;
     b2Body *body;
-
+    Fish& operator=(Fish other);
 signals:
+
+private:
 
 };
 

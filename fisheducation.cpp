@@ -12,24 +12,21 @@ FishEducation::FishEducation(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    ui->cohoAfterHover->setVisible(false);
-//    ui->cohoBeforeHover->setVisible(true);
-//    ui->dialogueLabel->setVisible(false);
 
-    fishBeforeHover.insert({"coho", ui->cohoBeforeHover});
-    fishBeforeHover.insert({"king", ui->kingBeforeHover});
-    fishBeforeHover.insert({"sockeye", ui->sockeyeBeforeHover});
-    fishBeforeHover.insert({"pink", ui->pinkBeforeHover});
-    fishBeforeHover.insert({"chum", ui->chumBeforeHover});
+    fishes.push_back({ui->cohoBeforeHover, ui->cohoAfterHover, ui->cohoDialogueLabel});
 
-    fishAfterHover.insert({"coho", ui->cohoAfterHover});
-    fishAfterHover.insert({"king", ui->kingAfterHover});
-    fishAfterHover.insert({"sockeye", ui->sockeyeAfterHover});
-    fishAfterHover.insert({"pink", ui->pinkAfterHover});
-    fishAfterHover.insert({"chum", ui->chumAfterHover});
+    fishes.push_back({ui->kingBeforeHover, ui->kingAfterHover, ui->kingDialogueLabel});
 
+    fishes.push_back({ui->sockeyeBeforeHover, ui->sockeyeAfterHover, ui->sockeyeDialogueLabel});
 
+    fishes.push_back({ui->pinkBeforeHover, ui->pinkAfterHover, ui->pinkDialogueLabel});
 
+    fishes.push_back({ui->chumBeforeHover, ui->chumAfterHover, ui->chumDialogueLabel});
+
+    for (auto fish : fishes)
+    {
+        displayNotHoverFish(fish);
+    }
 
     this->setAttribute(Qt::WA_Hover, true);
 }
@@ -63,20 +60,20 @@ void FishEducation::hoverEnter(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverCoho(point.x(), point.y()))
-        displayHoverCoho();
-    else
-        displayNotHoverCoho();
+    for (auto fish : fishes)
+    {
+        hoverOverFish(point.x(), point.y(), fish);
+    }
 }
 
 void FishEducation::hoverMove(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverCoho(point.x(), point.y()))
-        displayHoverCoho();
-    else
-        displayNotHoverCoho();
+    for (auto fish : fishes)
+    {
+        hoverOverFish(point.x(), point.y(), fish);
+    }
 
 }
 
@@ -84,36 +81,46 @@ void FishEducation::hoverLeave(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
-    if (hoverOverCoho(point.x(), point.y()))
-        displayHoverCoho();
+    for (auto fish : fishes)
+    {
+        hoverOverFish(point.x(), point.y(), fish);
+    }
+}
+
+void FishEducation::hoverOverFish(int x, int y, std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
+{
+    QLabel* fishLabel = std::get<0>(fishInfo);
+
+    int minX      = fishLabel->x();
+    int minY      = fishLabel->y();
+    int maxX      = minX + fishLabel->width();
+    int maxY      = minY + fishLabel->height();
+
+    bool xInBounds = x > minX && x < maxX;
+    bool yInBounds = y > minY && y < maxY;
+
+    if (xInBounds && yInBounds)
+        displayHoverFish(fishInfo);
     else
-        displayNotHoverCoho();
+        displayNotHoverFish(fishInfo);
 }
 
-bool FishEducation::hoverOverCoho(int x, int y)
+void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
 {
-    int minX      = ui->cohoBeforeHover->x();
-    int minY      = ui->cohoBeforeHover->y();
-    int maxX      = minX + ui->cohoBeforeHover->width();
-    int maxY      = minY + ui->cohoBeforeHover->height();
-
-    if (x > minX && y > minY
-            && x < maxX
-            && y < maxY)
-        return true;
-    return false;
+    //before hover
+    std::get<0>(fishInfo)->setVisible(false);
+    //after hover
+    std::get<1>(fishInfo)->setVisible(true);
+    //dialog
+    std::get<2>(fishInfo)->setVisible(true);
 }
 
-void FishEducation::displayHoverCoho()
+void FishEducation::displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
 {
-    ui->cohoAfterHover->setVisible(true);
-    ui->cohoBeforeHover->setVisible(false);
-    ui->cohoDialogueLabel->setVisible(true);
-}
-
-void FishEducation::displayNotHoverCoho()
-{
-    ui->cohoAfterHover->setVisible(false);
-    ui->cohoBeforeHover->setVisible(true);
-    ui->cohoDialogueLabel->setVisible(false);
+    //before hover
+    std::get<0>(fishInfo)->setVisible(true);
+    //after hover
+    std::get<1>(fishInfo)->setVisible(false);
+    //dialog
+    std::get<2>(fishInfo)->setVisible(false);
 }
