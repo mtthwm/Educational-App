@@ -54,7 +54,11 @@ void GameModel::spawnBucket(int x, int y, Species species) {
 
     Bucket bucket(this, body, species);
 
+    body->SetUserData(&bucket);
+
     this->buckets.insert(body, bucket);
+
+
 }
 
 void GameModel::updateWorld() {
