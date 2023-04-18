@@ -22,7 +22,7 @@ GameScene::GameScene(QWidget *parent) :
 
 
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
-    connect(ui->menu->ui->pushButton_2, &QPushButton::clicked, this, [=] {emit exit});
+    connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit();});
     //connect(&model, &GameModel::worldInit, this, &GameScene::worldInit);
 
     //QTimer::singleShot(12000, this, &GameScene::gameOver);

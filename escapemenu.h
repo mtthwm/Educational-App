@@ -14,10 +14,15 @@ class EscapeMenu : public QWidget
 public:
     explicit EscapeMenu(QWidget *parent = nullptr);
     ~EscapeMenu();
-    Ui::EscapeMenu *ui;
 
-
+public slots:
+    void resumeClicked();
+    void exitClicked();
+signals:
+    void resume();
+    void exit();
 private:
+    Ui::EscapeMenu *ui;
 };
 
 #endif // ESCAPEMENU_H
