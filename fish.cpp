@@ -35,5 +35,7 @@ Fish::Fish(const Fish& other) : QObject() {
     //this->body = other.body;
     this->variant = other.variant;
     this->species = other.species;
+    imageHeight = other.imageHeight;
+    imageWidth = other.imageWidth;
 }
 

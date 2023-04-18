@@ -58,7 +58,7 @@ void GameScene::paintEvent(QPaintEvent *) {
         int width = fishBody->second.imageWidth;
         int height = fishBody->second.imageHeight;
         //std::cout << height << ", " << width << endl;
-        QRectF rect((int)(position.x), (int)(position.y), 300, 100);
+        QRectF rect((int)(position.x), (int)(position.y), width, height);
         painter.drawImage(rect, getImage(fishBody->second));
     }
     painter.end();
@@ -67,8 +67,9 @@ void GameScene::paintEvent(QPaintEvent *) {
 void GameScene::mousePressEvent(QMouseEvent *event) {
     for (auto fish = model.fishes.keyValueBegin(); fish != model.fishes.keyValueEnd(); fish++) {
         b2Vec2 position1 = (*fish).first->GetPosition();
-        QImage fishimage = getImage((fish->second));
-        b2Vec2 position2(position1.x + fishimage.width(), position1.y + fishimage.height());
+
+        //QImage fishimage = getImage((*fish).second.variant, (*fish).second.species);
+        b2Vec2 position2(position1.x + fish->second.imageWidth, position1.y + fish->second.imageHeight);
 
         //is within the box of the fish
         if (event->position().x() > position1.x &&
