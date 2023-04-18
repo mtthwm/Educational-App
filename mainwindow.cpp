@@ -21,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
             &GameOverScreen::playAgain,
             this,
             &MainWindow::switchToGame);
+
+    connect(this,
+            &MainWindow::startGame,
+            ui->gameScene,
+            &GameScene::worldInit);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +39,7 @@ void MainWindow::switchToGame()
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
+    emit startGame();
 }
 
 void MainWindow::switchToGameOver()

@@ -21,9 +21,13 @@ public:
     QHash<b2Body*, Bucket> buckets;
     QHash<b2Body*, Fish> fish;
     bool worldInitialized;
+    b2Body* heldFish;
+    b2Vec2 heldfishcoords;
+    b2Vec2 lastmousecoords;
+    bool isholdingfish;
 
 signals:
-    void worldUpdated(QHash<b2Body*, Fish>);
+    void worldUpdated();
     void worldInit();
     void gameOver();
 
@@ -42,6 +46,7 @@ private:
     int width;
     int height;
     bool paused;
+
 };
 
 #endif // GAMEMODEL_H

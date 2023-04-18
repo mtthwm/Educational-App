@@ -18,6 +18,9 @@ public:
 public slots:
     void switchToGameOver();
 
+signals:
+    void startGame();
+
 private:
     Ui::MainWindow *ui;
     void switchToGame();

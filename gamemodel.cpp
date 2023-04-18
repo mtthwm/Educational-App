@@ -12,6 +12,11 @@ GameModel::GameModel(QObject *parent)
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     timer.setInterval(10);
+    isholdingfish = false;\
+        width = 392; height = 225;
+    for (int i = 0; i < 10; i++) {
+        spawnFish();
+    }
 }
 
 void GameModel::beginWorldStep() {
@@ -59,9 +64,21 @@ void GameModel::updateWorld() {
         emit worldInit();
     }
 
+    // It is generally best to keep the time step and iterations fixed.
+    if (isholdingfish) {
+        b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
+        heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
+        //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
+        heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
+    }
+    for (auto f = fish.keyBegin(); f != fish.keyEnd(); f++) {
+        if ((*f)->GetLinearVelocity().x < 50)
+            (*f)->SetLinearVelocity(b2Vec2(50, (*f)->GetLinearVelocity().y));
+    }
     world.Step(1.0/60.0, 6, 2);
-    emit worldUpdated(fish);
+    emit worldUpdated();
 }
+
 
 Species GameModel::generateRandomSpecies() {
     int speciesChoice = QRandomGenerator::global()->generate() % 5;
@@ -96,7 +113,7 @@ void GameModel::spawnFish() {
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
-    fishBodyDef.gravityScale = (QRandomGenerator::global()->generate() % 20) / 10.0f;
+    fishBodyDef.gravityScale = 0;//(QRandomGenerator::global()->generate() % 20) / 10.0f;
     b2Body* body = world.CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
     int imageScalar = (QRandomGenerator::global()->generate() % 5) + 1;

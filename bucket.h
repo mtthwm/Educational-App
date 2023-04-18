@@ -13,7 +13,7 @@ public:
     Bucket(const Bucket&);
     ~Bucket();
     Bucket& operator= (Bucket);
-    b2Body* body;
+    //b2Body* body;
     Species targetSpecies;
 signals:
 
