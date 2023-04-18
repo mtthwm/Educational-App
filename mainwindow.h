@@ -17,6 +17,7 @@ public:
 
 public slots:
     void switchToGameOver();
+    void switchToHome();
 
 signals:
     void startGame();

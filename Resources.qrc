@@ -4,5 +4,18 @@
         <file>images/fish/coho_less_opaque.png</file>
         <file>images/fish/Untitled-2.png</file>
         <file>images/bucket.png</file>
+        <file>images/fish/sockeye2.png</file>
+        <file>images/fish/sockeye1.png</file>
+        <file>images/fish/pink2.png</file>
+        <file>images/fish/pink1.png</file>
+        <file>images/fish/coho3.png</file>
+        <file>images/fish/coho2.png</file>
+        <file>images/fish/coho1.png</file>
+        <file>images/fish/chum2.png</file>
+        <file>images/fish/chum1.png</file>
+        <file>images/fish/chinook4.png</file>
+        <file>images/fish/chinook3.png</file>
+        <file>images/fish/chinook2.png</file>
+        <file>images/fish/chinook1.png</file>
     </qresource>
 </RCC>

@@ -126,6 +126,7 @@ HEADERS += \
     scoreboard.h
 
 FORMS += \
+    escapemenu.ui \
     fisheducation.ui \
     gameoverscreen.ui \
     gamescene.ui \

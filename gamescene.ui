@@ -36,12 +36,28 @@
     </rect>
    </property>
   </widget>
+  <widget class="EscapeMenu" name="menu" native="true">
+   <property name="geometry">
+    <rect>
+     <x>119</x>
+     <y>39</y>
+     <width>141</width>
+     <height>161</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
    <class>ScoreBoard</class>
    <extends>QWidget</extends>
-   <header location="global">scoreboard.h</header>
+   <header>scoreboard.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>EscapeMenu</class>
+   <extends>QWidget</extends>
+   <header location="global">escapemenu.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

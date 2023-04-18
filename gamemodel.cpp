@@ -12,7 +12,7 @@ GameModel::GameModel(QObject *parent)
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     timer.setInterval(10);
-    isholdingfish = false;\
+    isholdingfish = false;
         width = 392; height = 225;
     for (int i = 0; i < 10; i++) {
         spawnFish();
@@ -24,7 +24,14 @@ void GameModel::beginWorldStep() {
 }
 
 void GameModel::reset() {
-
+    emit resetComponent();
+    this->fish.clear();
+    isholdingfish = false;
+    timer.stop();
+    b2Body* bodies = world.GetBodyList();
+    int numBodies = world.GetBodyCount();
+    for (int i = 0; i < numBodies; i++)
+        world.DestroyBody(&bodies[i]);
 }
 
 void GameModel::togglePause(bool paused) {
@@ -117,13 +124,13 @@ void GameModel::spawnFish() {
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
-    fishBodyDef.gravityScale = 0;//(QRandomGenerator::global()->generate() % 20) / 10.0f;
+    fishBodyDef.gravityScale = 0;
     b2Body* body = world.CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
-    int imageScalar = (QRandomGenerator::global()->generate() % 5) + 1;
-    polygon.SetAsBox(70 * imageScalar, 23 * imageScalar);
-    fish.imageHeight = 23 * imageScalar;
-    fish.imageWidth = 70 * imageScalar;
+    int imageScalar = QRandomGenerator::global()->bounded(100, 300);
+    polygon.SetAsBox(3 * imageScalar, 1 * imageScalar);
+    fish.imageHeight = 1 * imageScalar;
+    fish.imageWidth =  3 * imageScalar;
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     // Set the box density to be non-zero, so it will be dynamic.

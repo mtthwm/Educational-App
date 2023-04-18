@@ -18,7 +18,6 @@ public:
     Species species;
     int variant;
     int imageWidth, imageHeight;
-
     Fish& operator=(Fish other);
 signals:
 
