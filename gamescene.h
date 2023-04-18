@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include <vector>
+#include <QKeyEvent>
 #include "fish.h"
 #include "bucket.h"
 #include "gamemodel.h"
@@ -29,6 +30,7 @@ public:
 signals:
     void gameOver();
     void beginWorldStep();
+    void exit();
 
 public slots:
     void worldUpdated();
@@ -36,6 +38,7 @@ public slots:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);
+    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::GameScene *ui;

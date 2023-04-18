@@ -39,6 +39,7 @@ void MainWindow::switchToGame()
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
+    ui->gameScene->setFocusPolicy(Qt::StrongFocus);
     emit startGame();
 }
 
@@ -48,4 +49,11 @@ void MainWindow::switchToGameOver()
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(true);
+}
+
+void MainWindow::switchToHome() {
+    ui->startButton->setVisible(true);
+    ui->fishEduction->setVisible(true);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
 }
