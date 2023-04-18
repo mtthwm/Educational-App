@@ -7,6 +7,10 @@ Fish::Fish(QObject *parent, int variant, Species species, b2Body* body)
 
 }
 
+Fish::~Fish() {
+    body->GetWorld()->DestroyBody(body);
+}
+
 Fish& Fish::operator =(Fish other) {
     std::swap(variant, other.variant);
     std::swap(species, other.species);

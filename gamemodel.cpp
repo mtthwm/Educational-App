@@ -14,14 +14,6 @@ GameModel::GameModel(QObject *parent)
     timer.setInterval(10);
 }
 
-void GameModel::setHeight(int height) {
-    this->height = height;
-}
-
-void GameModel::setWidth(int width) {
-    this->width = width;
-}
-
 void GameModel::beginWorldStep() {
     timer.start();
 }
@@ -106,10 +98,13 @@ void GameModel::spawnFish() {
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
     fishBodyDef.gravityScale = (QRandomGenerator::global()->generate() % 20) / 10.0f;
     b2Body* body = world.CreateBody(&fishBodyDef);
-    //b2PolygonShape polygon;
-    //polygon.SetAsBox(fish.fishImage->width(), fish.fishImage->height());
+    b2PolygonShape polygon;
+    int imageScalar = (QRandomGenerator::global()->generate() % 5) + 1;
+    polygon.SetAsBox(70 * imageScalar, 23 * imageScalar);
+    fish.imageHeight = 23 * imageScalar;
+    fish.imageWidth = 70 * imageScalar;
     b2FixtureDef fixture;
-    //fixture.shape = &polygon;
+    fixture.shape = &polygon;
     // Set the box density to be non-zero, so it will be dynamic.
     fixture.density = 1.0f;
 

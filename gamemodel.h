@@ -19,10 +19,8 @@ public:
     explicit GameModel(QObject *parent = nullptr);
 
     QHash<b2Body*, Bucket> buckets;
+    QHash<b2Body*, Fish> fish;
     bool worldInitialized;
-
-    void setWidth(int width);
-    void setHeight(int height);
 
 signals:
     void worldUpdated(QHash<b2Body*, Fish>);
@@ -40,7 +38,6 @@ private:
     void spawnBucket(int x, int y, Species species);
     Species generateRandomSpecies();
     b2World world;
-    QHash<b2Body*, Fish> fish;
     QTimer timer;
     int width;
     int height;
