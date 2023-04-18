@@ -15,7 +15,7 @@ GameModel::GameModel(QObject *parent)
     isholdingfish = false;
         width = 392; height = 225;
 
-    world.SetContactListener(&bucketListener);
+    world->SetContactListener(&bucketListener);
 }
 
 void GameModel::beginWorldStep() {
@@ -24,7 +24,7 @@ void GameModel::beginWorldStep() {
 
 void GameModel::reset() {
     emit resetComponent();
-    this->fish.clear();
+    this->fishes.clear();
     buckets.clear();
     worldInitialized = false;
     isholdingfish = false;
