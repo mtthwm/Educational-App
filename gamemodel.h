@@ -43,7 +43,7 @@ private:
     void spawnFish ();
     void spawnBucket(int x, int y, Species species);
     Species generateRandomSpecies();
-    b2World world;
+    b2World* world;
     QTimer timer;
     int width;
     int height;

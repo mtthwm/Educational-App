@@ -26,6 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
             &MainWindow::startGame,
             ui->gameScene,
             &GameScene::worldInit);
+
+    connect(ui->gameScene,
+            &GameScene::exit,
+            this,
+            &MainWindow::switchToHome);
 }
 
 MainWindow::~MainWindow()
@@ -40,6 +45,7 @@ void MainWindow::switchToGame()
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
     ui->gameScene->setFocusPolicy(Qt::StrongFocus);
+    ui->gameScene->setFocus();
     emit startGame();
 }
 

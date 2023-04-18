@@ -6,17 +6,14 @@
 GameModel::GameModel(QObject *parent)
     : QObject{parent},
     worldInitialized(false),
-    world(b2Vec2(10.0f, 0.0f)),
     timer(this)
 
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     timer.setInterval(10);
+    world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
         width = 392; height = 225;
-    for (int i = 0; i < 10; i++) {
-        spawnFish();
-    }
 
     world.SetContactListener(&bucketListener);
 }
@@ -27,13 +24,14 @@ void GameModel::beginWorldStep() {
 
 void GameModel::reset() {
     emit resetComponent();
-    this->fishes.clear();
+    this->fish.clear();
+    buckets.clear();
+    worldInitialized = false;
     isholdingfish = false;
     timer.stop();
-    b2Body* bodies = world.GetBodyList();
-    int numBodies = world.GetBodyCount();
-    for (int i = 0; i < numBodies; i++)
-        world.DestroyBody(&bodies[i]);
+    b2World* tempworld = new b2World(b2Vec2(10,0));
+    delete world;
+    world = tempworld;
 }
 
 void GameModel::togglePause(bool paused) {
@@ -49,7 +47,7 @@ void GameModel::spawnBucket(int x, int y, Species species) {
     bucketBodyDef.type = b2_staticBody;
     bucketBodyDef.position.Set(0, 0);
 
-    b2Body* body = world.CreateBody(&bucketBodyDef);
+    b2Body* body = world->CreateBody(&bucketBodyDef);
 
     // Create a shape for this sensor
     b2CircleShape circle;
@@ -71,6 +69,9 @@ void GameModel::spawnBucket(int x, int y, Species species) {
 void GameModel::updateWorld() {
     if (!worldInitialized) {
         spawnBucket(100, 100, Species::Coho);
+        for (int i = 0; i < 10; i++) {
+            spawnFish();
+        }
         worldInitialized = true;
         emit worldInit();
     }
@@ -86,7 +87,7 @@ void GameModel::updateWorld() {
         if ((*f)->GetLinearVelocity().x < 50)
             (*f)->SetLinearVelocity(b2Vec2(50, (*f)->GetLinearVelocity().y));
     }
-    world.Step(1.0/60.0, 6, 2);
+    world->Step(1.0/60.0, 6, 2);
     emit worldUpdated();
 }
 
@@ -125,7 +126,7 @@ void GameModel::spawnFish() {
     fishBodyDef.type = b2_dynamicBody;
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
     fishBodyDef.gravityScale = 0;
-    b2Body* body = world.CreateBody(&fishBodyDef);    
+    b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
     int imageScalar = QRandomGenerator::global()->bounded(100, 300);
     polygon.SetAsBox(3 * imageScalar, 1 * imageScalar);

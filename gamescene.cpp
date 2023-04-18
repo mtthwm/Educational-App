@@ -19,11 +19,12 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-
+    ui->menu->setVisible(false);
 
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
-    connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit();});
-    //connect(&model, &GameModel::worldInit, this, &GameScene::worldInit);
+    connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
+    connect(ui->menu, &EscapeMenu::resume, this, [=] {model.togglePause(false); ui->menu->setVisible(false);});
+
 
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
@@ -36,6 +37,7 @@ GameScene::~GameScene()
 }
 
 void GameScene::worldInit() {
+    model.reset();
     model.beginWorldStep();
 }
 
@@ -94,10 +96,9 @@ void GameScene::mouseReleaseEvent(QMouseEvent *) {
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event) {
-    cout << "keypressevent" << endl;
     if (event->key() == Qt::Key_Escape) {
-        cout << "escape" << endl;
         ui->menu->setVisible(!ui->menu->isVisible());
+        model.togglePause(ui->menu->isVisible());
     }
 }
 
