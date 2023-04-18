@@ -31,7 +31,7 @@ signals:
     void beginWorldStep();
 
 public slots:
-    void worldUpdated(QHash<b2Body*, Fish>);
+    void worldUpdated();
     void worldInit();
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -43,15 +43,9 @@ private:
     void updateWorld ();
     void spawnFish ();
     GameModel model;
-    b2World world;
-    vector<b2Body*> fishBodies;
-    b2Body* heldFish;
-    b2Vec2 heldfishcoords;
-    b2Vec2 lastmousecoords;
-    bool isholdingfish;
-    QTimer timer;
     QImage fishImage;
     QImage bucketImage;
+    QImage getImage(int variant, int species);
 };
 
 #endif // GAMESCENE_H

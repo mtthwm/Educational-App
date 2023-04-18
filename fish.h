@@ -18,12 +18,11 @@ public:
     Species species;
     int variant;
     int imageWidth, imageHeight;
-    b2Body *body;
+
     Fish& operator=(Fish other);
 signals:
 
 private:
-
 };
 
 #endif // FISH_H
