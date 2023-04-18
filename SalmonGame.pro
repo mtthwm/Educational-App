@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     bucket.cpp \
     bucketcontactlistener.cpp \
+    escapemenu.cpp \
     fish.cpp \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
     Box2D/Collision/Shapes/b2CircleShape.cpp \
@@ -116,6 +117,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     bucket.h \
     bucketcontactlistener.h \
+    escapemenu.h \
     fisheducation.h \
     gamemodel.h \
     gameoverscreen.h \

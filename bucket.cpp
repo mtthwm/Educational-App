@@ -1,4 +1,8 @@
 #include "bucket.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 Bucket::Bucket(QObject *parent, b2Body* body, Species target)
     : QObject{parent}, /*body(body),*/ targetSpecies(target) {;}
@@ -16,4 +20,12 @@ Bucket& Bucket::operator= (Bucket other) {
     //std::swap(body, other.body);
     targetSpecies = other.targetSpecies;
     return *this;
+}
+
+void Bucket::fishDropped(const Fish& fish)
+{
+    if (this->targetSpecies == fish.species)
+        cout<<"deez nuts"<<endl;
+    else
+        cout<<"wrong fish"<<endl;
 }

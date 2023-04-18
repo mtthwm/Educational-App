@@ -4,6 +4,7 @@
 #include <QObject>
 #include "Species.h"
 #include "Box2D/Box2D.h"
+#include "fish.h"
 
 class Bucket : public QObject
 {
@@ -15,8 +16,10 @@ public:
     Bucket& operator= (Bucket);
     //b2Body* body;
     Species targetSpecies;
+    void fishDropped(const Fish& fish);
 signals:
-
+     void correctFish();
+     void wrongFish();
 };
 
 #endif // BUCKET_H
