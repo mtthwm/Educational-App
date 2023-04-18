@@ -32,7 +32,7 @@ signals:
 
 public slots:
     void worldUpdated(QHash<b2Body*, Fish>);
-    void worldInit(QHash<b2Body*, Bucket>);
+    void worldInit();
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);
@@ -51,6 +51,7 @@ private:
     bool isholdingfish;
     QTimer timer;
     QImage fishImage;
+    QImage bucketImage;
 };
 
 #endif // GAMESCENE_H

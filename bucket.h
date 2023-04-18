@@ -11,6 +11,8 @@ class Bucket : public QObject
 public:
     explicit Bucket(QObject *parent = nullptr, b2Body* = nullptr, Species target = Species::None);
     Bucket(const Bucket&);
+    ~Bucket();
+    Bucket& operator= (Bucket);
     b2Body* body;
     Species targetSpecies;
 signals:

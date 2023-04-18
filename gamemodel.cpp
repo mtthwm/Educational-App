@@ -4,10 +4,12 @@
 #include <QImage>
 
 GameModel::GameModel(QObject *parent)
-    : QObject{parent}, world(b2Vec2(10.0f, 0.0f)),
+    : QObject{parent},
+    worldInitialized(false),
+    world(b2Vec2(10.0f, 0.0f)),
     timer(this)
-{
 
+{
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     timer.setInterval(10);
 }
@@ -36,11 +38,35 @@ void GameModel::togglePause(bool paused) {
         timer.start();
 }
 
-void GameModel::spawnBucket() {
+void GameModel::spawnBucket(int x, int y, Species species) {
+    b2BodyDef bucketBodyDef;
+    bucketBodyDef.type = b2_staticBody;
+    bucketBodyDef.position.Set(x, y);
 
+    b2Body* body = world.CreateBody(&bucketBodyDef);
+
+    // Create a shape for this sensor
+    b2CircleShape circle;
+    circle.m_radius = 20;
+
+    // Add the shape to the body.
+    b2FixtureDef fixture;
+    fixture.shape = &circle;
+    fixture.isSensor = true;
+    body->CreateFixture(&fixture);
+
+    Bucket bucket(this, body, species);
+
+    this->buckets.insert(body, bucket);
 }
 
 void GameModel::updateWorld() {
+    if (!worldInitialized) {
+        spawnBucket(100, 100, Species::Coho);
+        worldInitialized = true;
+        emit worldInit();
+    }
+
     world.Step(1.0/60.0, 6, 2);
     emit worldUpdated(fish);
 }

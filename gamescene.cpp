@@ -16,7 +16,8 @@ GameScene::GameScene(QWidget *parent) :
     ui(new Ui::GameScene),
     world(b2Vec2(10.0f, 0.0f)),
     timer(this),
-    fishImage(":/images/fish/coho.png")
+    fishImage(":/images/fish/coho.png"),
+    bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
 
@@ -37,14 +38,19 @@ GameScene::~GameScene()
     delete ui;
 }
 
-void GameScene::worldInit(QHash<b2Body*, Bucket> buckets) {
-    // use buckets.values() to get the body associated with each bucket,
-    // and draw it on the screen.
+void GameScene::worldInit() {
 }
 
 void GameScene::paintEvent(QPaintEvent *) {
     // Create a painter
     QPainter painter(this);
+
+    if (model.worldInitialized) {
+        for (const Bucket &bucket : model.buckets) {
+            b2Vec2 position = bucket.body->GetPosition();
+            painter.drawImage(position.x, position.y, bucketImage);
+        }
+    }
 
     for (b2Body* fishBody : fishBodies) {
         b2Vec2 position = fishBody->GetPosition();
