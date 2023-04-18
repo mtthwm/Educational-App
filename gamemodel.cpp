@@ -12,7 +12,7 @@ GameModel::GameModel(QObject *parent)
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     timer.setInterval(10);
-    isholdingfish = false;\
+    isholdingfish = false;
         width = 392; height = 225;
     for (int i = 0; i < 10; i++) {
         spawnFish();
@@ -24,7 +24,10 @@ void GameModel::beginWorldStep() {
 }
 
 void GameModel::reset() {
-
+    emit resetComponent();
+    this->fish.clear();
+    isholdingfish = false;
+    timer.stop();
 }
 
 void GameModel::togglePause(bool paused) {
