@@ -71,6 +71,10 @@ void GameModel::updateWorld() {
         //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
     }
+    for (auto f = fish.keyBegin(); f != fish.keyEnd(); f++) {
+        if ((*f)->GetLinearVelocity().x < 50)
+            (*f)->SetLinearVelocity(b2Vec2(50, (*f)->GetLinearVelocity().y));
+    }
     world.Step(1.0/60.0, 6, 2);
     emit worldUpdated();
 }
