@@ -121,17 +121,20 @@ Species GameModel::generateRandomSpecies() {
 
 void GameModel::spawnFish() {
     Species species = this->generateRandomSpecies();
-    Fish fish(this, species);
+    Fish fishy(this, species);
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
     fishBodyDef.gravityScale = 0;
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
-    int imageScalar = QRandomGenerator::global()->bounded(100, 300);
-    polygon.SetAsBox(3 * imageScalar, 1 * imageScalar);
-    fish.imageHeight = 1 * imageScalar;
-    fish.imageWidth =  3 * imageScalar;
+    int imageScalar = QRandomGenerator::global()->bounded(100, 200);
+    //qDebug() << imageScalar;
+    polygon.SetAsBox(3 * imageScalar, imageScalar);
+    fishy.imageHeight = imageScalar;
+    fishy.imageWidth =  3 * imageScalar;
+    //qDebug() << fishy.imageHeight;
+    //qDebug() << fishy.imageWidth;
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     // Set the box density to be non-zero, so it will be dynamic.
@@ -143,7 +146,7 @@ void GameModel::spawnFish() {
 
     // Add the shape to the body.
     body->CreateFixture(&fixture);
-    this->fishes.insert(body, fish);
+    this->fishes.insert(body, fishy);
 
     body->SetUserData(&fishes[body]);
 }

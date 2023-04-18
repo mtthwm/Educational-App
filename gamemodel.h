@@ -30,7 +30,6 @@ public:
 signals:
     void worldUpdated();
     void worldInit();
-    void gameOver();
     void resetComponent();
 
 public slots:

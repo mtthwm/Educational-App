@@ -9,7 +9,6 @@
 #include "bucket.h"
 #include "gamemodel.h"
 #include "Box2D/Box2D.h"
-#include "fish.h"
 
 using std::vector;
 
@@ -48,7 +47,7 @@ private:
     GameModel model;
     QImage fishImage;
     QImage bucketImage;
-    QImage getImage(int variant, int species);
+    QImage getImage(const Fish& fish);
 };
 
 #endif // GAMESCENE_H

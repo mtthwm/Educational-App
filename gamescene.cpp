@@ -1,11 +1,11 @@
 #include "gamescene.h"
 #include "ui_gamescene.h"
 #include "Box2D/Box2D.h"
-
+#include "Species.h"
 #include <QPainter>
 #include <QDebug>
 #include <QMouseEvent>
-
+#include <QRandomGenerator>
 #include<iostream>
 
 using std::cout;
@@ -20,7 +20,7 @@ GameScene::GameScene(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->menu->setVisible(false);
-
+    connect(&model, &GameModel::resetComponent, this->ui->widget, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
     connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
     connect(ui->menu, &EscapeMenu::resume, this, [=] {model.togglePause(false); ui->menu->setVisible(false);});
@@ -55,7 +55,11 @@ void GameScene::paintEvent(QPaintEvent *) {
     for (auto fishBody = model.fishes.keyValueBegin(); fishBody != model.fishes.keyValueEnd(); fishBody++) {
         //cout << "draw fish" << endl;
         b2Vec2 position = (*fishBody).first->GetPosition();
-        painter.drawImage((int)(position.x), (int)(position.y), getImage((*fishBody).second.variant, (*fishBody).second.species));
+        int width = fishBody->second.imageWidth;
+        int height = fishBody->second.imageHeight;
+        //std::cout << height << ", " << width << endl;
+        QRectF rect((int)(position.x), (int)(position.y), 300, 100);
+        painter.drawImage(rect, getImage(fishBody->second));
     }
     painter.end();
 }
@@ -63,7 +67,7 @@ void GameScene::paintEvent(QPaintEvent *) {
 void GameScene::mousePressEvent(QMouseEvent *event) {
     for (auto fish = model.fishes.keyValueBegin(); fish != model.fishes.keyValueEnd(); fish++) {
         b2Vec2 position1 = (*fish).first->GetPosition();
-        QImage fishimage = getImage((*fish).second.variant, (*fish).second.species);
+        QImage fishimage = getImage((fish->second));
         b2Vec2 position2(position1.x + fishimage.width(), position1.y + fishimage.height());
 
         //is within the box of the fish
@@ -107,6 +111,37 @@ void GameScene::worldUpdated() {
 }
 
 //TODO: add more images and then implement this function
-QImage GameScene::getImage(int variant, int species) {
-    return fishImage;
+QImage GameScene::getImage(const Fish& fish) {
+    QString path;
+    switch(fish.species) {
+
+        case Species::Chinook:
+            path = QString(":/images/fish/chinook%1.png").arg(1);
+        break;
+
+
+        case Species::Chum:
+            path = QString(":/images/fish/chum%1.png").arg(1);
+        break;
+
+
+        case Species::Pink:
+            path = QString(":/images/fish/pink%1.png").arg(1);
+        break;
+
+
+        case Species::Coho:
+            path = QString(":/images/fish/coho%1.png").arg(1);
+        break;
+
+
+        case Species::Sockeye:
+            path = QString(":/images/fish/sockeye%1.png").arg(1);
+        break;
+
+        default:
+            path = QString(":/images/fish/coho%1.png").arg(1);
+    }
+    QImage image(path);
+    return image;
 }
