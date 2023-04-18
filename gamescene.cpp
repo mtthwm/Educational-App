@@ -22,12 +22,11 @@ GameScene::GameScene(QWidget *parent) :
 
 
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
-    connect(&model, &GameModel::worldInit, this, &GameScene::worldInit);
+    //connect(&model, &GameModel::worldInit, this, &GameScene::worldInit);
 
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
     cout << model.fish.size() << endl;
-    model.beginWorldStep();
 }
 
 GameScene::~GameScene()
@@ -36,7 +35,7 @@ GameScene::~GameScene()
 }
 
 void GameScene::worldInit() {
-    update();
+    model.beginWorldStep();
 }
 
 void GameScene::paintEvent(QPaintEvent *) {
