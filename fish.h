@@ -11,7 +11,6 @@ class Fish : public QObject
     Q_OBJECT
 
 public:
-    explicit Fish(QObject *parent = nullptr, int variant = 0, Species species = Species::None, b2Body *body = nullptr);
     explicit Fish(QObject* parent = nullptr, Species species = Species::None);
     ~Fish();
     Fish(const Fish& other);

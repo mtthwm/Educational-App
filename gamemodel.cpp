@@ -17,6 +17,8 @@ GameModel::GameModel(QObject *parent)
     for (int i = 0; i < 10; i++) {
         spawnFish();
     }
+
+    world.SetContactListener(&bucketListener);
 }
 
 void GameModel::beginWorldStep() {
@@ -25,7 +27,7 @@ void GameModel::beginWorldStep() {
 
 void GameModel::reset() {
     emit resetComponent();
-    this->fish.clear();
+    this->fishes.clear();
     isholdingfish = false;
     timer.stop();
     b2Body* bodies = world.GetBodyList();
@@ -45,7 +47,7 @@ void GameModel::togglePause(bool paused) {
 void GameModel::spawnBucket(int x, int y, Species species) {
     b2BodyDef bucketBodyDef;
     bucketBodyDef.type = b2_staticBody;
-    bucketBodyDef.position.Set(x, y);
+    bucketBodyDef.position.Set(0, 0);
 
     b2Body* body = world.CreateBody(&bucketBodyDef);
 
@@ -61,11 +63,9 @@ void GameModel::spawnBucket(int x, int y, Species species) {
 
     Bucket bucket(this, body, species);
 
-    body->SetUserData(&bucket);
-
     this->buckets.insert(body, bucket);
 
-
+    body->SetUserData(&buckets[body]);
 }
 
 void GameModel::updateWorld() {
@@ -82,7 +82,7 @@ void GameModel::updateWorld() {
         //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
     }
-    for (auto f = fish.keyBegin(); f != fish.keyEnd(); f++) {
+    for (auto f = fishes.keyBegin(); f != fishes.keyEnd(); f++) {
         if ((*f)->GetLinearVelocity().x < 50)
             (*f)->SetLinearVelocity(b2Vec2(50, (*f)->GetLinearVelocity().y));
     }
@@ -125,7 +125,7 @@ void GameModel::spawnFish() {
     fishBodyDef.type = b2_dynamicBody;
     fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
     fishBodyDef.gravityScale = 0;
-    b2Body* body = world.CreateBody(&fishBodyDef);
+    b2Body* body = world.CreateBody(&fishBodyDef);    
     b2PolygonShape polygon;
     int imageScalar = QRandomGenerator::global()->bounded(100, 300);
     polygon.SetAsBox(3 * imageScalar, 1 * imageScalar);
@@ -142,5 +142,7 @@ void GameModel::spawnFish() {
 
     // Add the shape to the body.
     body->CreateFixture(&fixture);
-    this->fish.insert(body, fish);
+    this->fishes.insert(body, fish);
+
+    body->SetUserData(&fishes[body]);
 }

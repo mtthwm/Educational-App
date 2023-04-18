@@ -8,6 +8,7 @@
 #include "Box2D/Box2D.h"
 #include <QTimer>
 #include <QHash>
+#include "bucketcontactlistener.h"
 
 using std::vector;
 
@@ -19,7 +20,7 @@ public:
     explicit GameModel(QObject *parent = nullptr);
 
     QHash<b2Body*, Bucket> buckets;
-    QHash<b2Body*, Fish> fish;
+    QHash<b2Body*, Fish> fishes;
     bool worldInitialized;
     b2Body* heldFish;
     b2Vec2 heldfishcoords;
@@ -47,6 +48,7 @@ private:
     int width;
     int height;
     bool paused;
+    BucketContactListener bucketListener;
 
 };
 

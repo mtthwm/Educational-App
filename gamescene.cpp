@@ -50,7 +50,7 @@ void GameScene::paintEvent(QPaintEvent *) {
         }
     }
 
-    for (auto fishBody = model.fish.keyValueBegin(); fishBody != model.fish.keyValueEnd(); fishBody++) {
+    for (auto fishBody = model.fishes.keyValueBegin(); fishBody != model.fishes.keyValueEnd(); fishBody++) {
         //cout << "draw fish" << endl;
         b2Vec2 position = (*fishBody).first->GetPosition();
         painter.drawImage((int)(position.x), (int)(position.y), getImage((*fishBody).second.variant, (*fishBody).second.species));
@@ -59,7 +59,7 @@ void GameScene::paintEvent(QPaintEvent *) {
 }
 
 void GameScene::mousePressEvent(QMouseEvent *event) {
-    for (auto fish = model.fish.keyValueBegin(); fish != model.fish.keyValueEnd(); fish++) {
+    for (auto fish = model.fishes.keyValueBegin(); fish != model.fishes.keyValueEnd(); fish++) {
         b2Vec2 position1 = (*fish).first->GetPosition();
         QImage fishimage = getImage((*fish).second.variant, (*fish).second.species);
         b2Vec2 position2(position1.x + fishimage.width(), position1.y + fishimage.height());

@@ -1,11 +1,6 @@
 #include "fish.h"
 #include <QImage>
 
-Fish::Fish(QObject *parent, int variant, Species species, b2Body* body)
-    : QObject{parent}, species(species), variant(variant)
-{
-
-}
 
 Fish::~Fish() {
 }
