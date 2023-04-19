@@ -41,6 +41,7 @@ void GameModel::togglePause(bool paused) {
 }
 
 void GameModel::drop() {
+    isholdingfish = false;
     for (b2Body* bucketBody : buckets.keys()) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
@@ -53,7 +54,6 @@ void GameModel::drop() {
                 emit wrongFish();
             }
             deleteFish(heldFish);
-            isholdingfish = false;
         }
     }
 }
