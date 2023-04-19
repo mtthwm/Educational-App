@@ -48,7 +48,7 @@ void GameModel::drop() {
         return;
 
     isholdingfish = false;
-
+    heldFish->SetActive(true);
     for (b2Body* bucketBody : buckets.keys()) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
