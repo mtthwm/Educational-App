@@ -56,8 +56,8 @@ void GameModel::drop() {
 
 bool GameModel::heldFishBucketOverlap (b2Body* bucketBody) {
     b2Vec2 position = bucketBody->GetPosition();
-    if (position.x + BOX_SIZE < heldfishcoords.x && heldfishcoords.x < position.x) {
-        if (position.y + BOX_SIZE < heldfishcoords.y && heldfishcoords.y < position.y) {
+    if (position.x < lastmousecoords.x && lastmousecoords.x < position.x + BOX_SIZE) {
+        if (position.y < lastmousecoords.y && lastmousecoords.y < position.y + BOX_SIZE) {
             return true;
         }
     }
@@ -68,7 +68,7 @@ bool GameModel::heldFishBucketOverlap (b2Body* bucketBody) {
 void GameModel::spawnBucket(int x, int y, Species species) {
     b2BodyDef bucketBodyDef;
     bucketBodyDef.type = b2_staticBody;
-    bucketBodyDef.position.Set(0, 0);
+    bucketBodyDef.position.Set(x, y);
 
     b2Body* body = world->CreateBody(&bucketBodyDef);
 

@@ -25,6 +25,7 @@ public:
     b2Vec2 heldfishcoords;
     b2Vec2 lastmousecoords;
     bool isholdingfish;
+    const int BOX_SIZE = 200;
 
 signals:
     void worldUpdated();
@@ -50,8 +51,6 @@ private:
     int width;
     int height;
     bool paused;
-
-    const int BOX_SIZE = 50;
 };
 
 #endif // GAMEMODEL_H

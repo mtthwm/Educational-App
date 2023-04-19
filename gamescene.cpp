@@ -49,7 +49,9 @@ void GameScene::paintEvent(QPaintEvent *) {
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {
             b2Vec2 position = (*bucket).first->GetPosition();
-            painter.drawImage(position.x, position.y, bucketImage);
+
+            QRectF rect((int)(position.x), (int)(position.y), model.BOX_SIZE, model.BOX_SIZE);
+            painter.drawImage(rect, bucketImage);
         }
     }
 
@@ -96,7 +98,7 @@ void GameScene::mouseMoveEvent(QMouseEvent *event) {
     model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());
 }
 
-void GameScene::mouseReleaseEvent(QMouseEvent *event) {
+void GameScene::mouseReleaseEvent(QMouseEvent *) {
     emit drop();
 }
 
