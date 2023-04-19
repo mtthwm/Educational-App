@@ -46,16 +46,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="GameOverScreen" name="gameOverScreen" native="true">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>-1</y>
-     <width>901</width>
-     <height>511</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -68,12 +58,6 @@
    <class>EscapeMenu</class>
    <extends>QWidget</extends>
    <header location="global">escapemenu.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>GameOverScreen</class>
-   <extends>QWidget</extends>
-   <header>gameoverscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
