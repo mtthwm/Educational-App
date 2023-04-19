@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChinookEducation</class>
+ <widget class="QWidget" name="ChinookEducation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>20</y>
+     <width>291</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>66</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:white
+</string>
+   </property>
+   <property name="text">
+    <string>Chinook</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="oceanPhase">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>140</y>
+     <width>600</width>
+     <height>200</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanPhase.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="oceanEducation">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>87</y>
+     <width>840</width>
+     <height>287</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanEducation.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spawningPhase">
+   <property name="geometry">
+    <rect>
+     <x>169</x>
+     <y>387</y>
+     <width>741</width>
+     <height>223</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSpawningPhase.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spawningEducation">
+   <property name="geometry">
+    <rect>
+     <x>-30</x>
+     <y>330</y>
+     <width>880</width>
+     <height>306</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSpawningEducation.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>71</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+  <zorder>titleLabel</zorder>
+  <zorder>oceanPhase</zorder>
+  <zorder>oceanEducation</zorder>
+  <zorder>spawningEducation</zorder>
+  <zorder>spawningPhase</zorder>
+  <zorder>backButton</zorder>
+ </widget>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

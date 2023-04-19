@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     bucket.cpp \
+    chinookeducation.cpp \
     escapemenu.cpp \
     fish.cpp \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
@@ -115,6 +116,7 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     bucket.h \
+    chinookeducation.h \
     escapemenu.h \
     fisheducation.h \
     gamemodel.h \
@@ -126,6 +128,7 @@ HEADERS += \
     scoreboard.h
 
 FORMS += \
+    chinookeducation.ui \
     escapemenu.ui \
     fisheducation.ui \
     gameoverscreen.ui \
