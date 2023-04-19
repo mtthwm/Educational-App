@@ -30,6 +30,7 @@ signals:
     void gameOver();
     void beginWorldStep();
     void exit();
+    void drop();
 
 public slots:
     void worldUpdated();

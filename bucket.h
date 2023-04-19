@@ -16,10 +16,6 @@ public:
     Bucket& operator= (Bucket);
     //b2Body* body;
     Species targetSpecies;
-    void fishDropped(const Fish& fish);
-signals:
-     void correctFish();
-     void wrongFish();
 };
 
 #endif // BUCKET_H

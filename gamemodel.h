@@ -8,7 +8,6 @@
 #include "Box2D/Box2D.h"
 #include <QTimer>
 #include <QHash>
-#include "bucketcontactlistener.h"
 
 using std::vector;
 
@@ -31,24 +30,28 @@ signals:
     void worldUpdated();
     void worldInit();
     void resetComponent();
+    void correctFish();
+    void wrongFish();
 
 public slots:
     void updateWorld();
     void beginWorldStep();
     void togglePause(bool paused);
     void reset();
+    void drop();
 
 private:
     void spawnFish ();
     void spawnBucket(int x, int y, Species species);
+    bool heldFishBucketOverlap (b2Body* bucketBody);
     Species generateRandomSpecies();
     b2World* world;
     QTimer timer;
     int width;
     int height;
     bool paused;
-    BucketContactListener bucketListener;
 
+    const int BOX_SIZE = 50;
 };
 
 #endif // GAMEMODEL_H

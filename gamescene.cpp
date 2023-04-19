@@ -20,11 +20,12 @@ GameScene::GameScene(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->menu->setVisible(false);
-    connect(&model, &GameModel::resetComponent, this->ui->widget, &ScoreBoard::reset);
+    connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
     connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
     connect(ui->menu, &EscapeMenu::resume, this, [=] {model.togglePause(false); ui->menu->setVisible(false);});
-
+    connect(this, &GameScene::drop, &model, &GameModel::drop);
+    connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::addScore);
 
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
@@ -95,9 +96,8 @@ void GameScene::mouseMoveEvent(QMouseEvent *event) {
     model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());
 }
 
-void GameScene::mouseReleaseEvent(QMouseEvent *) {
-    //cout << "fish released" << endl;
-    model.isholdingfish = false;
+void GameScene::mouseReleaseEvent(QMouseEvent *event) {
+    emit drop();
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event) {

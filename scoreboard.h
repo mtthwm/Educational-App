@@ -26,11 +26,6 @@ public slots:
     ///
     void addScore ();
     ///
-    /// \brief addScore Adds a specific amount to the score
-    /// \param amount The amount to add
-    ///
-    void addScore (int amount);
-    ///
     /// \brief reset Resets the score to zero
     ///
     void reset ();

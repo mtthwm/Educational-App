@@ -17,11 +17,7 @@ ScoreBoard::~ScoreBoard()
 }
 
 void ScoreBoard::addScore() {
-    addScore(1);
-}
-
-void ScoreBoard::addScore(int amount) {
-    score += amount;
+    score += 1;
     updateUI();
 }
 

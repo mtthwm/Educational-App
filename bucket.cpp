@@ -21,11 +21,3 @@ Bucket& Bucket::operator= (Bucket other) {
     targetSpecies = other.targetSpecies;
     return *this;
 }
-
-void Bucket::fishDropped(const Fish& fish)
-{
-    if (this->targetSpecies == fish.species)
-        cout<<"deez nuts"<<endl;
-    else
-        cout<<"wrong fish"<<endl;
-}

@@ -26,7 +26,7 @@
     <string>COHO</string>
    </property>
   </widget>
-  <widget class="ScoreBoard" name="widget" native="true">
+  <widget class="ScoreBoard" name="scoreBoard" native="true">
    <property name="geometry">
     <rect>
      <x>260</x>
