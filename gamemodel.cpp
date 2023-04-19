@@ -45,10 +45,14 @@ void GameModel::drop() {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
             if (buckets[bucketBody].targetSpecies == fishes[heldFish].species)
+            {
+                deleteFish(heldFish);
                 emit correctFish();
+            }
             else
+            {
                 emit wrongFish();
-
+            }
             isholdingfish = false;
         }
     }
@@ -172,4 +176,9 @@ void GameModel::spawnFish() {
     this->fishes.insert(body, fishy);
 
     body->SetUserData(&fishes[body]);
+}
+
+void GameModel::deleteFish(b2Body* fish) {
+    world->DestroyBody(fish);
+    fishes.remove(fish);
 }

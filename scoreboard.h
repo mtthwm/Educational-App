@@ -26,6 +26,10 @@ public slots:
     ///
     void addScore ();
     ///
+    /// \brief addStrike
+    ///
+    void addStrike();
+    ///
     /// \brief reset Resets the score to zero
     ///
     void reset ();

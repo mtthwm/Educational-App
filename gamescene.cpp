@@ -24,8 +24,11 @@ GameScene::GameScene(QWidget *parent) :
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
     connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
     connect(ui->menu, &EscapeMenu::resume, this, [=] {model.togglePause(false); ui->menu->setVisible(false);});
+
     connect(this, &GameScene::drop, &model, &GameModel::drop);
-    connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::addScore);
+
+    connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
+    connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen

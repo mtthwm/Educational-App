@@ -51,6 +51,7 @@ private:
     int width;
     int height;
     bool paused;
+    void deleteFish(b2Body* fish);
 };
 
 #endif // GAMEMODEL_H

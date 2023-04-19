@@ -30,3 +30,7 @@ void ScoreBoard::updateUI() {
     ui->scoreLabel->setText(QString::number(score));
     emit scoreUpdated(score);
 }
+
+void ScoreBoard::addStrike() {
+    ui->scoreLabel->setText("stupid");
+}
