@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="test">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>37</width>
-     <height>12</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>COHO</string>
-   </property>
-  </widget>
   <widget class="ScoreBoard" name="scoreBoard" native="true">
    <property name="geometry">
     <rect>

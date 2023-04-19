@@ -25,7 +25,7 @@ public:
     b2Vec2 heldfishcoords;
     b2Vec2 lastmousecoords;
     bool isholdingfish;
-    const int BOX_SIZE = 200;
+    const int BOX_SIZE = 175;
 
 signals:
     void worldUpdated();

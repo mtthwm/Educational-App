@@ -95,7 +95,13 @@ void GameModel::spawnBucket(int x, int y, Species species) {
 
 void GameModel::updateWorld() {
     if (!worldInitialized) {
-        spawnBucket(100, 100, Species::Coho);
+
+        spawnBucket(25, 137, Species::Coho);
+        spawnBucket(220, 137, Species::Sockeye);
+        spawnBucket(415, 137, Species::Chinook);
+        spawnBucket(605, 137, Species::Chum);
+        spawnBucket(800, 137, Species::Pink);
+
         for (int i = 0; i < 10; i++) {
             spawnFish();
         }
