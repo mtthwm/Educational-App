@@ -60,9 +60,9 @@
   <widget class="QLabel" name="oceanEducation">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>87</y>
-     <width>840</width>
+     <x>50</x>
+     <y>80</y>
+     <width>835</width>
      <height>287</height>
     </rect>
    </property>
@@ -79,10 +79,10 @@
   <widget class="QLabel" name="spawningPhase">
    <property name="geometry">
     <rect>
-     <x>169</x>
-     <y>387</y>
-     <width>741</width>
-     <height>223</height>
+     <x>280</x>
+     <y>340</y>
+     <width>660</width>
+     <height>220</height>
     </rect>
    </property>
    <property name="text">
@@ -98,9 +98,9 @@
   <widget class="QLabel" name="spawningEducation">
    <property name="geometry">
     <rect>
-     <x>-30</x>
-     <y>330</y>
-     <width>880</width>
+     <x>100</x>
+     <y>290</y>
+     <width>804</width>
      <height>306</height>
     </rect>
    </property>
@@ -117,8 +117,8 @@
   <widget class="QPushButton" name="backButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>70</y>
+     <x>40</x>
+     <y>40</y>
      <width>71</width>
      <height>32</height>
     </rect>
@@ -127,12 +127,69 @@
     <string>Back</string>
    </property>
   </widget>
+  <widget class="QLabel" name="oceanPhaseLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>320</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Ocean Phase</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="spawningPhaseLabel">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>510</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Spawning Phase</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="instructionLabel">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>60</y>
+     <width>431</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Hover over each image to see more information</string>
+   </property>
+  </widget>
+  <zorder>instructionLabel</zorder>
   <zorder>titleLabel</zorder>
   <zorder>oceanPhase</zorder>
-  <zorder>oceanEducation</zorder>
-  <zorder>spawningEducation</zorder>
   <zorder>spawningPhase</zorder>
   <zorder>backButton</zorder>
+  <zorder>spawningEducation</zorder>
+  <zorder>oceanPhaseLabel</zorder>
+  <zorder>spawningPhaseLabel</zorder>
+  <zorder>oceanEducation</zorder>
  </widget>
  <resources>
   <include location="Resources.qrc"/>
