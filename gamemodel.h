@@ -40,6 +40,7 @@ public slots:
     void togglePause(bool paused);
     void reset();
     void drop();
+    void endGame();
 
 private:
     void spawnFish ();

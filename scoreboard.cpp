@@ -1,12 +1,16 @@
 #include "scoreboard.h"
 #include "ui_scoreboard.h"
 
+#include <qstring.h>
+
 ScoreBoard::ScoreBoard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ScoreBoard),
     score{0}
 {
     ui->setupUi(this);
+
+    numStrikes = 3;
 
     updateUI();
 }
@@ -32,5 +36,18 @@ void ScoreBoard::updateUI() {
 }
 
 void ScoreBoard::addStrike() {
-    ui->scoreLabel->setText("stupid");
+    QString numStrikesString = "";
+    numStrikes--;
+    for (int i = 0; i < numStrikes; i++)
+        {
+            numStrikesString += "I";
+        }
+
+    ui->numStrikes->setText(numStrikesString);
+
+    if (numStrikes == 0)
+    {
+        emit gameOver();
+        return;
+    }
 }

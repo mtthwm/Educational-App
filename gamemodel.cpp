@@ -46,13 +46,13 @@ void GameModel::drop() {
         if (collision) {
             if (buckets[bucketBody].targetSpecies == fishes[heldFish].species)
             {
-                deleteFish(heldFish);
                 emit correctFish();
             }
             else
             {
                 emit wrongFish();
             }
+            deleteFish(heldFish);
             isholdingfish = false;
         }
     }
@@ -179,6 +179,31 @@ void GameModel::spawnFish() {
 }
 
 void GameModel::deleteFish(b2Body* fish) {
-    world->DestroyBody(fish);
+
+    if (world->GetBodyCount() > 0)
+        world->DestroyBody(fish);
+
     fishes.remove(fish);
 }
+
+void GameModel::endGame() {
+
+    reset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

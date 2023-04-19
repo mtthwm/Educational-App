@@ -41,8 +41,15 @@ signals:
     ///
     void scoreUpdated (int newScore);
 
+    ///
+    /// \brief gameOver
+    ///
+    void gameOver();
+
 private:
     Ui::ScoreBoard *ui;
+
+    int numStrikes;
 
     ///
     /// \brief score The current score

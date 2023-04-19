@@ -30,6 +30,7 @@ GameScene::GameScene(QWidget *parent) :
     connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
     connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
+    connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
     //cout << model.fish.size() << endl;
