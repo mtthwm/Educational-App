@@ -19,7 +19,11 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-    ui->menu->setVisible(false);
+
+
+    ui->gameOverScreen->setEnabled(false);
+    ui->gameOverScreen->setVisible(false);
+
     connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
     connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
@@ -28,8 +32,10 @@ GameScene::GameScene(QWidget *parent) :
     connect(this, &GameScene::drop, &model, &GameModel::drop);
 
     connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
+
     connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
+    connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::showEndGameScreen);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
@@ -151,4 +157,10 @@ QImage GameScene::getImage(const Fish& fish) {
     }
     QImage image(path);
     return image;
+}
+
+void GameScene::showEndGameScreen()
+{
+    ui->gameOverScreen->setEnabled(true);
+    ui->gameOverScreen->setVisible(true);
 }

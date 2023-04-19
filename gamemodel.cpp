@@ -186,8 +186,8 @@ void GameModel::deleteFish(b2Body* fish) {
     fishes.remove(fish);
 }
 
-void GameModel::endGame() {
-
+void GameModel::endGame()
+{
     reset();
 }
 

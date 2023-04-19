@@ -83,7 +83,11 @@
      <font>
       <family>Symbol</family>
       <pointsize>24</pointsize>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight: bold; color: red</string>
     </property>
     <property name="text">
      <string>III</string>
