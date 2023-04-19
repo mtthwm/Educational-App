@@ -19,7 +19,7 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-
+    ui->menu->setVisible(false);
 
     connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
@@ -92,6 +92,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
 
             model.heldFish = (*fish).first;
             model.heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
+            model.heldFish->SetActive(false);
             //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             model.isholdingfish = true;
             model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());

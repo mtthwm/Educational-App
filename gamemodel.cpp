@@ -19,11 +19,14 @@ GameModel::GameModel(QObject *parent)
     world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
         width = 392; height = 225;
+
+    paused = true;
 }
 
 void GameModel::beginWorldStep() {
     timer.start();
     fishSpawnTimer.start();
+    paused = false;
 }
 
 void GameModel::reset() {
@@ -50,6 +53,11 @@ void GameModel::togglePause(bool paused) {
 }
 
 void GameModel::drop() {
+    if (paused)
+        return;
+
+    isholdingfish = false;
+    heldFish->SetActive(true);
     for (b2Body* bucketBody : buckets.keys()) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
@@ -62,7 +70,6 @@ void GameModel::drop() {
                 emit wrongFish();
             }
             deleteFish(heldFish);
-            isholdingfish = false;
         }
     }
 }

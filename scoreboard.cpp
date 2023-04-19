@@ -49,7 +49,7 @@ void ScoreBoard::addStrike() {
     {
         emit gameOver();
         numStrikes = 0;
-        ui->numStrikes->setText("");
+        ui->numStrikes->setText("0");
         return;
     }
 }
