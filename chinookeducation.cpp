@@ -11,6 +11,8 @@ ChinookEducation::ChinookEducation(QWidget *parent) :
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
 
+    this->setAttribute(Qt::WA_Hover, true);
+
     for (auto fish : fishes)
     {
         displayNotHoverFish(fish);
@@ -83,8 +85,9 @@ void ChinookEducation::hoverOverFish(int x, int y)
 }
 
 void ChinookEducation::displayHoverFish(std::pair<QLabel *, QLabel *> fishInfo)  {
-    fishInfo.first->setVisible(false);
+    fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(true);
+    ui->instructionLabel->setVisible(false);
 }
 
 void ChinookEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) {
