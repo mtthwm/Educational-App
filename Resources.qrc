@@ -17,5 +17,13 @@
         <file>images/fish/chinook3.png</file>
         <file>images/fish/chinook2.png</file>
         <file>images/fish/chinook1.png</file>
+        <file>images/fishEducation/chinookOceanEducation.png</file>
+        <file>images/fishEducation/chinookOceanPhase.png</file>
+        <file>images/fishEducation/chinookSelected.png</file>
+        <file>images/fishEducation/chinookSpawningEducation.png</file>
+        <file>images/fishEducation/chinookSpawningPhase.png</file>
+        <file>images/fishEducation/sockeyeOceanPhase.png</file>
+        <file>images/fishEducation/sockeyeSelected.png</file>
+        <file>images/fishEducation/sockeyeSpawningPhase.png</file>
     </qresource>
 </RCC>
