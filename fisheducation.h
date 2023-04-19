@@ -31,9 +31,9 @@ signals:
 private:
     Ui::FishEducation *ui;
     void hoverOverFish(int x, int y);
-    void displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
-    void displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
-    vector<std::tuple< QLabel* , QLabel*, QLabel*>> fishes;
+    void displayHoverFish(std::tuple< QLabel* , QLabel*>);
+    void displayNotHoverFish(std::tuple< QLabel* , QLabel*>);
+    vector<std::tuple< QLabel* , QLabel*>> fishes;
     void allVisible();
     void allInvisible();
 

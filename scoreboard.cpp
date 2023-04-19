@@ -10,7 +10,7 @@ ScoreBoard::ScoreBoard(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    numStrikes = 3;
+    numStrikes = 0;
 
     updateUI();
 }
@@ -37,7 +37,7 @@ void ScoreBoard::updateUI() {
 
 void ScoreBoard::addStrike() {
     QString numStrikesString = "";
-    numStrikes--;
+    numStrikes++;
     for (int i = 0; i < numStrikes; i++)
         {
             numStrikesString += "I";
@@ -45,9 +45,11 @@ void ScoreBoard::addStrike() {
 
     ui->numStrikes->setText(numStrikesString);
 
-    if (numStrikes == 0)
+    if (numStrikes == 3)
     {
         emit gameOver();
+        numStrikes = 0;
+        ui->numStrikes->setText("");
         return;
     }
 }

@@ -9,6 +9,11 @@ GameOverScreen::GameOverScreen(QWidget *parent) :
             &QPushButton::clicked,
             this,
             &GameOverScreen::playAgain);
+
+    connect(ui->learnButton,
+            &QPushButton::clicked,
+            this,
+            &GameOverScreen::exit);
 }
 
 GameOverScreen::~GameOverScreen() {

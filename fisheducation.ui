@@ -13,25 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="sockeyeDialogueLabel">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>120</y>
-     <width>391</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QLabel" name="sockeyeBeforeHover">
    <property name="geometry">
     <rect>
@@ -45,7 +26,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeOceanPhase.png</pixmap>
+    <pixmap>:/images/fishEducation/sockeyeOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -70,26 +51,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeSelected.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pinkDialogueLabel">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>240</y>
-     <width>391</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
+    <pixmap>:/images/fishEducation/sockeyeSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -108,7 +70,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -133,26 +95,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="kingDialogueLabel">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>250</y>
-     <width>311</width>
-     <height>221</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
+    <pixmap>:/images/fish/coho.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -171,7 +114,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanPhase.png</pixmap>
+    <pixmap>:/images/fishEducation/chinookOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -196,26 +139,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSelected.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="cohoDialogueLabel">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>-20</y>
-     <width>391</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
+    <pixmap>:/images/fishEducation/chinookSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -240,7 +164,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
+    <pixmap>:/images/fish/coho.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -259,26 +183,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="chumDialogueLabel">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>-30</y>
-     <width>391</width>
-     <height>231</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/Untitled-2.png</pixmap>
+    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -303,7 +208,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
+    <pixmap>:/images/fish/coho.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -322,7 +227,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -345,8 +250,6 @@
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
