@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>971</width>
-    <height>636</height>
+    <width>1000</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -70,7 +70,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -171,7 +171,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -196,7 +196,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fish/coho.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -326,6 +326,22 @@
    </property>
    <property name="scaledContents">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="kingButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>360</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

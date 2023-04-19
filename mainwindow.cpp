@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(false);
+    ui->fishEduction->setVisible(true);
+    ui->startButton->setVisible(true);
+    ui->chinookEducation->setVisible(false);
     connect(ui->startButton,
             &QPushButton::clicked,
             this,
@@ -31,6 +34,17 @@ MainWindow::MainWindow(QWidget *parent)
             &GameScene::exit,
             this,
             &MainWindow::switchToHome);
+
+
+    connect(ui->fishEduction,
+            &FishEducation::goToChinook,
+            this,
+            &MainWindow::switchToChinook);
+
+    connect(ui->chinookEducation,
+            &ChinookEducation::goBack,
+            this,
+            &MainWindow::switchToHome);
 }
 
 MainWindow::~MainWindow()
@@ -44,6 +58,7 @@ void MainWindow::switchToGame()
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
     ui->gameScene->setFocusPolicy(Qt::StrongFocus);
     ui->gameScene->setFocus();
     emit startGame();
@@ -55,11 +70,21 @@ void MainWindow::switchToGameOver()
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(true);
+    ui->chinookEducation->setVisible(false);
 }
 
 void MainWindow::switchToHome() {
-    ui->startButton->setVisible(true);
     ui->fishEduction->setVisible(true);
+    ui->startButton->setVisible(true);
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
+}
+
+void MainWindow::switchToChinook() {
+    ui->startButton->setVisible(false);
+    ui->fishEduction->setVisible(false);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(true);
 }

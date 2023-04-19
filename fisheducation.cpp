@@ -29,6 +29,11 @@ FishEducation::FishEducation(QWidget *parent) :
     }
 
     this->setAttribute(Qt::WA_Hover, true);
+
+    connect(ui->kingButton,
+            &QPushButton::clicked,
+            this,
+            &FishEducation::goToChinook);
 }
 
 FishEducation::~FishEducation()

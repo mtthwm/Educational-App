@@ -25,6 +25,8 @@ protected:
     void hoverLeave(QHoverEvent* event);
     void hoverMove(QHoverEvent *event);
 
+signals:
+    void goToChinook();
 
 private:
     Ui::FishEducation *ui;
@@ -32,6 +34,8 @@ private:
     void displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
     void displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*>);
     vector<std::tuple< QLabel* , QLabel*, QLabel*>> fishes;
+    void allVisible();
+    void allInvisible();
 
 };
 
