@@ -6,11 +6,16 @@
 GameModel::GameModel(QObject *parent)
     : QObject{parent},
     worldInitialized(false),
-    timer(this)
+    timer(this),
+    fishSpawnTimer(this)
 
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
+    connect(&this->fishSpawnTimer, &QTimer::timeout, this, &GameModel::spawnFish);
+
     timer.setInterval(10);
+    fishSpawnTimer.setInterval(5000);
+
     world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
         width = 392; height = 225;
@@ -18,6 +23,7 @@ GameModel::GameModel(QObject *parent)
 
 void GameModel::beginWorldStep() {
     timer.start();
+    fishSpawnTimer.start();
 }
 
 void GameModel::reset() {
@@ -34,10 +40,13 @@ void GameModel::reset() {
 
 void GameModel::togglePause(bool paused) {
     this->paused = paused;
-    if (paused)
+    if (paused) {
         timer.stop();
-    else
+        fishSpawnTimer.stop();
+    } else {
         timer.start();
+        fishSpawnTimer.start();
+    }
 }
 
 void GameModel::drop() {
@@ -155,19 +164,24 @@ Species GameModel::generateRandomSpecies() {
 void GameModel::spawnFish() {
     Species species = this->generateRandomSpecies();
     Fish fishy(this, species);
+
     b2BodyDef fishBodyDef;
-    fishBodyDef.type = b2_dynamicBody;
-    fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
+    fishBodyDef.type = b2_dynamicBody; 
     fishBodyDef.gravityScale = 0;
+
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
     int imageScalar = QRandomGenerator::global()->bounded(100, 200);
-    //qDebug() << imageScalar;
     polygon.SetAsBox(3 * imageScalar, imageScalar);
     fishy.imageHeight = imageScalar;
     fishy.imageWidth =  3 * imageScalar;
-    //qDebug() << fishy.imageHeight;
-    //qDebug() << fishy.imageWidth;
+
+    // Generate x and y coordinates within the conveyor belt
+    int dy = QRandomGenerator::global()->bounded(CONVEYOR_BELT_AREA.height() - fishy.imageHeight);
+    int x = CONVEYOR_BELT_AREA.x() - fishy.imageWidth;
+    int y = CONVEYOR_BELT_AREA.y() + dy;
+    fishBodyDef.position.Set(x, y);
+
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     // Set the box density to be non-zero, so it will be dynamic.

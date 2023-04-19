@@ -8,6 +8,7 @@
 #include "Box2D/Box2D.h"
 #include <QTimer>
 #include <QHash>
+#include <QRect>
 
 using std::vector;
 
@@ -26,6 +27,7 @@ public:
     b2Vec2 lastmousecoords;
     bool isholdingfish;
     const int BOX_SIZE = 175;
+    QRect CONVEYOR_BELT_AREA = QRect(0, 400, 980, 500);
 
 signals:
     void worldUpdated();
@@ -41,14 +43,15 @@ public slots:
     void reset();
     void drop();
     void endGame();
+    void spawnFish ();
 
 private:
-    void spawnFish ();
     void spawnBucket(int x, int y, Species species);
     bool heldFishBucketOverlap (b2Body* bucketBody);
     Species generateRandomSpecies();
     b2World* world;
     QTimer timer;
+    QTimer fishSpawnTimer;
     int width;
     int height;
     bool paused;
