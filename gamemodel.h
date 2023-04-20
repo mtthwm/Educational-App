@@ -41,6 +41,7 @@ public slots:
     void reset();
     void drop();
     void endGame();
+    void checkInvalidFish();
 
 private:
     void spawnFish ();

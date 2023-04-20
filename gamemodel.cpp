@@ -10,12 +10,30 @@ GameModel::GameModel(QObject *parent)
 
 {
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
+    connect(&this->timer, &QTimer::timeout, this, &GameModel::checkInvalidFish);
     timer.setInterval(10);
     world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
         width = 392; height = 225;
 
     paused = true;
+}
+
+void GameModel::checkInvalidFish() {
+    vector<b2Body*> toRemove;
+
+    for (auto [body, fish] : fishes.asKeyValueRange()) {
+        b2Vec2 position = body->GetPosition();
+        if (position.x > 980 + fish.imageWidth || position.y > 510 + fish.imageHeight || position.y < 0 - fish.imageHeight) {
+            toRemove.push_back(body);
+        }
+    }
+
+    for (b2Body* body : toRemove) {
+        fishes.remove(body);
+        emit wrongFish();
+    }
+
 }
 
 void GameModel::beginWorldStep() {
@@ -168,7 +186,7 @@ void GameModel::spawnFish() {
     fishBodyDef.gravityScale = 0;
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
-    int imageScalar = QRandomGenerator::global()->bounded(100, 200);
+    int imageScalar = QRandomGenerator::global()->bounded(50, 60);
     //qDebug() << imageScalar;
     polygon.SetAsBox(3 * imageScalar, imageScalar);
     fishy.imageHeight = imageScalar;
