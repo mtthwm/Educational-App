@@ -19,15 +19,15 @@
      <x>260</x>
      <y>10</y>
      <width>371</width>
-     <height>121</height>
+     <height>81</height>
     </rect>
    </property>
   </widget>
   <widget class="EscapeMenu" name="menu" native="true">
    <property name="geometry">
     <rect>
-     <x>119</x>
-     <y>39</y>
+     <x>90</x>
+     <y>10</y>
      <width>141</width>
      <height>161</height>
     </rect>
@@ -36,8 +36,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>360</y>
+     <x>80</x>
+     <y>260</y>
      <width>63</width>
      <height>20</height>
     </rect>
@@ -49,8 +49,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>370</y>
+     <x>250</x>
+     <y>260</y>
      <width>63</width>
      <height>20</height>
     </rect>
@@ -62,8 +62,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>360</y>
+     <x>430</x>
+     <y>260</y>
      <width>63</width>
      <height>20</height>
     </rect>
@@ -75,8 +75,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>360</y>
+     <x>630</x>
+     <y>260</y>
      <width>63</width>
      <height>20</height>
     </rect>
@@ -89,7 +89,7 @@
    <property name="geometry">
     <rect>
      <x>810</x>
-     <y>360</y>
+     <y>260</y>
      <width>63</width>
      <height>20</height>
     </rect>

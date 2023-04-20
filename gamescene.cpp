@@ -53,6 +53,9 @@ void GameScene::paintEvent(QPaintEvent *) {
     //cout << "paint event" << endl;
     QPainter painter(this);
 
+    QRect rect(0,0,1000,650);
+    painter.drawImage(rect, QImage(":/images/GameScene.png"));
+
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {
             b2Vec2 position = (*bucket).first->GetPosition();
