@@ -26,5 +26,6 @@
         <file>images/fishEducation/sockeyeSelected.png</file>
         <file>images/fishEducation/sockeyeSpawningPhase.png</file>
         <file>images/GameScene.png</file>
+        <file>images/fish/fish_background.png</file>
     </qresource>
 </RCC>
