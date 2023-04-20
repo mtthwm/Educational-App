@@ -14,8 +14,7 @@ GameModel::GameModel(QObject *parent)
     timer.setInterval(10);
     world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
-        width = 392; height = 225;
-
+    width = 392; height = 225;
     paused = true;
 }
 
@@ -24,7 +23,7 @@ void GameModel::checkInvalidFish() {
 
     for (auto [body, fish] : fishes.asKeyValueRange()) {
         b2Vec2 position = body->GetPosition();
-        if (position.x > 980 + fish.imageWidth || position.y > 510 + fish.imageHeight || position.y < 0 - fish.imageHeight) {
+        if (position.x + fish.imageWidth/2 > 980 + fish.imageWidth/2 || position.y + fish.imageHeight/2 > 510 + fish.imageHeight/2|| position.y + fish.imageHeight/2 < 0 - fish.imageHeight/2) {
             toRemove.push_back(body);
         }
     }
