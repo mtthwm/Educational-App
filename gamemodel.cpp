@@ -61,7 +61,7 @@ void GameModel::togglePause(bool paused) {
 }
 
 void GameModel::drop() {
-    if (paused)
+    if (paused || isholdingfish == false)
         return;
 
     isholdingfish = false;
