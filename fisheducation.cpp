@@ -13,15 +13,15 @@ FishEducation::FishEducation(QWidget *parent) :
     ui->setupUi(this);
 
 
-    fishes.push_back({ui->cohoBeforeHover, ui->cohoAfterHover, ui->cohoDialogueLabel});
+    fishes.push_back({ui->cohoBeforeHover, ui->cohoAfterHover});
 
-    fishes.push_back({ui->kingBeforeHover, ui->kingAfterHover, ui->kingDialogueLabel});
+    fishes.push_back({ui->kingBeforeHover, ui->kingAfterHover});
 
-    fishes.push_back({ui->sockeyeBeforeHover, ui->sockeyeAfterHover, ui->sockeyeDialogueLabel});
+    fishes.push_back({ui->sockeyeBeforeHover, ui->sockeyeAfterHover});
 
-    fishes.push_back({ui->pinkBeforeHover, ui->pinkAfterHover, ui->pinkDialogueLabel});
+    fishes.push_back({ui->pinkBeforeHover, ui->pinkAfterHover});
 
-    fishes.push_back({ui->chumBeforeHover, ui->chumAfterHover, ui->chumDialogueLabel});
+    fishes.push_back({ui->chumBeforeHover, ui->chumAfterHover});
 
     for (auto fish : fishes)
     {
@@ -103,22 +103,20 @@ void FishEducation::hoverOverFish(int x, int y)
     }
 }
 
-void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
+void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*> fishInfo)
 {
     //before hover
     std::get<0>(fishInfo)->setVisible(false);
     //after hover
     std::get<1>(fishInfo)->setVisible(true);
-    //dialog
-    std::get<2>(fishInfo)->setVisible(true);
+
 }
 
-void FishEducation::displayNotHoverFish(std::tuple< QLabel* , QLabel*, QLabel*> fishInfo)
+void FishEducation::displayNotHoverFish(std::tuple< QLabel* , QLabel*> fishInfo)
 {
     //before hover
     std::get<0>(fishInfo)->setVisible(true);
     //after hover
     std::get<1>(fishInfo)->setVisible(false);
-    //dialog
-    std::get<2>(fishInfo)->setVisible(false);
+
 }

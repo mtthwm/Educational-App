@@ -90,7 +90,7 @@
      <string notr="true">font-weight: bold; color: red</string>
     </property>
     <property name="text">
-     <string>III</string>
+     <string>0</string>
     </property>
    </widget>
   </widget>

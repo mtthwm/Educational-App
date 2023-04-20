@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
             &GameScene::gameOver,
             this,
             &MainWindow::switchToGameOver);
+
     connect(ui->gameOverScreen,
             &GameOverScreen::playAgain,
             this,
@@ -32,6 +33,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->gameScene,
             &GameScene::exit,
+            this,
+            &MainWindow::switchToHome);
+
+    connect(ui->gameOverScreen,
+            &GameOverScreen::exit,
             this,
             &MainWindow::switchToHome);
 

@@ -39,7 +39,6 @@ public slots:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);
     void keyPressEvent(QKeyEvent *event);
-    void showEndGameScreen();
 
 private:
     Ui::GameScene *ui;

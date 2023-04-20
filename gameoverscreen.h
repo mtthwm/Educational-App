@@ -17,10 +17,10 @@ public:
 
 signals:
     void playAgain();
+    void exit();
 
 private:
     Ui::GameOverScreen *ui;
-//    void playAgainClicked();
 };
 
 #endif // GAMEOVERSCREEN_H

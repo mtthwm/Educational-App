@@ -19,10 +19,7 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-
-
-    ui->gameOverScreen->setEnabled(false);
-    ui->gameOverScreen->setVisible(false);
+    ui->menu->setVisible(false);
 
     connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
@@ -35,8 +32,8 @@ GameScene::GameScene(QWidget *parent) :
 
     connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
-    connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::showEndGameScreen);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
+    connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::gameOver);
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
     //cout << model.fish.size() << endl;
@@ -95,6 +92,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
 
             model.heldFish = (*fish).first;
             model.heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
+            model.heldFish->SetActive(false);
             //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             model.isholdingfish = true;
             model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());
@@ -157,10 +155,4 @@ QImage GameScene::getImage(const Fish& fish) {
     }
     QImage image(path);
     return image;
-}
-
-void GameScene::showEndGameScreen()
-{
-    ui->gameOverScreen->setEnabled(true);
-    ui->gameOverScreen->setVisible(true);
 }

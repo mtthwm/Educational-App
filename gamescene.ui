@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="test">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>37</width>
-     <height>12</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>COHO</string>
-   </property>
-  </widget>
   <widget class="ScoreBoard" name="scoreBoard" native="true">
    <property name="geometry">
     <rect>
@@ -46,14 +33,69 @@
     </rect>
    </property>
   </widget>
-  <widget class="GameOverScreen" name="gameOverScreen" native="true">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>-1</y>
-     <width>901</width>
-     <height>511</height>
+     <x>180</x>
+     <y>360</y>
+     <width>63</width>
+     <height>20</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>coho</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>370</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>sockeye</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>360</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>chinook</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>360</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>chum</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>810</x>
+     <y>360</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>pink</string>
    </property>
   </widget>
  </widget>
@@ -68,12 +110,6 @@
    <class>EscapeMenu</class>
    <extends>QWidget</extends>
    <header location="global">escapemenu.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>GameOverScreen</class>
-   <extends>QWidget</extends>
-   <header>gameoverscreen.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
