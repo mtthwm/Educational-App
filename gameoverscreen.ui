@@ -89,9 +89,9 @@ font-weight: bold; color: black
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>-30</y>
-     <width>1101</width>
-     <height>711</height>
+     <y>0</y>
+     <width>1000</width>
+     <height>650</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -105,6 +105,9 @@ font-weight: bold; color: black
    </property>
    <property name="pixmap">
     <pixmap resource="Resources.qrc">:/images/fish/fish_background.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>fishBackground</zorder>
