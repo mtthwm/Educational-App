@@ -6,8 +6,7 @@ EscapeMenu::EscapeMenu(QWidget *parent) :
     ui(new Ui::EscapeMenu)
 {
     ui->setupUi(this);
-    connect(ui->pushButton, &QPushButton::clicked, this, &EscapeMenu::resumeClicked);
-    connect(ui->pushButton_2, &QPushButton::clicked, this, &EscapeMenu::exitClicked);
+    connect(ui->exitButton, &QPushButton::clicked, this, &EscapeMenu::exitClicked);
 }
 
 EscapeMenu::~EscapeMenu()
