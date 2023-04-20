@@ -29,5 +29,22 @@
         <file>images/fish/fish_background.png</file>
         <file>images/pause.png</file>
         <file>images/play.png</file>
+        <file>images/fish/pink6.png</file>
+        <file>images/fish/chinook5.png</file>
+        <file>images/fish/chinook6.png</file>
+        <file>images/fish/chum4.png</file>
+        <file>images/fish/chum5.png</file>
+        <file>images/fish/chum6.png</file>
+        <file>images/fish/chum3.png</file>
+        <file>images/fish/coho4.png</file>
+        <file>images/fish/coho5.png</file>
+        <file>images/fish/coho6.png</file>
+        <file>images/fish/sockeye3.png</file>
+        <file>images/fish/sockeye4.png</file>
+        <file>images/fish/sockeye5.png</file>
+        <file>images/fish/sockeye6.png</file>
+        <file>images/fish/pink3.png</file>
+        <file>images/fish/pink4.png</file>
+        <file>images/fish/pink5.png</file>
     </qresource>
 </RCC>
