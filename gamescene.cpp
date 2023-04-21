@@ -149,34 +149,35 @@ void GameScene::worldUpdated() {
 //TODO: add more images and then implement this function
 QImage GameScene::getImage(const Fish& fish) {
     QString path;
+    int variant = fish.variant;
     switch(fish.species) {
 
         case Species::Chinook:
-            path = QString(":/images/fish/chinook%1.png").arg(1);
+            path = QString(":/images/fish/chinook%1.png").arg(variant);
         break;
 
 
         case Species::Chum:
-            path = QString(":/images/fish/chum%1.png").arg(1);
+            path = QString(":/images/fish/chum%1.png").arg(variant);
         break;
 
 
         case Species::Pink:
-            path = QString(":/images/fish/pink%1.png").arg(1);
+            path = QString(":/images/fish/pink%1.png").arg(variant);
         break;
 
 
         case Species::Coho:
-            path = QString(":/images/fish/coho%1.png").arg(1);
+            path = QString(":/images/fish/coho%1.png").arg(variant);
         break;
 
 
         case Species::Sockeye:
-            path = QString(":/images/fish/sockeye%1.png").arg(1);
+            path = QString(":/images/fish/sockeye%1.png").arg(variant);
         break;
 
         default:
-            path = QString(":/images/fish/coho%1.png").arg(1);
+            path = QString(":/images/fish/coho%1.png").arg(variant);
     }
     QImage image(path);
     return image;

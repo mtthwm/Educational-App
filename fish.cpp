@@ -1,4 +1,5 @@
 #include "fish.h"
+#include <QRandomGenerator>
 
 Fish::~Fish() {
 }
@@ -10,7 +11,7 @@ Fish& Fish::operator =(Fish other) {
 }
 
 Fish::Fish(QObject* parent, Species species) : QObject{parent}, species(species),
-    variant(0) {;}
+    variant(QRandomGenerator::global()->bounded(1, 6)) {;}
 
 bool Fish::isOutOfBounds(int x, int y, int boundX, int boundY) {
     int posX = x + imageWidth/2;
