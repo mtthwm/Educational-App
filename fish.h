@@ -18,6 +18,7 @@ public:
     int variant;
     int imageWidth, imageHeight;
     Fish& operator=(Fish other);
+    bool isOutOfBounds(int x, int y, int boundX, int boundY);
 signals:
 
 private:

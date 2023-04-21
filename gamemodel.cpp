@@ -23,7 +23,9 @@ void GameModel::checkInvalidFish() {
 
     for (auto [body, fish] : fishes.asKeyValueRange()) {
         b2Vec2 position = body->GetPosition();
-        if (position.x + fish.imageWidth/2 > 980 + fish.imageWidth/2 || position.y + fish.imageHeight/2 > 510 + fish.imageHeight/2|| position.y + fish.imageHeight/2 < 0 - fish.imageHeight/2) {
+        //int translateY = fish.imageHeight/2;
+        // position.x + fish.imageWidth/2 > 980 + translateY || position.y > 510 + translateY || position.y + translateY < 0 - translateY
+        if (fish.isOutOfBounds(position.x, position.y, 980, 650)) {
             toRemove.push_back(body);
         }
     }
