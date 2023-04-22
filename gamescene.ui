@@ -23,16 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="EscapeMenu" name="menu" native="true">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>10</y>
-     <width>141</width>
-     <height>60</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -98,50 +88,17 @@
     <string>pink</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pauseButton">
+  <widget class="QPushButton" name="exitButton">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>60</width>
-     <height>60</height>
+     <width>120</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset resource="Resources.qrc">
-     <normaloff>:/images/pause.png</normaloff>:/images/pause.png</iconset>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>60</width>
-     <height>60</height>
-    </size>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="playButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>60</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset resource="Resources.qrc">
-     <normaloff>:/images/play.png</normaloff>:/images/play.png</iconset>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>60</width>
-     <height>60</height>
-    </size>
+    <string>Exit</string>
    </property>
   </widget>
  </widget>
@@ -152,15 +109,7 @@
    <header>scoreboard.h</header>
    <container>1</container>
   </customwidget>
-  <customwidget>
-   <class>EscapeMenu</class>
-   <extends>QWidget</extends>
-   <header location="global">escapemenu.h</header>
-   <container>1</container>
-  </customwidget>
  </customwidgets>
- <resources>
-  <include location="Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -39,14 +39,10 @@ public slots:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *);
     void keyPressEvent(QKeyEvent *event);
-    void pauseGame();
-    void playGame();
+    void exitGame();
 
 private:
     Ui::GameScene *ui;
-
-
-
     void updateWorld ();
     void spawnFish ();
     GameModel model;

@@ -19,16 +19,13 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-    ui->menu->setVisible(false);
 
-    ui->pauseButton->setVisible(true);
-    ui->playButton->setVisible(false);
+    ui->exitButton->setVisible(false);
 
     connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
-    connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false); ui->playButton->setVisible(false); ui->pauseButton->setVisible(true);});
 
-    connect(ui->playButton, &QPushButton::clicked, this, &GameScene::playGame);
+    connect (ui->exitButton, &QPushButton::clicked, this, &GameScene::exitGame);
 
     connect(this, &GameScene::drop, &model, &GameModel::drop);
 
@@ -39,7 +36,6 @@ GameScene::GameScene(QWidget *parent) :
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::gameOver);
 
-    connect(ui->pauseButton, &QPushButton::clicked, this, &GameScene::pauseGame);
     //QTimer::singleShot(12000, this, &GameScene::gameOver);
     //this was just to test the gameOver screen
     //cout << model.fish.size() << endl;
@@ -121,25 +117,19 @@ void GameScene::mouseReleaseEvent(QMouseEvent *) {
 
 void GameScene::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
-        pauseGame();
+        if (ui->exitButton->isVisible())
+        {
+            ui->exitButton->setVisible(false);
+            return;
+        }
+        ui->exitButton->setVisible(true);
     }
 }
 
-void GameScene::pauseGame()
+void GameScene::exitGame()
 {
-    ui->menu->setVisible(!ui->menu->isVisible());
-    model.togglePause(ui->menu->isVisible());
-    ui->pauseButton->setVisible(false);
-    ui->playButton->setVisible(true);
-}
-
-void GameScene::playGame()
-{
-    model.togglePause(false);
-    ui->menu->setVisible(false);
-    ui->pauseButton->setVisible(true);
-    ui->playButton->setVisible(false);
-//[=] {model.togglePause(false); ui->menu->setVisible(false);}
+    ui->exitButton->setVisible(false);
+    emit exit();
 }
 
 void GameScene::worldUpdated() {
