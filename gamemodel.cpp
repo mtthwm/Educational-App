@@ -183,17 +183,16 @@ void GameModel::spawnFish() {
     Fish fishy(this, species);
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
-    fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, QRandomGenerator::global()->generate() % height);
+    fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, (QRandomGenerator::global()->generate() % height/2) + 360);
     fishBodyDef.gravityScale = 0;
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
     int imageScalar = QRandomGenerator::global()->bounded(50, 60);
-    //qDebug() << imageScalar;
+
     polygon.SetAsBox(3 * imageScalar, imageScalar);
     fishy.imageHeight = imageScalar;
     fishy.imageWidth =  3 * imageScalar;
-    //qDebug() << fishy.imageHeight;
-    //qDebug() << fishy.imageWidth;
+
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     // Set the box density to be non-zero, so it will be dynamic.
