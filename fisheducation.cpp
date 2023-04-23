@@ -34,6 +34,10 @@ FishEducation::FishEducation(QWidget *parent) :
             &QPushButton::clicked,
             this,
             &FishEducation::goToChinook);
+    connect(ui->sockeyeButton,
+            &QPushButton::clicked,
+            this,
+            &FishEducation::goToSockeye);
 }
 
 FishEducation::~FishEducation()

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->fishEduction->setVisible(true);
     ui->startButton->setVisible(true);
     ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
     connect(ui->startButton,
             &QPushButton::clicked,
             this,
@@ -51,6 +52,16 @@ MainWindow::MainWindow(QWidget *parent)
             &ChinookEducation::goBack,
             this,
             &MainWindow::switchToHome);
+
+    connect(ui->fishEduction,
+            &FishEducation::goToSockeye,
+            this,
+            &MainWindow::switchToSockeye);
+
+    connect(ui->sockeyeEducation,
+            &SockeyeEducation::goBack,
+            this,
+            &MainWindow::switchToHome);
 }
 
 MainWindow::~MainWindow()
@@ -65,6 +76,7 @@ void MainWindow::switchToGame()
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
     ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
     ui->gameScene->setFocusPolicy(Qt::StrongFocus);
     ui->gameScene->setFocus();
     emit startGame();
@@ -77,6 +89,7 @@ void MainWindow::switchToGameOver()
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(true);
     ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
 }
 
 void MainWindow::switchToHome() {
@@ -85,6 +98,7 @@ void MainWindow::switchToHome() {
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(false);
     ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
 }
 
 void MainWindow::switchToChinook() {
@@ -92,5 +106,15 @@ void MainWindow::switchToChinook() {
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
     ui->chinookEducation->setVisible(true);
+}
+
+void MainWindow::switchToSockeye() {
+    ui->startButton->setVisible(false);
+    ui->fishEduction->setVisible(false);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(true);
 }

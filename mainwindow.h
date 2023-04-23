@@ -19,6 +19,7 @@ public slots:
     void switchToGameOver();
     void switchToHome();
     void switchToChinook();
+    void switchToSockeye();
 
 signals:
     void startGame();

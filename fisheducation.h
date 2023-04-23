@@ -27,6 +27,7 @@ protected:
 
 signals:
     void goToChinook();
+    void goToSockeye();
 
 private:
     Ui::FishEducation *ui;
