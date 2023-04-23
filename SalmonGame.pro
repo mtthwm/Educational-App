@@ -64,7 +64,8 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
-    scoreboard.cpp
+    scoreboard.cpp \
+    sockeyeeducation.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -123,7 +124,8 @@ HEADERS += \
     Species.h \
     fish.h \
     mainwindow.h \
-    scoreboard.h
+    scoreboard.h \
+    sockeyeeducation.h
 
 FORMS += \
     chinookeducation.ui \
@@ -131,7 +133,8 @@ FORMS += \
     gameoverscreen.ui \
     gamescene.ui \
     mainwindow.ui \
-    scoreboard.ui
+    scoreboard.ui \
+    sockeyeeducation.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

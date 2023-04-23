@@ -46,5 +46,7 @@
         <file>images/fish/pink3.png</file>
         <file>images/fish/pink4.png</file>
         <file>images/fish/pink5.png</file>
+        <file>images/fishEducation/sockeyeSpawningEducation.png</file>
+        <file>images/fishEducation/sockeyeOceanEducation.png</file>
     </qresource>
 </RCC>
