@@ -11,6 +11,11 @@ ChinookEducation::ChinookEducation(QWidget *parent) :
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
 
+    connect(ui->backButton,
+            &QPushButton::clicked,
+            this,
+            &ChinookEducation::backButtonClicked);
+
     this->setAttribute(Qt::WA_Hover, true);
 
     for (auto fish : fishes)
@@ -96,8 +101,7 @@ void ChinookEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInf
 }
 
 
-void ChinookEducation::on_backButton_clicked()
-{
+void ChinookEducation::backButtonClicked() {
     emit goBack();
 }
 

@@ -1,10 +1,10 @@
-#include "sockeyeeducation.h"
-#include "ui_sockeyeeducation.h"
+#include "pinkeducation.h"
+#include "ui_pinkeducation.h"
 #include <QHoverEvent>
 
-SockeyeEducation::SockeyeEducation(QWidget *parent) :
+PinkEducation::PinkEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::SockeyeEducation)
+    ui(new Ui::PinkEducation)
 {
     ui->setupUi(this);
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
@@ -13,7 +13,7 @@ SockeyeEducation::SockeyeEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &SockeyeEducation::backButtonClicked);
+            &PinkEducation::backButtonClicked);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -23,12 +23,12 @@ SockeyeEducation::SockeyeEducation(QWidget *parent) :
     }
 }
 
-SockeyeEducation::~SockeyeEducation()
+PinkEducation::~PinkEducation()
 {
     delete ui;
 }
 
-bool SockeyeEducation::event(QEvent* event) {
+bool PinkEducation::event(QEvent* event) {
     if (event->type() == QEvent::HoverEnter)
     {
         hoverEnter(static_cast<QHoverEvent*>(event));
@@ -47,27 +47,27 @@ bool SockeyeEducation::event(QEvent* event) {
     return false;
 }
 
-void SockeyeEducation::hoverEnter(QHoverEvent *event) {
+void PinkEducation::hoverEnter(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void SockeyeEducation::hoverMove(QHoverEvent *event)
+void PinkEducation::hoverMove(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void SockeyeEducation::hoverLeave(QHoverEvent *event)
+void PinkEducation::hoverLeave(QHoverEvent *event)
 {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void SockeyeEducation::hoverOverFish(int x, int y)
+void PinkEducation::hoverOverFish(int x, int y)
 {
     for (auto fish : fishes)
     {
@@ -88,18 +88,18 @@ void SockeyeEducation::hoverOverFish(int x, int y)
     }
 }
 
-void SockeyeEducation::displayHoverFish(std::pair<QLabel *, QLabel *> fishInfo)  {
+void PinkEducation::displayHoverFish(std::pair<QLabel *, QLabel *> fishInfo)  {
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(true);
     ui->instructionLabel->setVisible(false);
 }
 
-void SockeyeEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) {
+void PinkEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) {
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(false);
 }
 
-void SockeyeEducation::backButtonClicked()
-{
+
+void PinkEducation::backButtonClicked() {
     emit goBack();
 }

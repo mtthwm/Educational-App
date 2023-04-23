@@ -42,7 +42,7 @@
     </rect>
    </property>
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
@@ -278,6 +278,70 @@
     <string>Click on a fish to learn more about that species!</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="cohoButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>90</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="chumButton">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>90</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pinkButton">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>360</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>sockeyeBeforeHover</zorder>
+  <zorder>sockeyeAfterHover</zorder>
+  <zorder>pinkBeforeHover</zorder>
+  <zorder>pinkAfterHover</zorder>
+  <zorder>kingBeforeHover</zorder>
+  <zorder>kingAfterHover</zorder>
+  <zorder>cohoAfterHover</zorder>
+  <zorder>cohoBeforeHover</zorder>
+  <zorder>chumAfterHover</zorder>
+  <zorder>chumBeforeHover</zorder>
+  <zorder>label</zorder>
+  <zorder>chumButton</zorder>
+  <zorder>cohoButton</zorder>
+  <zorder>kingButton</zorder>
+  <zorder>pinkButton</zorder>
+  <zorder>sockeyeButton</zorder>
  </widget>
  <resources>
   <include location="Resources.qrc"/>

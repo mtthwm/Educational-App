@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     bucket.cpp \
     chinookeducation.cpp \
+    chumeducation.cpp \
+    cohoeducation.cpp \
     fish.cpp \
     Box2D/Collision/Shapes/b2ChainShape.cpp \
     Box2D/Collision/Shapes/b2CircleShape.cpp \
@@ -64,6 +66,7 @@ SOURCES += \
     gamescene.cpp \
     main.cpp \
     mainwindow.cpp \
+    pinkeducation.cpp \
     scoreboard.cpp \
     sockeyeeducation.cpp
 
@@ -117,6 +120,8 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     bucket.h \
     chinookeducation.h \
+    chumeducation.h \
+    cohoeducation.h \
     fisheducation.h \
     gamemodel.h \
     gameoverscreen.h \
@@ -124,15 +129,19 @@ HEADERS += \
     Species.h \
     fish.h \
     mainwindow.h \
+    pinkeducation.h \
     scoreboard.h \
     sockeyeeducation.h
 
 FORMS += \
     chinookeducation.ui \
+    chumeducation.ui \
+    cohoeducation.ui \
     fisheducation.ui \
     gameoverscreen.ui \
     gamescene.ui \
     mainwindow.ui \
+    pinkeducation.ui \
     scoreboard.ui \
     sockeyeeducation.ui
 

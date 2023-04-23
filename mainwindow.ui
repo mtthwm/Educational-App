@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>650</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -56,7 +56,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -76,7 +76,37 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="CohoEducation" name="cohoEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="PinkEducation" name="pinkEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="ChumEducation" name="chumEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -87,6 +117,9 @@
    <zorder>chinookEducation</zorder>
    <zorder>fishEduction</zorder>
    <zorder>sockeyeEducation</zorder>
+   <zorder>cohoEducation</zorder>
+   <zorder>pinkEducation</zorder>
+   <zorder>chumEducation</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -129,6 +162,24 @@
    <class>SockeyeEducation</class>
    <extends>QWidget</extends>
    <header>sockeyeeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CohoEducation</class>
+   <extends>QWidget</extends>
+   <header>cohoeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PinkEducation</class>
+   <extends>QWidget</extends>
+   <header>pinkeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ChumEducation</class>
+   <extends>QWidget</extends>
+   <header>chumeducation.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

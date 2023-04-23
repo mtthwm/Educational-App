@@ -13,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->startButton->setVisible(true);
     ui->chinookEducation->setVisible(false);
     ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
+
     connect(ui->startButton,
             &QPushButton::clicked,
             this,
@@ -47,7 +51,6 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToChinook,
             this,
             &MainWindow::switchToChinook);
-
     connect(ui->chinookEducation,
             &ChinookEducation::goBack,
             this,
@@ -57,9 +60,35 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToSockeye,
             this,
             &MainWindow::switchToSockeye);
-
     connect(ui->sockeyeEducation,
             &SockeyeEducation::goBack,
+            this,
+            &MainWindow::switchToHome);
+
+    connect(ui->fishEduction,
+            &FishEducation::goToChum,
+            this,
+            &MainWindow::switchToChum);
+    connect(ui->chumEducation,
+            &ChumEducation::goBack,
+            this,
+            &MainWindow::switchToHome);
+
+    connect(ui->fishEduction,
+            &FishEducation::goToCoho,
+            this,
+            &MainWindow::switchToCoho);
+    connect(ui->cohoEducation,
+            &CohoEducation::goBack,
+            this,
+            &MainWindow::switchToHome);
+
+    connect(ui->fishEduction,
+            &FishEducation::goToPink,
+            this,
+            &MainWindow::switchToPink);
+    connect(ui->pinkEducation,
+            &PinkEducation::goBack,
             this,
             &MainWindow::switchToHome);
 }
@@ -72,6 +101,9 @@ MainWindow::~MainWindow()
 void MainWindow::switchToGame()
 {
     ui->startButton->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(true);
     ui->gameOverScreen->setVisible(false);
@@ -90,6 +122,9 @@ void MainWindow::switchToGameOver()
     ui->gameOverScreen->setVisible(true);
     ui->chinookEducation->setVisible(false);
     ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
 }
 
 void MainWindow::switchToHome() {
@@ -99,6 +134,9 @@ void MainWindow::switchToHome() {
     ui->gameOverScreen->setVisible(false);
     ui->chinookEducation->setVisible(false);
     ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
 }
 
 void MainWindow::switchToChinook() {
@@ -108,6 +146,9 @@ void MainWindow::switchToChinook() {
     ui->gameOverScreen->setVisible(false);
     ui->sockeyeEducation->setVisible(false);
     ui->chinookEducation->setVisible(true);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
 }
 
 void MainWindow::switchToSockeye() {
@@ -117,4 +158,43 @@ void MainWindow::switchToSockeye() {
     ui->gameOverScreen->setVisible(false);
     ui->chinookEducation->setVisible(false);
     ui->sockeyeEducation->setVisible(true);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
+}
+
+void MainWindow::switchToChum() {
+    ui->startButton->setVisible(false);
+    ui->fishEduction->setVisible(false);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(true);
+}
+
+void MainWindow::switchToCoho() {
+    ui->startButton->setVisible(false);
+    ui->fishEduction->setVisible(false);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(true);
+    ui->pinkEducation->setVisible(false);
+    ui->chumEducation->setVisible(false);
+}
+
+void MainWindow::switchToPink() {
+    ui->startButton->setVisible(false);
+    ui->fishEduction->setVisible(false);
+    ui->gameScene->setVisible(false);
+    ui->gameOverScreen->setVisible(false);
+    ui->chinookEducation->setVisible(false);
+    ui->sockeyeEducation->setVisible(false);
+    ui->cohoEducation->setVisible(false);
+    ui->pinkEducation->setVisible(true);
+    ui->chumEducation->setVisible(false);
 }

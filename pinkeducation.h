@@ -1,5 +1,5 @@
-#ifndef CHINOOKEDUCATION_H
-#define CHINOOKEDUCATION_H
+#ifndef PINKEDUCATION_H
+#define PINKEDUCATION_H
 
 #include <QWidget>
 #include <QLabel>
@@ -7,16 +7,16 @@
 using std::vector;
 
 namespace Ui {
-class ChinookEducation;
+class PinkEducation;
 }
 
-class ChinookEducation : public QWidget
+class PinkEducation : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ChinookEducation(QWidget *parent = nullptr);
-    ~ChinookEducation();
+    explicit PinkEducation(QWidget *parent = nullptr);
+    ~PinkEducation();
 
 protected:
     bool event(QEvent* event);
@@ -32,11 +32,11 @@ private slots:
     void backButtonClicked();
 
 private:
-    Ui::ChinookEducation *ui;
+    Ui::PinkEducation *ui;
     void hoverOverFish(int x, int y);
     void displayHoverFish(std::pair< QLabel* , QLabel*>);
     void displayNotHoverFish(std::pair< QLabel* , QLabel*>);
     vector<std::pair< QLabel* , QLabel*>> fishes;
 };
 
-#endif // CHINOOKEDUCATION_H
+#endif // PINKEDUCATION_H
