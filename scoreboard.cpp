@@ -38,9 +38,9 @@ void ScoreBoard::updateUI() {
     } else {
         QString numStrikesString = "";
         for (int i = 0; i < numStrikes; i++)
-            {
-                numStrikesString += "I";
-            }
+        {
+            numStrikesString += "I";
+        }
 
         ui->numStrikes->setText(numStrikesString);
     }
@@ -54,7 +54,7 @@ void ScoreBoard::addStrike() {
     if (numStrikes == MAX_STRIKES)
     {
         emit gameOver();
-        numStrikes = 0;
+        reset();
     }
 
     updateUI();
