@@ -15,11 +15,18 @@ GameModel::GameModel(QObject *parent)
 
     connect(&this->timer, &QTimer::timeout, this, &GameModel::checkInvalidFish);
     timer.setInterval(10);
-    fishSpawnTimer.setInterval(5000);
 
     world = new b2World(b2Vec2(0.0f, 0.0f));
     isholdingfish = false;
     paused = true;
+}
+
+void GameModel::speedup() {
+    fishGenerationFrequency /= SPEEDUP_AMOUNT;
+    conveyorSpeed *= SPEEDUP_AMOUNT;
+    fishSpawnTimer.setInterval(fishGenerationFrequency);
+    qDebug() << "FASTER!!! " << conveyorSpeed << " " << fishGenerationFrequency;
+    timeSinceLastSpawn.start();
 }
 
 void GameModel::checkInvalidFish() {
@@ -43,7 +50,13 @@ void GameModel::checkInvalidFish() {
 
 void GameModel::beginWorldStep() {
     timer.start();
+
+    // Initialize the conveyor belt params
+    fishGenerationFrequency = INITIAL_FISH_GENERATION_FREQUENCY * SPEEDUP_AMOUNT;
+    conveyorSpeed = INITIAL_CONVEYOR_SPEED / SPEEDUP_AMOUNT;
+    speedup();
     fishSpawnTimer.start();
+
     paused = false;
 }
 
@@ -143,14 +156,15 @@ void GameModel::updateWorld() {
     // It is generally best to keep the time step and iterations fixed.
     if (isholdingfish) {
         b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
+        // TODO: Remove this:
         heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
         //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
         qDebug() << lastmousecoords.x << " " << lastmousecoords.y;
     }
     for (auto f = fishes.keyBegin(); f != fishes.keyEnd(); f++) {
-        if ((*f)->GetLinearVelocity().x < 250)
-            (*f)->SetLinearVelocity(b2Vec2(250, (*f)->GetLinearVelocity().y));
+        if ((*f)->GetLinearVelocity().x < conveyorSpeed)
+            (*f)->SetLinearVelocity(b2Vec2(conveyorSpeed, (*f)->GetLinearVelocity().y));
     }
     world->Step(1.0/60.0, 6, 2);
     emit worldUpdated();
@@ -185,6 +199,10 @@ Species GameModel::generateRandomSpecies() {
 }
 
 void GameModel::spawnFish() {
+    if (timeSinceLastSpawn.elapsed() >= SPEEDUP_FREQUENCY) {
+        speedup();
+    }
+
     Species species = this->generateRandomSpecies();
     Fish fishy(this, species);
 

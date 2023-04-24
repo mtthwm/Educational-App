@@ -7,6 +7,7 @@
 #include <vector>
 #include "Box2D/Box2D.h"
 #include <QTimer>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QRect>
 
@@ -47,14 +48,26 @@ public slots:
     void checkInvalidFish();
 
 private:
+    // Controls how fast the conveyor moves at the beginning
+    const float INITIAL_CONVEYOR_SPEED = 300;
+    // How long in ms before another fish spawns to begin with
+    const float INITIAL_FISH_GENERATION_FREQUENCY = 5000;
+    // How long in ms before the conveyor belt speeds up
+    const float SPEEDUP_FREQUENCY = 15000;
+    const float SPEEDUP_AMOUNT = 1.05;
+
     void spawnBucket(int x, int y, Species species);
     bool heldFishBucketOverlap (b2Body* bucketBody);
+    float conveyorSpeed;
+    float fishGenerationFrequency;
     Species generateRandomSpecies();
     b2World* world;
     QTimer timer;
     QTimer fishSpawnTimer;
+    QElapsedTimer timeSinceLastSpawn;
     bool paused;
     void deleteFish(b2Body* fish);
+    void speedup ();
 };
 
 #endif // GAMEMODEL_H
