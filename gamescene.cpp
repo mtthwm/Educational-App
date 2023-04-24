@@ -28,6 +28,7 @@ GameScene::GameScene(QWidget *parent) :
     connect (ui->exitButton, &QPushButton::clicked, this, &GameScene::exitGame);
 
     connect(this, &GameScene::drop, &model, &GameModel::drop);
+    connect(this, &GameScene::exit, &model, &GameModel::endGame);
 
     connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
 
