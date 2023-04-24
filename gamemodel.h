@@ -27,7 +27,7 @@ public:
     b2Vec2 lastmousecoords;
     bool isholdingfish;
     const int BOX_SIZE = 175;
-    QRect CONVEYOR_BELT_AREA = QRect(0, 400, 980, 500);
+    QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
 
 signals:
     void worldUpdated();
@@ -53,8 +53,6 @@ private:
     b2World* world;
     QTimer timer;
     QTimer fishSpawnTimer;
-    int width;
-    int height;
     bool paused;
     void deleteFish(b2Body* fish);
 };

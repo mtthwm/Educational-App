@@ -17,9 +17,8 @@ GameModel::GameModel(QObject *parent)
     timer.setInterval(10);
     fishSpawnTimer.setInterval(5000);
 
-    world = new b2World(b2Vec2(10.0f, 0.0f));
+    world = new b2World(b2Vec2(0.0f, 0.0f));
     isholdingfish = false;
-    width = 392; height = 225;
     paused = true;
 }
 
@@ -137,9 +136,6 @@ void GameModel::updateWorld() {
         spawnBucket(605, 137, Species::Chum);
         spawnBucket(800, 137, Species::Pink);
 
-        for (int i = 0; i < 10; i++) {
-            spawnFish();
-        }
         worldInitialized = true;
         emit worldInit();
     }
@@ -150,10 +146,11 @@ void GameModel::updateWorld() {
         heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
         //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
+        qDebug() << lastmousecoords.x << " " << lastmousecoords.y;
     }
     for (auto f = fishes.keyBegin(); f != fishes.keyEnd(); f++) {
-        if ((*f)->GetLinearVelocity().x < 50)
-            (*f)->SetLinearVelocity(b2Vec2(50, (*f)->GetLinearVelocity().y));
+        if ((*f)->GetLinearVelocity().x < 250)
+            (*f)->SetLinearVelocity(b2Vec2(250, (*f)->GetLinearVelocity().y));
     }
     world->Step(1.0/60.0, 6, 2);
     emit worldUpdated();
@@ -193,7 +190,6 @@ void GameModel::spawnFish() {
 
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
-    fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, (QRandomGenerator::global()->generate() % height/2) + 360);
     fishBodyDef.gravityScale = 0;
 
     b2Body* body = world->CreateBody(&fishBodyDef);
@@ -208,7 +204,7 @@ void GameModel::spawnFish() {
     int dy = QRandomGenerator::global()->bounded(CONVEYOR_BELT_AREA.height() - fishy.imageHeight);
     int x = CONVEYOR_BELT_AREA.x() - fishy.imageWidth;
     int y = CONVEYOR_BELT_AREA.y() + dy;
-    fishBodyDef.position.Set(x, y);
+    body->SetTransform(b2Vec2(x, y), 0);
 
     b2FixtureDef fixture;
     fixture.shape = &polygon;
@@ -221,6 +217,7 @@ void GameModel::spawnFish() {
 
     // Add the shape to the body.
     body->CreateFixture(&fixture);
+
     this->fishes.insert(body, fishy);
 
     body->SetUserData(&fishes[body]);
