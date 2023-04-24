@@ -6,11 +6,10 @@
 ScoreBoard::ScoreBoard(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ScoreBoard),
+    numStrikes{0},
     score{0}
 {
     ui->setupUi(this);
-
-    numStrikes = 0;
 
     updateUI();
 }
@@ -27,29 +26,36 @@ void ScoreBoard::addScore() {
 
 void ScoreBoard::reset () {
     score = 0;
+    numStrikes = 0;
     updateUI();
 }
 
 void ScoreBoard::updateUI() {
     ui->scoreLabel->setText(QString::number(score));
+
+    if (numStrikes == 0) {
+        ui->numStrikes->setText("0");
+    } else {
+        QString numStrikesString = "";
+        for (int i = 0; i < numStrikes; i++)
+            {
+                numStrikesString += "I";
+            }
+
+        ui->numStrikes->setText(numStrikesString);
+    }
+
     emit scoreUpdated(score);
 }
 
 void ScoreBoard::addStrike() {
-    QString numStrikesString = "";
     numStrikes++;
-    for (int i = 0; i < numStrikes; i++)
-        {
-            numStrikesString += "I";
-        }
 
-    ui->numStrikes->setText(numStrikesString);
-
-    if (numStrikes == 3)
+    if (numStrikes == MAX_STRIKES)
     {
         emit gameOver();
         numStrikes = 0;
-        ui->numStrikes->setText("0");
-        return;
     }
+
+    updateUI();
 }

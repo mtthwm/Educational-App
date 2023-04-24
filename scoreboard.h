@@ -49,6 +49,12 @@ signals:
 private:
     Ui::ScoreBoard *ui;
 
+    ///
+    /// \brief MAX_STRIKES How many strikes the player can get
+    /// before getting fired.
+    ///
+    const int MAX_STRIKES = 3;
+
     int numStrikes;
 
     ///
