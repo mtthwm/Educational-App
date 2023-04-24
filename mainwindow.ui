@@ -36,10 +36,10 @@
     <widget class="QPushButton" name="startButton">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>520</y>
-       <width>331</width>
-       <height>91</height>
+       <x>550</x>
+       <y>430</y>
+       <width>271</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="font">
@@ -48,7 +48,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Test Your Knowledge</string>
+      <string>Test Your Knowledge!</string>
      </property>
     </widget>
    </widget>
