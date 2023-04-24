@@ -19,12 +19,13 @@ GameScene::GameScene(QWidget *parent) :
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
-    ui->menu->setVisible(false);
+
+    ui->exitButton->setVisible(false);
 
     connect(&model, &GameModel::resetComponent, this->ui->scoreBoard, &ScoreBoard::reset);
     connect(&model, &GameModel::worldUpdated, this, &GameScene::worldUpdated);
-    connect(ui->menu, &EscapeMenu::exit, this, [=] {emit exit(); ui->menu->setVisible(false);});
-    connect(ui->menu, &EscapeMenu::resume, this, [=] {model.togglePause(false); ui->menu->setVisible(false);});
+
+    connect (ui->exitButton, &QPushButton::clicked, this, &GameScene::exitGame);
 
     connect(this, &GameScene::drop, &model, &GameModel::drop);
 
@@ -34,9 +35,6 @@ GameScene::GameScene(QWidget *parent) :
 
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::gameOver);
-    //QTimer::singleShot(12000, this, &GameScene::gameOver);
-    //this was just to test the gameOver screen
-    //cout << model.fish.size() << endl;
 }
 
 GameScene::~GameScene()
@@ -52,6 +50,9 @@ void GameScene::worldInit() {
 void GameScene::paintEvent(QPaintEvent *) {
     //cout << "paint event" << endl;
     QPainter painter(this);
+
+    QRect rect(0,0,1000,650);
+    painter.drawImage(rect, QImage(":/images/GameScene.png"));
 
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {
@@ -112,9 +113,19 @@ void GameScene::mouseReleaseEvent(QMouseEvent *) {
 
 void GameScene::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
-        ui->menu->setVisible(!ui->menu->isVisible());
-        model.togglePause(ui->menu->isVisible());
+        if (ui->exitButton->isVisible())
+        {
+            ui->exitButton->setVisible(false);
+            return;
+        }
+        ui->exitButton->setVisible(true);
     }
+}
+
+void GameScene::exitGame()
+{
+    ui->exitButton->setVisible(false);
+    emit exit();
 }
 
 void GameScene::worldUpdated() {
@@ -124,34 +135,35 @@ void GameScene::worldUpdated() {
 //TODO: add more images and then implement this function
 QImage GameScene::getImage(const Fish& fish) {
     QString path;
+    int variant = fish.variant;
     switch(fish.species) {
 
         case Species::Chinook:
-            path = QString(":/images/fish/chinook%1.png").arg(1);
+            path = QString(":/images/fish/chinook%1.png").arg(variant);
         break;
 
 
         case Species::Chum:
-            path = QString(":/images/fish/chum%1.png").arg(1);
+            path = QString(":/images/fish/chum%1.png").arg(variant);
         break;
 
 
         case Species::Pink:
-            path = QString(":/images/fish/pink%1.png").arg(1);
+            path = QString(":/images/fish/pink%1.png").arg(variant);
         break;
 
 
         case Species::Coho:
-            path = QString(":/images/fish/coho%1.png").arg(1);
+            path = QString(":/images/fish/coho%1.png").arg(variant);
         break;
 
 
         case Species::Sockeye:
-            path = QString(":/images/fish/sockeye%1.png").arg(1);
+            path = QString(":/images/fish/sockeye%1.png").arg(variant);
         break;
 
         default:
-            path = QString(":/images/fish/coho%1.png").arg(1);
+            path = QString(":/images/fish/coho%1.png").arg(variant);
     }
     QImage image(path);
     return image;

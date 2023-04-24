@@ -13,14 +13,33 @@ GameModel::GameModel(QObject *parent)
     connect(&this->timer, &QTimer::timeout, this, &GameModel::updateWorld);
     connect(&this->fishSpawnTimer, &QTimer::timeout, this, &GameModel::spawnFish);
 
+    connect(&this->timer, &QTimer::timeout, this, &GameModel::checkInvalidFish);
     timer.setInterval(10);
     fishSpawnTimer.setInterval(5000);
 
     world = new b2World(b2Vec2(10.0f, 0.0f));
     isholdingfish = false;
-        width = 392; height = 225;
-
+    width = 392; height = 225;
     paused = true;
+}
+
+void GameModel::checkInvalidFish() {
+    vector<b2Body*> toRemove;
+
+    for (auto [body, fish] : fishes.asKeyValueRange()) {
+        b2Vec2 position = body->GetPosition();
+        //int translateY = fish.imageHeight/2;
+        // position.x + fish.imageWidth/2 > 980 + translateY || position.y > 510 + translateY || position.y + translateY < 0 - translateY
+        if (fish.isOutOfBounds(position.x, position.y, 980, 650)) {
+            toRemove.push_back(body);
+        }
+    }
+
+    for (b2Body* body : toRemove) {
+        fishes.remove(body);
+        emit wrongFish();
+    }
+
 }
 
 void GameModel::beginWorldStep() {
@@ -53,7 +72,7 @@ void GameModel::togglePause(bool paused) {
 }
 
 void GameModel::drop() {
-    if (paused)
+    if (paused || isholdingfish == false)
         return;
 
     isholdingfish = false;
@@ -173,12 +192,14 @@ void GameModel::spawnFish() {
     Fish fishy(this, species);
 
     b2BodyDef fishBodyDef;
-    fishBodyDef.type = b2_dynamicBody; 
+    fishBodyDef.type = b2_dynamicBody;
+    fishBodyDef.position.Set(QRandomGenerator::global()->generate() % width, (QRandomGenerator::global()->generate() % height/2) + 360);
     fishBodyDef.gravityScale = 0;
 
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
-    int imageScalar = QRandomGenerator::global()->bounded(100, 200);
+    int imageScalar = QRandomGenerator::global()->bounded(50, 60);
+
     polygon.SetAsBox(3 * imageScalar, imageScalar);
     fishy.imageHeight = imageScalar;
     fishy.imageWidth =  3 * imageScalar;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>650</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -36,10 +36,10 @@
     <widget class="QPushButton" name="startButton">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>520</y>
-       <width>331</width>
-       <height>91</height>
+       <x>550</x>
+       <y>430</y>
+       <width>271</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="font">
@@ -48,7 +48,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Test Your Knowledge</string>
+      <string>Test Your Knowledge!</string>
      </property>
     </widget>
    </widget>
@@ -56,7 +56,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>1000</width>
       <height>650</height>
      </rect>
@@ -72,10 +72,54 @@
      </rect>
     </property>
    </widget>
+   <widget class="SockeyeEducation" name="sockeyeEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="CohoEducation" name="cohoEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="PinkEducation" name="pinkEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="ChumEducation" name="chumEducation" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>650</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>gameScene</zorder>
    <zorder>gameOverScreen</zorder>
    <zorder>chinookEducation</zorder>
    <zorder>fishEduction</zorder>
+   <zorder>sockeyeEducation</zorder>
+   <zorder>cohoEducation</zorder>
+   <zorder>pinkEducation</zorder>
+   <zorder>chumEducation</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -83,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -112,6 +156,30 @@
    <class>GameOverScreen</class>
    <extends>QWidget</extends>
    <header>gameoverscreen.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SockeyeEducation</class>
+   <extends>QWidget</extends>
+   <header>sockeyeeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CohoEducation</class>
+   <extends>QWidget</extends>
+   <header>cohoeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PinkEducation</class>
+   <extends>QWidget</extends>
+   <header>pinkeducation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ChumEducation</class>
+   <extends>QWidget</extends>
+   <header>chumeducation.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

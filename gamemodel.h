@@ -44,6 +44,7 @@ public slots:
     void drop();
     void endGame();
     void spawnFish ();
+    void checkInvalidFish();
 
 private:
     void spawnBucket(int x, int y, Species species);

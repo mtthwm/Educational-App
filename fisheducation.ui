@@ -16,8 +16,8 @@
   <widget class="QLabel" name="sockeyeBeforeHover">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>230</y>
+     <x>180</x>
+     <y>290</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -26,7 +26,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fishEducation/sockeyeOceanPhase.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -35,14 +35,14 @@
   <widget class="QLabel" name="sockeyeAfterHover">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>230</y>
+     <x>180</x>
+     <y>290</y>
      <width>271</width>
      <height>101</height>
     </rect>
    </property>
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
@@ -51,7 +51,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fishEducation/sockeyeSelected.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/sockeyeSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -60,8 +60,8 @@
   <widget class="QLabel" name="pinkBeforeHover">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>360</y>
+     <x>550</x>
+     <y>290</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -70,7 +70,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -79,8 +79,8 @@
   <widget class="QLabel" name="pinkAfterHover">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>360</y>
+     <x>550</x>
+     <y>290</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -95,7 +95,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -104,8 +104,8 @@
   <widget class="QLabel" name="kingBeforeHover">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>360</y>
+     <x>180</x>
+     <y>430</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -114,7 +114,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fishEducation/chinookOceanPhase.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -123,8 +123,8 @@
   <widget class="QLabel" name="kingAfterHover">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>360</y>
+     <x>180</x>
+     <y>430</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -139,7 +139,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fishEducation/chinookSelected.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -148,8 +148,8 @@
   <widget class="QLabel" name="cohoAfterHover">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>90</y>
+     <x>180</x>
+     <y>140</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -164,7 +164,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/cohoSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -173,8 +173,8 @@
   <widget class="QLabel" name="cohoBeforeHover">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>90</y>
+     <x>180</x>
+     <y>140</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -183,7 +183,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/cohoOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -192,8 +192,8 @@
   <widget class="QLabel" name="chumAfterHover">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>90</y>
+     <x>550</x>
+     <y>140</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -208,7 +208,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chumSelected.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -217,8 +217,8 @@
   <widget class="QLabel" name="chumBeforeHover">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>90</y>
+     <x>550</x>
+     <y>140</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -227,7 +227,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>:/images/fish/coho_less_opaque.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/chumOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -236,8 +236,8 @@
   <widget class="QPushButton" name="kingButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>360</y>
+     <x>180</x>
+     <y>430</y>
      <width>271</width>
      <height>101</height>
     </rect>
@@ -249,7 +249,107 @@
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="sockeyeButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>290</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>50</y>
+     <width>671</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Click on a fish to learn more about that species:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cohoButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>140</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="chumButton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>140</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pinkButton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>290</y>
+     <width>271</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(10, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>sockeyeBeforeHover</zorder>
+  <zorder>sockeyeAfterHover</zorder>
+  <zorder>pinkBeforeHover</zorder>
+  <zorder>pinkAfterHover</zorder>
+  <zorder>kingBeforeHover</zorder>
+  <zorder>kingAfterHover</zorder>
+  <zorder>cohoBeforeHover</zorder>
+  <zorder>chumBeforeHover</zorder>
+  <zorder>label</zorder>
+  <zorder>kingButton</zorder>
+  <zorder>cohoAfterHover</zorder>
+  <zorder>chumAfterHover</zorder>
+  <zorder>chumButton</zorder>
+  <zorder>cohoButton</zorder>
+  <zorder>sockeyeButton</zorder>
+  <zorder>pinkButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

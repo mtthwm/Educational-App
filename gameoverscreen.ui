@@ -7,23 +7,31 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>510</height>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgba(139, 139, 139, 166)</string>
+   <string notr="true">background-color:rgba(139, 139, 139, 10)</string>
   </property>
   <widget class="QPushButton" name="playAgainButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>350</y>
-     <width>181</width>
-     <height>32</height>
+     <x>289</x>
+     <y>301</y>
+     <width>211</width>
+     <height>81</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(139, 139, 139, 240)</string>
    </property>
    <property name="text">
     <string>Play Again</string>
@@ -32,38 +40,83 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>180</y>
-     <width>421</width>
-     <height>51</height>
+     <x>-40</x>
+     <y>80</y>
+     <width>1111</width>
+     <height>301</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>19</pointsize>
+     <pointsize>72</pointsize>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:rgba(255, 255, 255, 0)</string>
+    <string notr="true">background-color: rgba(0,0,0,0%);
+font-weight: bold; color: black
+	</string>
    </property>
    <property name="text">
-    <string>You're actually so dumb.</string>
+    <string>Wah Wah Wah</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="learnButton">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>350</y>
-     <width>181</width>
-     <height>32</height>
+     <x>510</x>
+     <y>301</y>
+     <width>231</width>
+     <height>81</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(139, 139, 139, 240)</string>
    </property>
    <property name="text">
     <string>Learn About Salmon</string>
    </property>
   </widget>
+  <widget class="QLabel" name="fishBackground">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>650</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="Resources.qrc">:/images/fish/fish_background.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>fishBackground</zorder>
+  <zorder>label</zorder>
+  <zorder>learnButton</zorder>
+  <zorder>playAgainButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
