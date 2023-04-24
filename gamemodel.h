@@ -29,6 +29,8 @@ public:
     bool isholdingfish;
     const int BOX_SIZE = 175;
     const int CONVEYOR_BELT_Y = 434;
+    const int CONVEYOR_BELT_Y_LOW = 612;
+
     QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
 
 
@@ -87,7 +89,7 @@ private:
     QTimer fishSpawnTimer;
     QElapsedTimer timeSinceLastSpawn;
     bool paused;
-    void deleteFish(b2Body* fish);
+    void deleteFishAndBody(b2Body* fish);
     ///
     /// \brief speedup A method called when the conveyor belt speeds up
     ///

@@ -35,13 +35,19 @@ void GameModel::checkInvalidFish() {
         b2Vec2 position = body->GetPosition();
         //int translateY = fish.imageHeight/2;
         // position.x + fish.imageWidth/2 > 980 + translateY || position.y > 510 + translateY || position.y + translateY < 0 - translateY
-        if (fish.isOutOfBounds(position.x, position.y, 980, 650) && body != heldFish) {
+        if (fish.isOutOfBounds(position.x, position.y, 980, 650) && !isholdingfish) {
             toRemove.push_back(body);
         }
+
+        if (position.y > CONVEYOR_BELT_Y_LOW - 20)
+        {
+            drop();
+        }
+
     }
 
     for (b2Body* body : toRemove) {
-        fishes.remove(body);
+        deleteFishAndBody(body);
         emit wrongFish();
     }
 
@@ -95,21 +101,20 @@ void GameModel::drop() {
             if (buckets[bucketBody].targetSpecies == fishes[heldFish].species)
             {
                 emit correctFish();
-                return;
             }
             else
             {
                 emit wrongFish();
-                return;
             }
-            deleteFish(heldFish);
+            deleteFishAndBody(heldFish);
+            return;
         }
 
     }
     if (lastmousecoords.y < CONVEYOR_BELT_Y)
     {
         emit wrongFish();
-        deleteFish(heldFish);
+        deleteFishAndBody(heldFish);
     }
 
 }
@@ -251,7 +256,7 @@ void GameModel::spawnFish() {
     body->SetUserData(&fishes[body]);
 }
 
-void GameModel::deleteFish(b2Body* fish) {
+void GameModel::deleteFishAndBody(b2Body* fish) {
 
     if (world->GetBodyCount() > 0)
         world->DestroyBody(fish);
@@ -277,7 +282,7 @@ void GameModel::spawnWalls() {
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
-    body->SetTransform(b2Vec2(0,600),0);
+    body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y_LOW),0);
 
     body = world->CreateBody(&wallbodydef);
     /*
