@@ -57,5 +57,7 @@
         <file>images/fishEducation/chumSpawningPhase.png</file>
         <file>images/fishEducation/chumSelected.png</file>
         <file>images/fishEducation/chumOceanPhase.png</file>
+        <file>images/fishEducation/chumSpawningEducation.png</file>
+        <file>images/fishEducation/chumOceanEducation.png</file>
     </qresource>
 </RCC>
