@@ -44,16 +44,34 @@ public slots:
     void reset();
     void drop();
     void endGame();
+    ///
+    /// \brief spawnFish Spawns fish with random y
+    /// coordinates on the conveyor belt. Also checks
+    /// if the conveyor belt needs to speed up.
+    ///
     void spawnFish ();
     void checkInvalidFish();
 
 private:
-    // Controls how fast the conveyor moves at the beginning
+    ///
+    /// \brief INITIAL_CONVEYOR_SPEED Controls how fast the conveyor
+    /// moves at the beginning
+    ///
     const float INITIAL_CONVEYOR_SPEED = 300;
-    // How long in ms before another fish spawns to begin with
+    ///
+    /// \brief INITIAL_FISH_GENERATION_FREQUENCY How long in ms before
+    /// another fish spawns to begin with
+    ///
     const float INITIAL_FISH_GENERATION_FREQUENCY = 5000;
-    // How long in ms before the conveyor belt speeds up
+    ///
+    /// \brief SPEEDUP_FREQUENCY
+    ///
     const float SPEEDUP_FREQUENCY = 15000;
+    ///
+    /// \brief SPEEDUP_AMOUNT A ratio for control the amount the
+    /// fishGenerationFrequency decreases and how much the
+    /// conveyor belt increases. 1.05 indicates a 5% speedup
+    ///
     const float SPEEDUP_AMOUNT = 1.05;
 
     void spawnBucket(int x, int y, Species species);
@@ -67,6 +85,9 @@ private:
     QElapsedTimer timeSinceLastSpawn;
     bool paused;
     void deleteFish(b2Body* fish);
+    ///
+    /// \brief speedup A method called when the conveyor belt speeds up
+    ///
     void speedup ();
 };
 

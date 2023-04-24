@@ -25,7 +25,6 @@ void GameModel::speedup() {
     fishGenerationFrequency /= SPEEDUP_AMOUNT;
     conveyorSpeed *= SPEEDUP_AMOUNT;
     fishSpawnTimer.setInterval(fishGenerationFrequency);
-    qDebug() << "FASTER!!! " << conveyorSpeed << " " << fishGenerationFrequency;
     timeSinceLastSpawn.start();
 }
 
