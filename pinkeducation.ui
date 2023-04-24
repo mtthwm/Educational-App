@@ -56,17 +56,17 @@
   <widget class="QLabel" name="oceanEducation">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>835</width>
-     <height>287</height>
+     <x>170</x>
+     <y>110</y>
+     <width>723</width>
+     <height>193</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanEducation.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkOceanEducation.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -106,17 +106,17 @@
   <widget class="QLabel" name="spawningPhase">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>249</x>
      <y>360</y>
-     <width>660</width>
-     <height>220</height>
+     <width>701</width>
+     <height>231</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSpawningPhase.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkSpawningPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -143,17 +143,17 @@
   <widget class="QLabel" name="spawningEducation">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>310</y>
-     <width>804</width>
-     <height>306</height>
+     <x>130</x>
+     <y>330</y>
+     <width>851</width>
+     <height>281</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookSpawningEducation.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkSpawningEducation.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -172,7 +172,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="Resources.qrc">:/images/fishEducation/chinookOceanPhase.png</pixmap>
+    <pixmap resource="Resources.qrc">:/images/fishEducation/pinkOceanPhase.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -185,8 +185,8 @@
   <zorder>backButton</zorder>
   <zorder>spawningPhase</zorder>
   <zorder>spawningPhaseLabel</zorder>
-  <zorder>spawningEducation</zorder>
   <zorder>oceanEducation</zorder>
+  <zorder>spawningEducation</zorder>
  </widget>
  <resources>
   <include location="Resources.qrc"/>
