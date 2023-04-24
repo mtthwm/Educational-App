@@ -56,7 +56,7 @@ void GameModel::beginWorldStep() {
     speedup();
     fishSpawnTimer.start();
 
-    paused = false;
+    togglePause(false);
 }
 
 void GameModel::reset() {
@@ -251,6 +251,7 @@ void GameModel::deleteFish(b2Body* fish) {
 void GameModel::endGame()
 {
     reset();
+    togglePause(true);
 }
 
 
