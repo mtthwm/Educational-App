@@ -21,7 +21,7 @@
     <rect>
      <x>660</x>
      <y>20</y>
-     <width>291</width>
+     <width>331</width>
      <height>91</height>
     </rect>
    </property>
@@ -148,10 +148,10 @@
   <widget class="QLabel" name="spawningPhaseLabel">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>510</y>
-     <width>171</width>
-     <height>31</height>
+     <x>790</x>
+     <y>500</y>
+     <width>201</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">

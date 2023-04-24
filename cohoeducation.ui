@@ -125,10 +125,10 @@
   <widget class="QLabel" name="spawningPhaseLabel">
    <property name="geometry">
     <rect>
-     <x>820</x>
+     <x>790</x>
      <y>520</y>
-     <width>171</width>
-     <height>31</height>
+     <width>201</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
