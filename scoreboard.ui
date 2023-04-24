@@ -6,41 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>407</width>
-    <height>151</height>
+    <width>400</width>
+    <height>150</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="scoreLabel">
-   <property name="geometry">
-    <rect>
-     <x>6</x>
-     <y>1</y>
-     <width>141</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>24</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>999</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QFrame" name="scoreboardFrame">
    <property name="geometry">
     <rect>
-     <x>-10</x>
-     <y>-31</y>
-     <width>421</width>
-     <height>181</height>
+     <x>0</x>
+     <y>0</y>
+     <width>400</width>
+     <height>150</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -55,15 +34,15 @@
    <widget class="QLabel" name="strikesLabel">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>40</y>
+      <x>150</x>
+      <y>15</y>
       <width>141</width>
-      <height>61</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>24</pointsize>
+      <pointsize>30</pointsize>
      </font>
     </property>
     <property name="text">
@@ -74,15 +53,15 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>60</y>
-      <width>71</width>
-      <height>31</height>
+      <y>15</y>
+      <width>60</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Symbol</family>
-      <pointsize>24</pointsize>
+      <pointsize>30</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -93,9 +72,28 @@
      <string>0</string>
     </property>
    </widget>
+   <widget class="QLabel" name="scoreLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>15</y>
+      <width>141</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>999</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
-  <zorder>scoreboardFrame</zorder>
-  <zorder>scoreLabel</zorder>
  </widget>
  <resources/>
  <connections/>
