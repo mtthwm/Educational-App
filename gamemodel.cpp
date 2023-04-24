@@ -88,20 +88,30 @@ void GameModel::drop() {
 
     isholdingfish = false;
     heldFish->SetActive(true);
+
     for (b2Body* bucketBody : buckets.keys()) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
             if (buckets[bucketBody].targetSpecies == fishes[heldFish].species)
             {
                 emit correctFish();
+                return;
             }
             else
             {
                 emit wrongFish();
+                return;
             }
             deleteFish(heldFish);
         }
+
     }
+    if (lastmousecoords.y < CONVEYOR_BELT_Y)
+    {
+        emit wrongFish();
+        deleteFish(heldFish);
+    }
+
 }
 
 bool GameModel::heldFishBucketOverlap (b2Body* bucketBody) {
