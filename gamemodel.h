@@ -31,6 +31,7 @@ public:
     const int CONVEYOR_BELT_Y = 434;
     QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
 
+
 signals:
     void worldUpdated();
     void worldInit();
@@ -76,6 +77,7 @@ private:
     const float SPEEDUP_AMOUNT = 1.05;
 
     void spawnBucket(int x, int y, Species species);
+    void spawnWalls();
     bool heldFishBucketOverlap (b2Body* bucketBody);
     float conveyorSpeed;
     float fishGenerationFrequency;
