@@ -49,6 +49,7 @@ private:
     QImage fishImage;
     QImage bucketImage;
     QImage getImage(const Fish& fish);
+    const int SCENEWIDTH = 1000;
 };
 
 #endif // GAMESCENE_H
