@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setFixedSize(1000,670);
 
     ui->gameScene->setVisible(false);
     ui->gameOverScreen->setVisible(false);
