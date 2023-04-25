@@ -75,6 +75,10 @@ public slots:
     ///
     void exitGame();
 
+
+    void showPlusOne();
+    void showStrike();
+
 private:
     Ui::GameScene *ui;
     // the GameModel holds all information about the game

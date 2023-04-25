@@ -31,10 +31,17 @@ GameScene::GameScene(QWidget *parent) :
 
     connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
 
+    connect(&model, &GameModel::correctFish, this, &GameScene::showPlusOne);
+    connect(&model, &GameModel::wrongFish, this, &GameScene::showStrike);
+
+
     connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::gameOver);
+
+    ui->plusOneIcon->setVisible(false);
+    ui->strikeIcon->setVisible(false);
 }
 
 GameScene::~GameScene()
@@ -197,4 +204,25 @@ QImage GameScene::getImage(const Fish& fish) {
     }
     QImage image(path);
     return image;
+}
+
+
+void GameScene::showPlusOne()
+{
+    if (ui->strikeIcon->isVisible())
+        ui->strikeIcon->setVisible(false);
+
+    ui->plusOneIcon->setVisible(true);
+
+    QTimer::singleShot(1000, ui->plusOneIcon, [=] {ui->plusOneIcon->setVisible(false);});
+}
+
+void GameScene::showStrike()
+{
+    if (ui->plusOneIcon->isVisible())
+        ui->plusOneIcon->setVisible(false);
+
+    ui->strikeIcon->setVisible(true);
+
+    QTimer::singleShot(1000, ui->strikeIcon, [=] {ui->strikeIcon->setVisible(false);});
 }
