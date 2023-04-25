@@ -9,7 +9,6 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    bucket.cpp \
     chinookeducation.cpp \
     chumeducation.cpp \
     cohoeducation.cpp \
@@ -118,7 +117,6 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
-    bucket.h \
     chinookeducation.h \
     chumeducation.h \
     cohoeducation.h \

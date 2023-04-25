@@ -98,7 +98,7 @@ void GameModel::drop() {
     for (b2Body* bucketBody : buckets.keys()) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
-            if (buckets[bucketBody].targetSpecies == fishes[heldFish].species)
+            if (buckets[bucketBody] == fishes[heldFish].species)
             {
                 emit correctFish();
             }
@@ -151,9 +151,7 @@ void GameModel::spawnBucket(int x, int y, Species species) {
     fixture.isSensor = true;
     body->CreateFixture(&fixture);
 
-    Bucket bucket(this, body, species);
-
-    this->buckets.insert(body, bucket);
+    this->buckets.insert(body, species);
 
     body->SetUserData(&buckets[body]);
 }

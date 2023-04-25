@@ -20,7 +20,7 @@ class GameModel : public QObject
 public:
     explicit GameModel(QObject *parent = nullptr);
 
-    QHash<b2Body*, Bucket> buckets;
+    QHash<b2Body*, Species> buckets;
     QHash<b2Body*, Fish> fishes;
     bool worldInitialized;
     b2Body* heldFish;
