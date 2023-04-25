@@ -59,6 +59,7 @@ void GameModel::beginWorldStep() {
     // Initialize the conveyor belt params
     fishGenerationFrequency = INITIAL_FISH_GENERATION_FREQUENCY * SPEEDUP_AMOUNT;
     conveyorSpeed = INITIAL_CONVEYOR_SPEED / SPEEDUP_AMOUNT;
+    spawnFish();
     speedup();
     fishSpawnTimer.start();
 
@@ -171,9 +172,9 @@ void GameModel::updateWorld() {
     }
 
     // multipled by 1/60 because that's the time step
-    // also multiplied by 2/5 because idk why it makes it line up
+    // also multiplied by 2/5 because idk why but it makes it line up, 2/5 * 1/60 = 1/150
     conveyorPosition += conveyorSpeed/150;
-    conveyorPosition = conveyorPosition%CONVEYOR_DISTANCE;
+    conveyorPosition %= /*conveyorPosition%*/CONVEYOR_DISTANCE;
     // It is generally best to keep the time step and iterations fixed.
     if (isholdingfish) {
         b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
@@ -181,7 +182,7 @@ void GameModel::updateWorld() {
         heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
         //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
-        qDebug() << lastmousecoords.x << " " << lastmousecoords.y;
+        //qDebug() << lastmousecoords.x << " " << lastmousecoords.y;
     }
     for (auto f = fishes.keyBegin(); f != fishes.keyEnd(); f++) {
         if ((*f)->GetLinearVelocity().x < conveyorSpeed)

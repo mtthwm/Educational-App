@@ -55,8 +55,8 @@ void GameScene::paintEvent(QPaintEvent *) {
     brush.setColor(Qt::gray);
     brush.setStyle(Qt::SolidPattern);
 
-    QRect rect(0,0,1000,650);
-    painter.drawImage(rect, QImage(":/images/GameScene.png"));
+    QRect backgroundrect(0,0,1000,650);
+    painter.drawImage(backgroundrect, QImage(":/images/GameScene.png"));
 
 
     for (int i = 0; i <= (SCENEWIDTH-model.conveyorPosition)/model.CONVEYOR_DISTANCE; i++) {
@@ -79,8 +79,11 @@ void GameScene::paintEvent(QPaintEvent *) {
         }
     }
 
+
+
     for (auto fishBody = model.fishes.keyValueBegin(); fishBody != model.fishes.keyValueEnd(); fishBody++) {
-        //cout << "draw fish" << endl;
+        if (model.isholdingfish && fishBody->first == model.heldFish)
+            continue;
         b2Vec2 position = (*fishBody).first->GetPosition();
         int width = fishBody->second.imageWidth;
         int height = fishBody->second.imageHeight;
@@ -88,6 +91,17 @@ void GameScene::paintEvent(QPaintEvent *) {
         QRectF rect((int)(position.x), (int)(position.y), width, height);
         painter.drawImage(rect, getImage(fishBody->second));
     }
+
+    //draw held fish
+    if (model.isholdingfish) {
+        b2Vec2 position = model.heldFish->GetPosition() - model.heldfishcoords;
+        int width = model.fishes[model.heldFish].imageWidth;
+        int height = model.fishes[model.heldFish].imageHeight;
+        //std::cout << height << ", " << width << endl;
+        QRectF drawrect((int)(position.x), (int)(position.y), width*2, height*2);
+        painter.drawImage(drawrect, getImage(model.fishes[model.heldFish]));
+    }
+
     painter.end();
 }
 
@@ -109,6 +123,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
 
             model.heldFish = (*fish).first;
             model.heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
+            //model.heldfishcoords *= 2.0f;
             model.heldFish->SetActive(false);
             //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             model.isholdingfish = true;
