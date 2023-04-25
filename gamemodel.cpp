@@ -290,8 +290,8 @@ void GameModel::spawnWalls() {
     body->CreateFixture(&fixture);
     body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y_LOW),0);
 
-    body = world->CreateBody(&wallbodydef);
     /*
+    body = world->CreateBody(&wallbodydef);
     polygon.SetAsBox(10.0f,550.0f);
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
