@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>500</width>
     <height>150</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>501</width>
      <height>150</height>
     </rect>
    </property>
@@ -34,14 +34,15 @@
    <widget class="QLabel" name="strikesLabel">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>15</y>
-      <width>141</width>
+      <x>250</x>
+      <y>20</y>
+      <width>181</width>
       <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Cooper Black</family>
       <pointsize>30</pointsize>
      </font>
     </property>
@@ -52,8 +53,8 @@
    <widget class="QLabel" name="numStrikes">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>18</y>
+      <x>450</x>
+      <y>20</y>
       <width>60</width>
       <height>40</height>
      </rect>
@@ -61,7 +62,7 @@
     <property name="font">
      <font>
       <family>Symbol</family>
-      <pointsize>30</pointsize>
+      <pointsize>33</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -75,14 +76,15 @@
    <widget class="QLabel" name="scoreLabel">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>15</y>
+      <x>130</x>
+      <y>20</y>
       <width>121</width>
       <height>40</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Cooper Black</family>
       <pointsize>30</pointsize>
      </font>
     </property>
@@ -91,6 +93,25 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="strikesLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cooper Black</family>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Score:</string>
     </property>
    </widget>
   </widget>
