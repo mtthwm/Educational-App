@@ -172,7 +172,7 @@ void GameModel::updateWorld() {
         emit worldInit();
     }
 
-    conveyorPosition += conveyorSpeed/60;
+    conveyorPosition += conveyorSpeed/60 - 3;
     conveyorPosition = conveyorPosition%CONVEYOR_DISTANCE;
     // It is generally best to keep the time step and iterations fixed.
     if (isholdingfish) {
