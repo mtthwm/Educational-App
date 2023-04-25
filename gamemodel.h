@@ -53,7 +53,7 @@ public:
     ///
     /// \brief CONVEYOR_BELT_Y
     ///
-    const int CONVEYOR_BELT_Y = 434;
+    const int CONVEYOR_BELT_Y = 367;
     ///
     /// \brief CONVEYOR_BELT_Y_LOW
     ///

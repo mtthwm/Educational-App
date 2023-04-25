@@ -64,6 +64,11 @@ void GameScene::paintEvent(QPaintEvent *) {
         QRect line(model.conveyorPosition+(i*model.CONVEYOR_DISTANCE),370, 10, 600-360);
         painter.fillRect(line, brush);
     }
+    /*
+    brush.setColor(Qt::red);
+    painter.fillRect(QRect(0,357,1000,10), brush);
+    painter.fillRect(QRect(0,612, 1000, 10), brush);
+    */
 
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {

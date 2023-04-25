@@ -283,18 +283,19 @@ void GameModel::spawnWalls() {
     //fix coords
     polygon.SetAsBox(1000.0f,50.0f);
 
+    //bottom conveyor wall
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
     body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y_LOW),0);
 
-    /*
+    //top conveyor wall
     body = world->CreateBody(&wallbodydef);
-    polygon.SetAsBox(10.0f,550.0f);
+    polygon.SetAsBox(1000.0f,50.0f);
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
-    body->SetTransform(b2Vec2(0,0),0);
-    */
+    body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y-50),0);
+
 }
 
 
