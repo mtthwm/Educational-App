@@ -51,9 +51,19 @@ void GameScene::worldInit() {
 void GameScene::paintEvent(QPaintEvent *) {
     //cout << "paint event" << endl;
     QPainter painter(this);
+    QBrush brush;
+    brush.setColor(Qt::gray);
+    brush.setStyle(Qt::SolidPattern);
 
     QRect rect(0,0,1000,650);
     painter.drawImage(rect, QImage(":/images/GameScene.png"));
+
+
+    for (int i = 0; i <= (SCENEWIDTH-model.conveyorPosition)/model.CONVEYOR_DISTANCE; i++) {
+        //cout << conveyorPosition+(i*CONVEYOR_DISTANCE) << endl;
+        QRect line(model.conveyorPosition+(i*model.CONVEYOR_DISTANCE),370, 10, 600-360);
+        painter.fillRect(line, brush);
+    }
 
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {

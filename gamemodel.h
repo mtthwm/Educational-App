@@ -32,7 +32,8 @@ public:
     const int CONVEYOR_BELT_Y_LOW = 612;
 
     QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
-
+    int conveyorPosition;
+    const int CONVEYOR_DISTANCE = 89;
 
 signals:
     void worldUpdated();
@@ -77,11 +78,10 @@ private:
     /// conveyor belt increases. 1.05 indicates a 5% speedup
     ///
     const float SPEEDUP_AMOUNT = 1.05;
-
+    float conveyorSpeed;
     void spawnBucket(int x, int y, Species species);
     void spawnWalls();
     bool heldFishBucketOverlap (b2Body* bucketBody);
-    float conveyorSpeed;
     float fishGenerationFrequency;
     Species generateRandomSpecies();
     b2World* world;

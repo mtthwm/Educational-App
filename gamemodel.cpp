@@ -117,6 +117,10 @@ void GameModel::drop() {
         deleteFishAndBody(heldFish);
     }
 
+    if (lastmousecoords.y > 600)
+    {
+        heldFish->SetTransform(b2Vec2(heldFish->GetPosition().x, 550), 0);
+    }
 }
 
 bool GameModel::heldFishBucketOverlap (b2Body* bucketBody) {
@@ -168,6 +172,8 @@ void GameModel::updateWorld() {
         emit worldInit();
     }
 
+    conveyorPosition += conveyorSpeed;
+    conveyorPosition = conveyorPosition%CONVEYOR_DISTANCE;
     // It is generally best to keep the time step and iterations fixed.
     if (isholdingfish) {
         b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
@@ -284,8 +290,8 @@ void GameModel::spawnWalls() {
     body->CreateFixture(&fixture);
     body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y_LOW),0);
 
-    body = world->CreateBody(&wallbodydef);
     /*
+    body = world->CreateBody(&wallbodydef);
     polygon.SetAsBox(10.0f,550.0f);
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
