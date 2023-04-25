@@ -15,7 +15,6 @@ GameScene::GameScene(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameScene),
     model(this),
-    fishImage(":/images/fish/coho.png"),
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
