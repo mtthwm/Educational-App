@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include "fish.h"
-#include "bucket.h"
 #include <vector>
 #include "Box2D/Box2D.h"
 #include <QTimer>
@@ -19,35 +18,106 @@ class GameModel : public QObject
     Q_OBJECT
 public:
     explicit GameModel(QObject *parent = nullptr);
-
+    ///
+    /// \brief buckets A map of each bucket's b2Body to the species of fish it accepts.
+    ///
     QHash<b2Body*, Species> buckets;
+    ///
+    /// \brief fishes A map of each fishs' b2Body to the Fish object itself.
+    ///
     QHash<b2Body*, Fish> fishes;
+    ///
+    /// \brief worldInitialized A marker as to if the b2World and game world is ready for use.
+    ///
     bool worldInitialized;
+    ///
+    /// \brief heldFish The b2Body of the currently held fish.
+    ///
     b2Body* heldFish;
+    ///
+    /// \brief heldfishcoords The coordinates of the currently held fish.
+    ///
     b2Vec2 heldfishcoords;
+    ///
+    /// \brief lastmousecoords The coordinates of the mouse's last position.
+    ///
     b2Vec2 lastmousecoords;
+    ///
+    /// \brief isholdingfish true if a fish is currently being held, false otherwise.
+    ///
     bool isholdingfish;
+    ///
+    /// \brief BOX_SIZE
+    ///
     const int BOX_SIZE = 175;
+    ///
+    /// \brief CONVEYOR_BELT_Y
+    ///
     const int CONVEYOR_BELT_Y = 434;
+    ///
+    /// \brief CONVEYOR_BELT_Y_LOW
+    ///
     const int CONVEYOR_BELT_Y_LOW = 612;
-
+    ///
+    /// \brief CONVEYOR_BELT_AREA
+    ///
     QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
+    ///
+    /// \brief conveyorPosition
+    ///
     int conveyorPosition;
+    ///
+    /// \brief CONVEYOR_DISTANCE
+    ///
     const int CONVEYOR_DISTANCE = 89;
 
 signals:
+    ///
+    /// \brief worldUpdated Emitted when the world has updated and components must update.
+    ///
     void worldUpdated();
+    ///
+    /// \brief worldInit Emitted when the world has finished being prepared and is ready for use,
+    ///
     void worldInit();
+    ///
+    /// \brief resetComponent Emitted when specific components such as the Scoreboard need to reset.
+    ///
     void resetComponent();
+    ///
+    /// \brief correctFish Emitted when a fish is put into the correct bucket.
+    ///
     void correctFish();
+    ///
+    /// \brief wrongFish Emitted when a fish is put into the wrong bucket, or when a fish goes out of bounds.
+    ///
     void wrongFish();
 
 public slots:
+    ///
+    /// \brief updateWorld Updates the b2World.
+    ///
     void updateWorld();
+    ///
+    /// \brief beginWorldStep Starts the b2World updating process.
+    ///
     void beginWorldStep();
+    ///
+    /// \brief togglePause Pauses or unpauses the game.
+    /// \param paused True if pausing, false otherwise.
+    ///
     void togglePause(bool paused);
+    ///
+    /// \brief reset Resets the game.
+    ///
     void reset();
+    ///
+    /// \brief drop Drops the currently held fish.
+    ///
     void drop();
+    ///
+    /// \brief endGame Ends the game.
+    ///
     void endGame();
     ///
     /// \brief spawnFish Spawns fish with random y
@@ -55,6 +125,9 @@ public slots:
     /// if the conveyor belt needs to speed up.
     ///
     void spawnFish ();
+    ///
+    /// \brief checkInvalidFish Checks each fish in play if their positions are valid.
+    ///
     void checkInvalidFish();
 
 private:
@@ -78,17 +151,61 @@ private:
     /// conveyor belt increases. 1.05 indicates a 5% speedup
     ///
     const float SPEEDUP_AMOUNT = 1.05;
+    ///
+    /// \brief conveyorSpeed
+    ///
     float conveyorSpeed;
+    ///
+    /// \brief spawnBucket Spawns a bucket at the specified x, y coordinate.
+    /// \param x The x-location to spawn the bucket.
+    /// \param y The y-location to spawn the bucket.
+    /// \param species The species the bucket will accept.
+    ///
     void spawnBucket(int x, int y, Species species);
+    ///
+    /// \brief spawnWalls
+    ///
     void spawnWalls();
+    ///
+    /// \brief heldFishBucketOverlap
+    /// \param bucketBody
+    /// \return
+    ///
     bool heldFishBucketOverlap (b2Body* bucketBody);
+    ///
+    /// \brief fishGenerationFrequency
+    ///
     float fishGenerationFrequency;
+    ///
+    /// \brief generateRandomSpecies Generates a random fish species. See Species.h.
+    /// \return The species that was generated.
+    ///
     Species generateRandomSpecies();
+    ///
+    /// \brief world The physics world used in the game.
+    ///
     b2World* world;
+    ///
+    /// \brief timer This timer is responsible for updating the b2World and
+    /// checking for invalid fish.
+    ///
     QTimer timer;
+    ///
+    /// \brief fishSpawnTimer
+    ///
     QTimer fishSpawnTimer;
+    ///
+    /// \brief timeSinceLastSpawn
+    ///
     QElapsedTimer timeSinceLastSpawn;
+    ///
+    /// \brief paused True if the game is paused, false otherwise.
+    ///
     bool paused;
+    ///
+    /// \brief deleteFishAndBody
+    /// \param fish
+    ///
     void deleteFishAndBody(b2Body* fish);
     ///
     /// \brief speedup A method called when the conveyor belt speeds up

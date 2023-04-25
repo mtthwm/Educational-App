@@ -1,9 +1,6 @@
 #include "fish.h"
 #include <QRandomGenerator>
 
-Fish::~Fish() {
-}
-
 Fish& Fish::operator =(Fish other) {
     std::swap(variant, other.variant);
     std::swap(species, other.species);

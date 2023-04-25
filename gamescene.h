@@ -6,7 +6,6 @@
 #include <vector>
 #include <QKeyEvent>
 #include "fish.h"
-#include "bucket.h"
 #include "gamemodel.h"
 #include "Box2D/Box2D.h"
 
