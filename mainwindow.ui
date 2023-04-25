@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>690</height>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,6 +112,23 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>680</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(26, 102, 132)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label</zorder>
    <zorder>gameScene</zorder>
    <zorder>gameOverScreen</zorder>
    <zorder>chinookEducation</zorder>

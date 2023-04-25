@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QLabel" name="sockeyeBeforeHover">
    <property name="geometry">
     <rect>
@@ -265,12 +268,12 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="instructionLabel">
    <property name="geometry">
     <rect>
-     <x>75</x>
+     <x>180</x>
      <y>50</y>
-     <width>850</width>
+     <width>641</width>
      <height>50</height>
     </rect>
    </property>
@@ -278,6 +281,9 @@
     <font>
      <pointsize>30</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:white</string>
    </property>
    <property name="text">
     <string>Click on a fish to learn more about that species:</string>
@@ -331,6 +337,23 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="backgroundColor">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>650</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(26, 102, 132)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>backgroundColor</zorder>
   <zorder>sockeyeBeforeHover</zorder>
   <zorder>sockeyeAfterHover</zorder>
   <zorder>pinkBeforeHover</zorder>
@@ -339,7 +362,7 @@
   <zorder>kingAfterHover</zorder>
   <zorder>cohoBeforeHover</zorder>
   <zorder>chumBeforeHover</zorder>
-  <zorder>label</zorder>
+  <zorder>instructionLabel</zorder>
   <zorder>kingButton</zorder>
   <zorder>cohoAfterHover</zorder>
   <zorder>chumAfterHover</zorder>
