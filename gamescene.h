@@ -91,6 +91,10 @@ private:
     QImage getImage(const Fish& fish);
     //width of the scene
     const int SCENEWIDTH = 1000;
+    ///
+    /// \brief SCALING_FACTOR The ratio of screen coordinates to Box2D coordinates.
+    ///
+    const float SCALE_FACTOR = 1000.0f;
     // stores image for fish buckets
     QImage bucketImage;
 };

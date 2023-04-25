@@ -49,27 +49,19 @@ public:
     ///
     /// \brief BOX_SIZE
     ///
-    const int BOX_SIZE = 175;
-    ///
-    /// \brief CONVEYOR_BELT_Y
-    ///
-    const int CONVEYOR_BELT_Y = 367;
-    ///
-    /// \brief CONVEYOR_BELT_Y_LOW
-    ///
-    const int CONVEYOR_BELT_Y_LOW = 612;
+    const float BOX_SIZE = 0.175f;
     ///
     /// \brief CONVEYOR_BELT_AREA
     ///
-    QRect CONVEYOR_BELT_AREA = QRect(0, 400, 1000, 250);
+    QRectF CONVEYOR_BELT_AREA = QRectF(-0.25f, 0.367f, 1.5f, 0.245f);
     ///
     /// \brief conveyorPosition
     ///
-    int conveyorPosition;
+    float conveyorPosition;
     ///
     /// \brief CONVEYOR_DISTANCE
     ///
-    const int CONVEYOR_DISTANCE = 89;
+    const float CONVEYOR_DISTANCE = 0.089f;
 
 signals:
     ///
@@ -135,7 +127,7 @@ private:
     /// \brief INITIAL_CONVEYOR_SPEED Controls how fast the conveyor
     /// moves at the beginning
     ///
-    const float INITIAL_CONVEYOR_SPEED = 300;
+    const float INITIAL_CONVEYOR_SPEED = 0.300f;
     ///
     /// \brief INITIAL_FISH_GENERATION_FREQUENCY How long in ms before
     /// another fish spawns to begin with
@@ -161,7 +153,7 @@ private:
     /// \param y The y-location to spawn the bucket.
     /// \param species The species the bucket will accept.
     ///
-    void spawnBucket(int x, int y, Species species);
+    void spawnBucket(float x, float y, Species species);
     ///
     /// \brief spawnWalls
     ///
@@ -211,6 +203,7 @@ private:
     /// \brief speedup A method called when the conveyor belt speeds up
     ///
     void speedup ();
+
 };
 
 #endif // GAMEMODEL_H

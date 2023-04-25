@@ -10,9 +10,9 @@ Fish& Fish::operator =(Fish other) {
 Fish::Fish(QObject* parent, Species species) : QObject{parent}, species(species),
     variant(QRandomGenerator::global()->bounded(1, 6)) {;}
 
-bool Fish::isOutOfBounds(int x, int y, int boundX, int boundY) {
-    int posX = x + imageWidth/2;
-    int posY = y + imageHeight/2;
+bool Fish::isOutOfBounds(float x, float y, float boundX, float boundY) {
+    float posX = x + imageWidth/2;
+    float posY = y + imageHeight/2;
     return posX > boundX + imageWidth/2 || posY < 0 - imageHeight/2;
 }
 
