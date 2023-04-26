@@ -15,7 +15,6 @@ GameScene::GameScene(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameScene),
     model(this),
-    fishImage(":/images/fish/coho.png"),
     bucketImage(":/images/bucket.png")
 {
     ui->setupUi(this);
@@ -32,10 +31,17 @@ GameScene::GameScene(QWidget *parent) :
 
     connect(&model, &GameModel::correctFish, this->ui->scoreBoard, &ScoreBoard::addScore);
 
+    connect(&model, &GameModel::correctFish, this, &GameScene::showPlusOne);
+    connect(&model, &GameModel::wrongFish, this, &GameScene::showStrike);
+
+
     connect(&model, &GameModel::wrongFish, this->ui->scoreBoard, &ScoreBoard::addStrike);
 
     connect(ui->scoreBoard, &ScoreBoard::gameOver, &model, &GameModel::endGame);
     connect(ui->scoreBoard, &ScoreBoard::gameOver, this, &GameScene::gameOver);
+
+    ui->plusOneIcon->setVisible(false);
+    ui->strikeIcon->setVisible(false);
 }
 
 GameScene::~GameScene()
@@ -59,22 +65,17 @@ void GameScene::paintEvent(QPaintEvent *) {
     painter.drawImage(backgroundrect, QImage(":/images/GameScene.png"));
 
 
-    for (int i = 0; i <= (SCENEWIDTH-model.conveyorPosition)/model.CONVEYOR_DISTANCE; i++) {
-        //cout << conveyorPosition+(i*CONVEYOR_DISTANCE) << endl;
-        QRect line(model.conveyorPosition+(i*model.CONVEYOR_DISTANCE),370, 10, 600-360);
+    for (int i = 0; i <= (SCENEWIDTH-model.conveyorPosition * SCALE_FACTOR)/(model.CONVEYOR_DISTANCE * SCALE_FACTOR); i++) {
+        int lineX = (model.conveyorPosition * SCALE_FACTOR) + (i*model.CONVEYOR_DISTANCE*SCALE_FACTOR);
+        QRect line(lineX, 370, 10, 240);
         painter.fillRect(line, brush);
     }
-    /*
-    brush.setColor(Qt::red);
-    painter.fillRect(QRect(0,357,1000,10), brush);
-    painter.fillRect(QRect(0,612, 1000, 10), brush);
-    */
 
     if (model.worldInitialized) {
         for (auto bucket = model.buckets.keyValueBegin(); bucket != model.buckets.keyValueEnd(); bucket++) {
-            b2Vec2 position = (*bucket).first->GetPosition();
+            b2Vec2 position = SCALE_FACTOR * (*bucket).first->GetPosition();
 
-            QRectF rect((int)(position.x), (int)(position.y), model.BOX_SIZE, model.BOX_SIZE);
+            QRectF rect((int)(position.x), (int)(position.y), model.BOX_SIZE * SCALE_FACTOR, model.BOX_SIZE * SCALE_FACTOR);
             painter.drawImage(rect, bucketImage);
         }
     }
@@ -84,20 +85,18 @@ void GameScene::paintEvent(QPaintEvent *) {
     for (auto fishBody = model.fishes.keyValueBegin(); fishBody != model.fishes.keyValueEnd(); fishBody++) {
         if (model.isholdingfish && fishBody->first == model.heldFish)
             continue;
-        b2Vec2 position = (*fishBody).first->GetPosition();
-        int width = fishBody->second.imageWidth;
-        int height = fishBody->second.imageHeight;
-        //std::cout << height << ", " << width << endl;
+        b2Vec2 position = SCALE_FACTOR * (*fishBody).first->GetPosition();
+        int width = fishBody->second.imageWidth * SCALE_FACTOR;
+        int height = fishBody->second.imageHeight * SCALE_FACTOR;
         QRectF rect((int)(position.x), (int)(position.y), width, height);
         painter.drawImage(rect, getImage(fishBody->second));
     }
 
     //draw held fish
     if (model.isholdingfish) {
-        b2Vec2 position = model.heldFish->GetPosition() - model.heldfishcoords;
-        int width = model.fishes[model.heldFish].imageWidth;
-        int height = model.fishes[model.heldFish].imageHeight;
-        //std::cout << height << ", " << width << endl;
+        b2Vec2 position = SCALE_FACTOR * model.heldFish->GetPosition() - model.heldfishcoords;
+        int width = SCALE_FACTOR * model.fishes[model.heldFish].imageWidth;
+        int height = SCALE_FACTOR * model.fishes[model.heldFish].imageHeight;
         QRectF drawrect((int)(position.x), (int)(position.y), width*2, height*2);
         painter.drawImage(drawrect, getImage(model.fishes[model.heldFish]));
     }
@@ -112,30 +111,27 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
         //QImage fishimage = getImage((*fish).second.variant, (*fish).second.species);
         b2Vec2 position2(position1.x + fish->second.imageWidth, position1.y + fish->second.imageHeight);
 
+        position1 = SCALE_FACTOR * position1;
+        position2 = SCALE_FACTOR * position2;
+
         //is within the box of the fish
         if (event->position().x() > position1.x &&
             event->position().x() < position2.x &&
             event->position().y() > position1.y &&
             event->position().y() < position2.y) {
-            //cout << "position1(" << position1.x << ", " << position1.y << ")" << endl;
-            //cout << "position2(" << position2.x << ", " << position2.y << ")" << endl;
-            //cout << "mousepos(" << event->position().x() << ", " << event->position().y() << ")" << endl;
 
             model.heldFish = (*fish).first;
-            model.heldfishcoords = b2Vec2(event->position().x()-position1.x, event->position().y()-position1.y);
-            //model.heldfishcoords *= 2.0f;
+            model.heldfishcoords = b2Vec2((event->position().x()-position1.x) / SCALE_FACTOR, (event->position().y()-position1.y) / SCALE_FACTOR);
             model.heldFish->SetActive(false);
-            //cout << "heldfishcoords(" << heldfishcoords.x << ", " << heldfishcoords.y << ")" << endl;
             model.isholdingfish = true;
-            model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());
-            //cout << "fish held" << endl;
+            model.lastmousecoords = b2Vec2(event->position().x() / SCALE_FACTOR, event->position().y() / SCALE_FACTOR);
             break;
         }
     }
 }
 
 void GameScene::mouseMoveEvent(QMouseEvent *event) {
-    model.lastmousecoords = b2Vec2(event->position().x(), event->position().y());
+    model.lastmousecoords = b2Vec2(event->position().x() / SCALE_FACTOR, event->position().y() / SCALE_FACTOR);
 }
 
 void GameScene::mouseReleaseEvent(QMouseEvent *) {
@@ -198,4 +194,25 @@ QImage GameScene::getImage(const Fish& fish) {
     }
     QImage image(path);
     return image;
+}
+
+
+void GameScene::showPlusOne()
+{
+    if (ui->strikeIcon->isVisible())
+        ui->strikeIcon->setVisible(false);
+
+    ui->plusOneIcon->setVisible(true);
+
+    QTimer::singleShot(1000, ui->plusOneIcon, [=] {ui->plusOneIcon->setVisible(false);});
+}
+
+void GameScene::showStrike()
+{
+    if (ui->plusOneIcon->isVisible())
+        ui->plusOneIcon->setVisible(false);
+
+    ui->strikeIcon->setVisible(true);
+
+    QTimer::singleShot(1000, ui->strikeIcon, [=] {ui->strikeIcon->setVisible(false);});
 }

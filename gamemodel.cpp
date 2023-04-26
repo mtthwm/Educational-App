@@ -35,11 +35,11 @@ void GameModel::checkInvalidFish() {
         b2Vec2 position = body->GetPosition();
         //int translateY = fish.imageHeight/2;
         // position.x + fish.imageWidth/2 > 980 + translateY || position.y > 510 + translateY || position.y + translateY < 0 - translateY
-        if (fish.isOutOfBounds(position.x, position.y, 980, 650) && !isholdingfish) {
+        if (fish.isOutOfBounds(position.x, position.y, 0.980f, 0.650f) && !isholdingfish) {
             toRemove.push_back(body);
         }
 
-        if (position.y > CONVEYOR_BELT_Y_LOW - 20)
+        if (position.y > CONVEYOR_BELT_AREA.height() + CONVEYOR_BELT_AREA.y() - 0.020f)
         {
             drop();
         }
@@ -73,7 +73,7 @@ void GameModel::reset() {
     worldInitialized = false;
     isholdingfish = false;
     timer.stop();
-    b2World* tempworld = new b2World(b2Vec2(10,0));
+    b2World* tempworld = new b2World(b2Vec2(0,0));
     delete world;
     world = tempworld;
 }
@@ -112,15 +112,15 @@ void GameModel::drop() {
         }
 
     }
-    if (lastmousecoords.y < CONVEYOR_BELT_Y)
+    if (lastmousecoords.y < CONVEYOR_BELT_AREA.y())
     {
         emit wrongFish();
         deleteFishAndBody(heldFish);
     }
 
-    if (lastmousecoords.y > 600)
+    if (lastmousecoords.y > 0.600)
     {
-        heldFish->SetTransform(b2Vec2(heldFish->GetPosition().x, 550), 0);
+        heldFish->SetTransform(b2Vec2(heldFish->GetPosition().x, 0.550), 0);
     }
 }
 
@@ -135,7 +135,7 @@ bool GameModel::heldFishBucketOverlap (b2Body* bucketBody) {
     return false;
 }
 
-void GameModel::spawnBucket(int x, int y, Species species) {
+void GameModel::spawnBucket(float x, float y, Species species) {
     b2BodyDef bucketBodyDef;
     bucketBodyDef.type = b2_staticBody;
     bucketBodyDef.position.Set(x, y);
@@ -160,11 +160,11 @@ void GameModel::spawnBucket(int x, int y, Species species) {
 void GameModel::updateWorld() {
     if (!worldInitialized) {
 
-        spawnBucket(25, 137, Species::Coho);
-        spawnBucket(220, 137, Species::Sockeye);
-        spawnBucket(415, 137, Species::Chinook);
-        spawnBucket(605, 137, Species::Chum);
-        spawnBucket(800, 137, Species::Pink);
+        spawnBucket(0.025f, 0.137f, Species::Coho);
+        spawnBucket(0.220f, 0.137f, Species::Sockeye);
+        spawnBucket(0.415f, 0.137f, Species::Chinook);
+        spawnBucket(0.605f, 0.137f, Species::Chum);
+        spawnBucket(0.800f, 0.137f, Species::Pink);
         spawnWalls();
 
         worldInitialized = true;
@@ -172,17 +172,14 @@ void GameModel::updateWorld() {
     }
 
     // multipled by 1/60 because that's the time step
-    // also multiplied by 2/5 because idk why but it makes it line up, 2/5 * 1/60 = 1/150
-    conveyorPosition += conveyorSpeed/150;
-    conveyorPosition %= /*conveyorPosition%*/CONVEYOR_DISTANCE;
-    // It is generally best to keep the time step and iterations fixed.
+    conveyorPosition += conveyorSpeed/60;
+    while (conveyorPosition >= CONVEYOR_DISTANCE) {
+        conveyorPosition -= CONVEYOR_DISTANCE;
+    }
+
     if (isholdingfish) {
         b2Vec2 transformedheldfishcoords(heldfishcoords.x+heldFish->GetPosition().x, heldfishcoords.y + heldFish->GetPosition().y);
-        // TODO: Remove this:
-        heldFish->ApplyLinearImpulse(1000*b2Vec2(lastmousecoords.x-transformedheldfishcoords.x, lastmousecoords.y-transformedheldfishcoords.y), heldFish->GetWorldCenter(), false);
-        //cout << "x: " << event->position().x()-transformedheldfishcoords.x << " y: " << event->position().y()-transformedheldfishcoords.y << endl;
         heldFish->SetTransform(b2Vec2(lastmousecoords.x-heldfishcoords.x, lastmousecoords.y-heldfishcoords.y), 0);
-        //qDebug() << lastmousecoords.x << " " << lastmousecoords.y;
     }
     for (auto f = fishes.keyBegin(); f != fishes.keyEnd(); f++) {
         if ((*f)->GetLinearVelocity().x < conveyorSpeed)
@@ -213,7 +210,6 @@ Species GameModel::generateRandomSpecies() {
             species = Species::Chum;
             break;
         default:
-            qDebug() << "Unreachable.";
             species = Species::None;
             break;
     }
@@ -226,7 +222,7 @@ void GameModel::spawnFish() {
     }
 
     Species species = this->generateRandomSpecies();
-    Fish fishy(this, species);
+    Fish fish(this, species);
 
     b2BodyDef fishBodyDef;
     fishBodyDef.type = b2_dynamicBody;
@@ -234,16 +230,16 @@ void GameModel::spawnFish() {
 
     b2Body* body = world->CreateBody(&fishBodyDef);
     b2PolygonShape polygon;
-    int imageScalar = QRandomGenerator::global()->bounded(50, 60);
+    float imageScalar = QRandomGenerator::global()->bounded(50, 60) / 1000.0f;
 
     polygon.SetAsBox(3 * imageScalar, imageScalar);
-    fishy.imageHeight = imageScalar;
-    fishy.imageWidth =  3 * imageScalar;
+    fish.imageHeight = imageScalar;
+    fish.imageWidth =  3 * imageScalar;
 
     // Generate x and y coordinates within the conveyor belt
-    int dy = QRandomGenerator::global()->bounded(CONVEYOR_BELT_AREA.height() - fishy.imageHeight);
-    int x = CONVEYOR_BELT_AREA.x() - fishy.imageWidth;
-    int y = CONVEYOR_BELT_AREA.y() + dy;
+    float dy = (CONVEYOR_BELT_AREA.height() - fish.imageHeight) * ((float) rand() / (float) RAND_MAX);
+    float x = CONVEYOR_BELT_AREA.x() - fish.imageWidth;
+    float y = CONVEYOR_BELT_AREA.y() + dy;
     body->SetTransform(b2Vec2(x, y), 0);
 
     b2FixtureDef fixture;
@@ -253,12 +249,12 @@ void GameModel::spawnFish() {
 
     // Override the default friction.
     fixture.friction = 0.3f;
-    fixture.restitution = 0.9;
+    fixture.restitution = 0.9f;
 
     // Add the shape to the body.
     body->CreateFixture(&fixture);
 
-    this->fishes.insert(body, fishy);
+    this->fishes.insert(body, fish);
 
     body->SetUserData(&fishes[body]);
 }
@@ -283,21 +279,19 @@ void GameModel::spawnWalls() {
     b2Body* body = world->CreateBody(&wallbodydef);
 
     b2PolygonShape polygon;
-    //fix coords
-    polygon.SetAsBox(1000.0f,50.0f);
+    polygon.SetAsBox(CONVEYOR_BELT_AREA.width(),0.050f);
 
     //bottom conveyor wall
     b2FixtureDef fixture;
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
-    body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y_LOW),0);
+    body->SetTransform(b2Vec2(CONVEYOR_BELT_AREA.x(),CONVEYOR_BELT_AREA.y() + CONVEYOR_BELT_AREA.height()), 0);
 
     //top conveyor wall
     body = world->CreateBody(&wallbodydef);
-    polygon.SetAsBox(1000.0f,50.0f);
     fixture.shape = &polygon;
     body->CreateFixture(&fixture);
-    body->SetTransform(b2Vec2(0,CONVEYOR_BELT_Y-50),0);
+    body->SetTransform(b2Vec2(CONVEYOR_BELT_AREA.x(),CONVEYOR_BELT_AREA.y()-0.050),0);
 
 }
 

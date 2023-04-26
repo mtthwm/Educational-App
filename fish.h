@@ -32,7 +32,7 @@ public:
     /// \brief imageHeight The height of the image that will represent
     /// this fish.
     ///
-    int imageWidth, imageHeight;
+    float imageWidth, imageHeight;
     ///
     /// \brief operator =
     /// \param other The fish to copy.
@@ -47,7 +47,7 @@ public:
     /// \param boundY The y-bound of the area to check.
     /// \return True if it's out of bounds, false otherwise.
     ///
-    bool isOutOfBounds(int x, int y, int boundX, int boundY);
+    bool isOutOfBounds(float x, float y, float boundX, float boundY);
 signals:
     // None.
 private:
