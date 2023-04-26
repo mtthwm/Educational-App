@@ -6,6 +6,11 @@
 #include <vector>
 using std::vector;
 
+///
+/// Class for the start up screen. Users can hover over fish to display the name of the species being hovered over
+/// and users can click on a species of salmon to get a more detailed description of identifying traits
+///
+
 namespace Ui {
 class FishEducation;
 }

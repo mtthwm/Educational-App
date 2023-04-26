@@ -12,6 +12,9 @@
 
 using std::vector;
 
+///
+/// \brief The GameModel class deals with the core logic of the game. All physics and game play logic are in this class.
+///
 
 class GameModel : public QObject
 {

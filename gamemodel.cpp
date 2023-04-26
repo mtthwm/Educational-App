@@ -96,7 +96,9 @@ void GameModel::drop() {
     isholdingfish = false;
     heldFish->SetActive(true);
 
-    for (b2Body* bucketBody : buckets.keys()) {
+    QList keys = buckets.keys();
+
+    for (b2Body* &bucketBody : keys) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
             if (buckets[bucketBody] == fishes[heldFish].species)
@@ -117,10 +119,9 @@ void GameModel::drop() {
         emit wrongFish();
         deleteFishAndBody(heldFish);
     }
-
     if (lastmousecoords.y > 0.600)
     {
-        heldFish->SetTransform(b2Vec2(heldFish->GetPosition().x, 0.550), 0);
+        heldFish->SetTransform(b2Vec2(heldFish->GetPosition().x, 0.560), 0);
     }
 }
 
@@ -142,19 +143,19 @@ void GameModel::spawnBucket(float x, float y, Species species) {
 
     b2Body* body = world->CreateBody(&bucketBodyDef);
 
-    // Create a shape for this sensor
-    b2CircleShape circle;
-    circle.m_radius = 20;
+//    // Create a shape for this sensor
+//    b2CircleShape circle;
+//    circle.m_radius = 20;
 
-    // Add the shape to the body.
-    b2FixtureDef fixture;
-    fixture.shape = &circle;
-    fixture.isSensor = true;
-    body->CreateFixture(&fixture);
+//    // Add the shape to the body.
+//    b2FixtureDef fixture;
+//    fixture.shape = &circle;
+//    fixture.isSensor = true;
+//    body->CreateFixture(&fixture);
 
     this->buckets.insert(body, species);
 
-    body->SetUserData(&buckets[body]);
+//    body->SetUserData(&buckets[body]);
 }
 
 void GameModel::updateWorld() {

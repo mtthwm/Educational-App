@@ -8,6 +8,11 @@ Last Modified: Matthew Morales - 4/17/2023
 
 #include <QWidget>
 
+///
+/// This class deals with graphics of the scoreboard as well as keeping track of whether the game is over or not.
+/// Score and strikes are incremented based off of actions from the user and signals from the game model
+///
+
 namespace Ui {
 class ScoreBoard;
 }
