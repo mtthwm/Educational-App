@@ -2,16 +2,11 @@
 #include "ui_fisheducation.h"
 #include <QHoverEvent>
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
 FishEducation::FishEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::FishEducation)
-{
-    ui->setupUi(this);
+    ui(new Ui::FishEducation) {
 
+    ui->setupUi(this);
 
     fishes.push_back({ui->cohoBeforeHover, ui->cohoAfterHover});
 
@@ -24,9 +19,7 @@ FishEducation::FishEducation(QWidget *parent) :
     fishes.push_back({ui->chumBeforeHover, ui->chumAfterHover});
 
     for (auto fish : fishes)
-    {
         displayNotHoverFish(fish);
-    }
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -52,14 +45,11 @@ FishEducation::FishEducation(QWidget *parent) :
             &FishEducation::goToChum);
 }
 
-FishEducation::~FishEducation()
-{
+FishEducation::~FishEducation() {
     delete ui;
 }
 
-bool FishEducation::event(QEvent* event)
-{
-
+bool FishEducation::event(QEvent* event) {
     if (event->type() == QEvent::HoverEnter)
     {
         hoverEnter(static_cast<QHoverEvent*>(event));
@@ -73,33 +63,28 @@ bool FishEducation::event(QEvent* event)
     if (event->type() == QEvent::HoverMove)
     {
         hoverMove(static_cast<QHoverEvent*>(event));
+        return true;
     }
-
     return false;
 }
-void FishEducation::hoverEnter(QHoverEvent *event)
-{
-    QPoint point = event->position().toPoint();
+void FishEducation::hoverEnter(QHoverEvent *event) {
+    driveHover(event);
+}
 
+void FishEducation::hoverMove(QHoverEvent *event) {
+    driveHover(event);
+}
+
+void FishEducation::hoverLeave(QHoverEvent *event) {
+    driveHover(event);
+} 
+
+void FishEducation::driveHover(QHoverEvent* event) {
+    QPoint point = event->position().toPoint();
     hoverOverFish(point.x(), point.y());
 }
 
-void FishEducation::hoverMove(QHoverEvent *event)
-{
-    QPoint point = event->position().toPoint();
-
-    hoverOverFish(point.x(), point.y());
-}
-
-void FishEducation::hoverLeave(QHoverEvent *event)
-{
-    QPoint point = event->position().toPoint();
-
-    hoverOverFish(point.x(), point.y());
-}
-
-void FishEducation::hoverOverFish(int x, int y)
-{
+void FishEducation::hoverOverFish(int x, int y) {
     for (auto fish : fishes)
     {
         QLabel* fishLabel = std::get<0>(fish);
@@ -119,8 +104,7 @@ void FishEducation::hoverOverFish(int x, int y)
     }
 }
 
-void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*> fishInfo)
-{
+void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*> fishInfo) {
     //before hover
     std::get<0>(fishInfo)->setVisible(false);
     //after hover
@@ -128,8 +112,7 @@ void FishEducation::displayHoverFish(std::tuple< QLabel* , QLabel*> fishInfo)
 
 }
 
-void FishEducation::displayNotHoverFish(std::tuple< QLabel* , QLabel*> fishInfo)
-{
+void FishEducation::displayNotHoverFish(std::tuple< QLabel* , QLabel*> fishInfo) {
     //before hover
     std::get<0>(fishInfo)->setVisible(true);
     //after hover

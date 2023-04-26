@@ -26,7 +26,7 @@ public slots:
     ///
     void addScore ();
     ///
-    /// \brief addStrike
+    /// \brief addStrike adds a strike if there is zero or 1 strikes. If there is 2 strikes, the game ends
     ///
     void addStrike();
     ///
@@ -53,7 +53,7 @@ private:
     /// \brief MAX_STRIKES How many strikes the player can get
     /// before getting fired.
     ///
-    const int MAX_STRIKES = 3;
+    const int MAX_VISIBLE_STRIKES = 2;
 
     int numStrikes;
 

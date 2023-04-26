@@ -16,7 +16,13 @@ public:
     ~GameOverScreen();
 
 signals:
+    ///
+    /// \brief playAgain emited when the play again button is clicekd
+    ///
     void playAgain();
+    ///
+    /// \brief exit emited when the exit button is clicked
+    ///
     void exit();
 
 private:
