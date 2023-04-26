@@ -90,14 +90,16 @@ void GameModel::togglePause(bool paused) {
 }
 
 void GameModel::drop() {
+    //because this method is called when the mouse is realeased.
     if (paused || isholdingfish == false)
         return;
 
+    //drop the fish
     isholdingfish = false;
     heldFish->SetActive(true);
 
+    //loop through the buckets and check if the fish was dropped over one of them
     QList keys = buckets.keys();
-
     for (b2Body* &bucketBody : keys) {
         bool collision = heldFishBucketOverlap(bucketBody);
         if (collision) {
@@ -114,6 +116,7 @@ void GameModel::drop() {
         }
 
     }
+    //if the fish wasn't dropped over a bucket, check if it was on the conveyor belt or not
     if (lastmousecoords.y < CONVEYOR_BELT_AREA.y())
     {
         emit wrongFish();
@@ -143,19 +146,7 @@ void GameModel::spawnBucket(float x, float y, Species species) {
 
     b2Body* body = world->CreateBody(&bucketBodyDef);
 
-//    // Create a shape for this sensor
-//    b2CircleShape circle;
-//    circle.m_radius = 20;
-
-//    // Add the shape to the body.
-//    b2FixtureDef fixture;
-//    fixture.shape = &circle;
-//    fixture.isSensor = true;
-//    body->CreateFixture(&fixture);
-
     this->buckets.insert(body, species);
-
-//    body->SetUserData(&buckets[body]);
 }
 
 void GameModel::updateWorld() {
