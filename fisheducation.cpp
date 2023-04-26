@@ -73,6 +73,7 @@ bool FishEducation::event(QEvent* event)
     if (event->type() == QEvent::HoverMove)
     {
         hoverMove(static_cast<QHoverEvent*>(event));
+        return true;
     }
 
     return false;

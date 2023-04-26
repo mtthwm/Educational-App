@@ -26,7 +26,7 @@ public slots:
     ///
     void addScore ();
     ///
-    /// \brief addStrike
+    /// \brief addStrike adds a strike if there is zero or 1 strikes. If there is 2 strikes, the game ends
     ///
     void addStrike();
     ///

@@ -74,9 +74,13 @@ public slots:
     /// \brief exitGame called by the exit button, returns to the home screen
     ///
     void exitGame();
-
-
+    ///
+    /// \brief showPlusOne shows a plus one icon for 1 second when the correct fish is placed in a bucket
+    ///
     void showPlusOne();
+    ///
+    /// \brief showStrike shows "STEEERIKE" for 1 second when the wrong fish is placed in a bucket
+    ///
     void showStrike();
 
 private:
