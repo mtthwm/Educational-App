@@ -49,13 +49,14 @@ void ScoreBoard::updateUI() {
 }
 
 void ScoreBoard::addStrike() {
-    numStrikes++;
 
-    if (numStrikes == MAX_STRIKES)
+    if (numStrikes == MAX_VISIBLE_STRIKES)
     {
         emit gameOver();
         reset();
     }
+    else
+        numStrikes++;
 
     updateUI();
 }

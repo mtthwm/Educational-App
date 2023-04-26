@@ -53,7 +53,7 @@ private:
     /// \brief MAX_STRIKES How many strikes the player can get
     /// before getting fired.
     ///
-    const int MAX_STRIKES = 3;
+    const int MAX_VISIBLE_STRIKES = 2;
 
     int numStrikes;
 

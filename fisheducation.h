@@ -87,6 +87,12 @@ private:
     /// \brief fishes the storage of the fish with both types of displays being before and after a user hovers
     ///
     vector<std::tuple< QLabel* , QLabel*>> fishes;
+
+    ///
+    /// \brief driveHover just to get rid of some duplicate code. This is what would go in all of the hover handlers.
+    /// \param event
+    ///
+    void driveHover(QHoverEvent* event);
 };
 
 #endif // FISHEDUCATION_H
