@@ -4,8 +4,7 @@
 
 CohoEducation::CohoEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CohoEducation)
-{
+    ui(new Ui::CohoEducation) {
     ui->setupUi(this);
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
@@ -13,7 +12,7 @@ CohoEducation::CohoEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &CohoEducation::backButtonClicked);
+            &CohoEducation::goBack);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -23,8 +22,7 @@ CohoEducation::CohoEducation(QWidget *parent) :
     }
 }
 
-CohoEducation::~CohoEducation()
-{
+CohoEducation::~CohoEducation() {
     delete ui;
 }
 
@@ -53,24 +51,20 @@ void CohoEducation::hoverEnter(QHoverEvent *event) {
     hoverOverFish(point.x(), point.y());
 }
 
-void CohoEducation::hoverMove(QHoverEvent *event)
-{
+void CohoEducation::hoverMove(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void CohoEducation::hoverLeave(QHoverEvent *event)
-{
+void CohoEducation::hoverLeave(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void CohoEducation::hoverOverFish(int x, int y)
-{
-    for (auto fish : fishes)
-    {
+void CohoEducation::hoverOverFish(int x, int y) {
+    for (auto fish : fishes) {
         QLabel* fishLabel = fish.first;
 
         int minX      = fishLabel->x();
@@ -98,9 +92,3 @@ void CohoEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) 
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(false);
 }
-
-
-void CohoEducation::backButtonClicked() {
-    emit goBack();
-}
-

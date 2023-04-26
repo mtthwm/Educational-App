@@ -4,8 +4,7 @@
 
 ChumEducation::ChumEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ChumEducation)
-{
+    ui(new Ui::ChumEducation) {
     ui->setupUi(this);
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
@@ -13,7 +12,7 @@ ChumEducation::ChumEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &ChumEducation::backButtonClicked);
+            &ChumEducation::goBack);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -24,8 +23,7 @@ ChumEducation::ChumEducation(QWidget *parent) :
 
 }
 
-ChumEducation::~ChumEducation()
-{
+ChumEducation::~ChumEducation() {
     delete ui;
 }
 
@@ -54,22 +52,19 @@ void ChumEducation::hoverEnter(QHoverEvent *event) {
     hoverOverFish(point.x(), point.y());
 }
 
-void ChumEducation::hoverMove(QHoverEvent *event)
-{
+void ChumEducation::hoverMove(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void ChumEducation::hoverLeave(QHoverEvent *event)
-{
+void ChumEducation::hoverLeave(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void ChumEducation::hoverOverFish(int x, int y)
-{
+void ChumEducation::hoverOverFish(int x, int y) {
     for (auto fish : fishes)
     {
         QLabel* fishLabel = fish.first;
@@ -98,9 +93,4 @@ void ChumEducation::displayHoverFish(std::pair<QLabel *, QLabel *> fishInfo)  {
 void ChumEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) {
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(false);
-}
-
-
-void ChumEducation::backButtonClicked() {
-    emit goBack();
 }

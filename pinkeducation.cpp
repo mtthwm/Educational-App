@@ -4,8 +4,7 @@
 
 PinkEducation::PinkEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::PinkEducation)
-{
+    ui(new Ui::PinkEducation) {
     ui->setupUi(this);
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
@@ -13,7 +12,7 @@ PinkEducation::PinkEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &PinkEducation::backButtonClicked);
+            &PinkEducation::goBack);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -23,8 +22,7 @@ PinkEducation::PinkEducation(QWidget *parent) :
     }
 }
 
-PinkEducation::~PinkEducation()
-{
+PinkEducation::~PinkEducation() {
     delete ui;
 }
 
@@ -53,22 +51,19 @@ void PinkEducation::hoverEnter(QHoverEvent *event) {
     hoverOverFish(point.x(), point.y());
 }
 
-void PinkEducation::hoverMove(QHoverEvent *event)
-{
+void PinkEducation::hoverMove(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void PinkEducation::hoverLeave(QHoverEvent *event)
-{
+void PinkEducation::hoverLeave(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void PinkEducation::hoverOverFish(int x, int y)
-{
+void PinkEducation::hoverOverFish(int x, int y) {
     for (auto fish : fishes)
     {
         QLabel* fishLabel = fish.first;
@@ -97,9 +92,4 @@ void PinkEducation::displayHoverFish(std::pair<QLabel *, QLabel *> fishInfo)  {
 void PinkEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInfo) {
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(false);
-}
-
-
-void PinkEducation::backButtonClicked() {
-    emit goBack();
 }

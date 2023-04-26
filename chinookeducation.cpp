@@ -5,8 +5,7 @@
 
 ChinookEducation::ChinookEducation(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ChinookEducation)
-{
+    ui(new Ui::ChinookEducation) {
     ui->setupUi(this);
     fishes.push_back({ui->oceanPhase, ui->oceanEducation});
     fishes.push_back({ui->spawningPhase, ui->spawningEducation});
@@ -14,7 +13,7 @@ ChinookEducation::ChinookEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &ChinookEducation::backButtonClicked);
+            &ChinookEducation::goBack);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -24,8 +23,7 @@ ChinookEducation::ChinookEducation(QWidget *parent) :
     }
 }
 
-ChinookEducation::~ChinookEducation()
-{
+ChinookEducation::~ChinookEducation() {
     delete ui;
 }
 
@@ -54,22 +52,19 @@ void ChinookEducation::hoverEnter(QHoverEvent *event) {
     hoverOverFish(point.x(), point.y());
 }
 
-void ChinookEducation::hoverMove(QHoverEvent *event)
-{
+void ChinookEducation::hoverMove(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void ChinookEducation::hoverLeave(QHoverEvent *event)
-{
+void ChinookEducation::hoverLeave(QHoverEvent *event) {
     QPoint point = event->position().toPoint();
 
     hoverOverFish(point.x(), point.y());
 }
 
-void ChinookEducation::hoverOverFish(int x, int y)
-{
+void ChinookEducation::hoverOverFish(int x, int y) {
     for (auto fish : fishes)
     {
         QLabel* fishLabel = fish.first;
@@ -99,9 +94,3 @@ void ChinookEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInf
     fishInfo.first->setVisible(true);
     fishInfo.second->setVisible(false);
 }
-
-
-void ChinookEducation::backButtonClicked() {
-    emit goBack();
-}
-
