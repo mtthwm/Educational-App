@@ -13,7 +13,7 @@ SockeyeEducation::SockeyeEducation(QWidget *parent) :
     connect(ui->backButton,
             &QPushButton::clicked,
             this,
-            &SockeyeEducation::backButtonClicked);
+            &SockeyeEducation::goBack);
 
     this->setAttribute(Qt::WA_Hover, true);
 
@@ -99,7 +99,3 @@ void SockeyeEducation::displayNotHoverFish(std::pair<QLabel *, QLabel *> fishInf
     fishInfo.second->setVisible(false);
 }
 
-void SockeyeEducation::backButtonClicked()
-{
-    emit goBack();
-}
