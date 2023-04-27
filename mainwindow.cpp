@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToChinook,
             this,
             &MainWindow::switchToChinook);
+
     connect(ui->chinookEducation,
             &ChinookEducation::goBack,
             this,
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToSockeye,
             this,
             &MainWindow::switchToSockeye);
+
     connect(ui->sockeyeEducation,
             &SockeyeEducation::goBack,
             this,
@@ -70,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToChum,
             this,
             &MainWindow::switchToChum);
+
     connect(ui->chumEducation,
             &ChumEducation::goBack,
             this,
@@ -79,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToCoho,
             this,
             &MainWindow::switchToCoho);
+
     connect(ui->cohoEducation,
             &CohoEducation::goBack,
             this,
@@ -88,19 +92,18 @@ MainWindow::MainWindow(QWidget *parent)
             &FishEducation::goToPink,
             this,
             &MainWindow::switchToPink);
+
     connect(ui->pinkEducation,
             &PinkEducation::goBack,
             this,
             &MainWindow::switchToHome);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::switchToGame()
-{
+void MainWindow::switchToGame() {
     ui->startButton->setVisible(false);
     ui->cohoEducation->setVisible(false);
     ui->pinkEducation->setVisible(false);
@@ -115,8 +118,7 @@ void MainWindow::switchToGame()
     emit startGame();
 }
 
-void MainWindow::switchToGameOver()
-{
+void MainWindow::switchToGameOver() {
     ui->startButton->setVisible(false);
     ui->fishEduction->setVisible(false);
     ui->gameScene->setVisible(false);
