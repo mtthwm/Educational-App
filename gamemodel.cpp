@@ -30,15 +30,17 @@ void GameModel::speedup() {
 
 void GameModel::checkInvalidFish() {
     vector<b2Body*> toRemove;
-
+    // loop through all the fish.
     for (auto [body, fish] : fishes.asKeyValueRange()) {
         b2Vec2 position = body->GetPosition();
-        //int translateY = fish.imageHeight/2;
-        // position.x + fish.imageWidth/2 > 980 + translateY || position.y > 510 + translateY || position.y + translateY < 0 - translateY
+
         if (fish.isOutOfBounds(position.x, position.y, 0.980f, 0.650f) && !isholdingfish) {
             toRemove.push_back(body);
-        }
+        } // If the fish position is out of bounds, we're going to queue it to be removed; we can't remove
+          // it directly because we're currently looping through the list we're going to modify.
 
+        // Otherwise, if the fish we're holding is attempting to leave the conveyer belt area, just drop it
+        // before it can leave.
         if (position.y > CONVEYOR_BELT_AREA.height() + CONVEYOR_BELT_AREA.y() - 0.020f)
         {
             drop();
@@ -46,6 +48,7 @@ void GameModel::checkInvalidFish() {
 
     }
 
+    // delete the fish.
     for (b2Body* body : toRemove) {
         deleteFishAndBody(body);
         emit wrongFish();
@@ -224,6 +227,8 @@ void GameModel::spawnFish() {
     b2PolygonShape polygon;
     float imageScalar = QRandomGenerator::global()->bounded(50, 60) / 1000.0f;
 
+    // We're using an image scalar so that the base aspect ratio stays the same for any
+    // given fish image.
     polygon.SetAsBox(3 * imageScalar, imageScalar);
     fish.imageHeight = imageScalar;
     fish.imageWidth =  3 * imageScalar;
@@ -259,8 +264,7 @@ void GameModel::deleteFishAndBody(b2Body* fish) {
     fishes.remove(fish);
 }
 
-void GameModel::endGame()
-{
+void GameModel::endGame() {
     reset();
     togglePause(true);
 }
