@@ -130,12 +130,12 @@ private:
     /// \brief INITIAL_CONVEYOR_SPEED Controls how fast the conveyor
     /// moves at the beginning
     ///
-    const float INITIAL_CONVEYOR_SPEED = 0.300f;
+    const float INITIAL_CONVEYOR_SPEED = 0.2000f;
     ///
     /// \brief INITIAL_FISH_GENERATION_FREQUENCY How long in ms before
     /// another fish spawns to begin with
     ///
-    const float INITIAL_FISH_GENERATION_FREQUENCY = 5000;
+    const float INITIAL_FISH_GENERATION_FREQUENCY = 4000;
     ///
     /// \brief SPEEDUP_FREQUENCY
     ///
