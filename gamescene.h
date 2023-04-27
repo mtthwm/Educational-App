@@ -3,20 +3,16 @@
 
 #include <QWidget>
 #include <QTimer>
-#include <vector>
 #include <QKeyEvent>
 #include "fish.h"
 #include "gamemodel.h"
 #include "Box2D/Box2D.h"
 
-using std::vector;
-
 namespace Ui {
 class GameScene;
 }
 
-class GameScene : public QWidget
-{
+class GameScene : public QWidget {
     Q_OBJECT
 
 public:

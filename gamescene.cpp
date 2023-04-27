@@ -6,17 +6,12 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QRandomGenerator>
-#include<iostream>
-
-using std::cout;
-using std::endl;
 
 GameScene::GameScene(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameScene),
     model(this),
-    bucketImage(":/images/bucket.png")
-{
+    bucketImage(":/images/bucket.png") {
     ui->setupUi(this);
 
     ui->exitButton->setVisible(false);
@@ -55,7 +50,6 @@ void GameScene::worldInit() {
 }
 
 void GameScene::paintEvent(QPaintEvent *) {
-    //cout << "paint event" << endl;
     QPainter painter(this);
     QBrush brush;
     brush.setColor(Qt::gray);
@@ -122,6 +116,7 @@ void GameScene::mousePressEvent(QMouseEvent *event) {
 
             model.heldFish = (*fish).first;
             model.heldfishcoords = b2Vec2((event->position().x()-position1.x) / SCALE_FACTOR, (event->position().y()-position1.y) / SCALE_FACTOR);
+            //disable collision
             model.heldFish->SetActive(false);
             model.isholdingfish = true;
             model.lastmousecoords = b2Vec2(event->position().x() / SCALE_FACTOR, event->position().y() / SCALE_FACTOR);
@@ -139,14 +134,8 @@ void GameScene::mouseReleaseEvent(QMouseEvent *) {
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Escape) {
-        if (ui->exitButton->isVisible())
-        {
-            ui->exitButton->setVisible(false);
-            return;
-        }
-        ui->exitButton->setVisible(true);
-    }
+    if (event->key() == Qt::Key_Escape)
+        ui->exitButton->setVisible(!ui->exitButton->isVisible());
 }
 
 void GameScene::exitGame()
@@ -159,7 +148,6 @@ void GameScene::worldUpdated() {
     update();
 }
 
-//TODO: add more images and then implement this function
 QImage GameScene::getImage(const Fish& fish) {
     QString path;
     int variant = fish.variant;

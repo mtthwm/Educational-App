@@ -38,7 +38,7 @@ public:
     ///
     b2Body* heldFish;
     ///
-    /// \brief heldfishcoords The coordinates of the currently held fish.
+    /// \brief heldfishcoords The coordinates the fish is being held at relative to the fish.
     ///
     b2Vec2 heldfishcoords;
     ///

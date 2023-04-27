@@ -7,8 +7,7 @@ namespace Ui {
 class GameOverScreen;
 }
 
-class GameOverScreen : public QWidget
-{
+class GameOverScreen : public QWidget {
     Q_OBJECT
 
 public:
