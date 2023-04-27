@@ -39,8 +39,7 @@ GameScene::GameScene(QWidget *parent) :
     ui->strikeIcon->setVisible(false);
 }
 
-GameScene::~GameScene()
-{
+GameScene::~GameScene() {
     delete ui;
 }
 
@@ -138,8 +137,7 @@ void GameScene::keyPressEvent(QKeyEvent *event) {
         ui->exitButton->setVisible(!ui->exitButton->isVisible());
 }
 
-void GameScene::exitGame()
-{
+void GameScene::exitGame() {
     ui->exitButton->setVisible(false);
     emit exit();
 }
@@ -185,8 +183,7 @@ QImage GameScene::getImage(const Fish& fish) {
 }
 
 
-void GameScene::showPlusOne()
-{
+void GameScene::showPlusOne() {
     if (ui->strikeIcon->isVisible())
         ui->strikeIcon->setVisible(false);
 
@@ -195,8 +192,7 @@ void GameScene::showPlusOne()
     QTimer::singleShot(1000, ui->plusOneIcon, [=] {ui->plusOneIcon->setVisible(false);});
 }
 
-void GameScene::showStrike()
-{
+void GameScene::showStrike() {
     if (ui->plusOneIcon->isVisible())
         ui->plusOneIcon->setVisible(false);
 
